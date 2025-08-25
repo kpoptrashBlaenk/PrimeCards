@@ -29,6 +29,15 @@ export const useUserStore = defineStore('userStore', {
 
       this.setSession(data.user, data.session.access_token, data.session.refresh_token)
     },
+    async restoreSession() {
+      if (!this.user) {
+        const stored = localStorage.getItem('user')
+        if (stored) {
+          const { user, accessToken, refreshToken } = JSON.parse(stored)
+          this.setSession(user, accessToken, refreshToken)
+        }
+      }
+    },
     async clearSession() {
       this.user = null
       this.accessToken = null
