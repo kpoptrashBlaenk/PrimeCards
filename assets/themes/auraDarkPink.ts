@@ -30,7 +30,7 @@ const AuraDarkPink = definePreset(Aura, {
       700: '{stone.700}',
       800: '{stone.800}',
       900: '{stone.900}',
-  },
+    },
   },
 })
 

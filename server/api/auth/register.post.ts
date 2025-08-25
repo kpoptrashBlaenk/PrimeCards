@@ -1,4 +1,3 @@
-import type { RegisterBody } from '#shared/types/body'
 import registerSchema from '#shared/utils/schemas/register'
 import { serverSupabaseClient } from '#supabase/server'
 import { H3Event } from 'h3'
@@ -9,7 +8,7 @@ export default defineEventHandler(async (event: H3Event) => {
   // validate
   const result = registerSchema.safeParse(body)
   if (!result.success) {
-    throw createError({ statusMessage: result.error.message })
+    throw createError({ statusCode: 422, statusMessage: result.error.message })
   }
 
   // database
@@ -20,8 +19,8 @@ export default defineEventHandler(async (event: H3Event) => {
   const { data, error } = await supabase.signUp({ email, password })
 
   if (error) {
-    throw createError({ statusMessage: error.message })
+    throw createError({ statusCode: error.status, statusMessage: error.message })
   }
 
-  return data.user
+  return data as AuthResponse
 })

@@ -60,7 +60,7 @@ async function onSubmit(event: FormSubmitEvent) {
 
   const response = await userStore.register(body)
 
-  if (response.error) {
+  if (response?.error) {
     errorMessage.value = response.error.statusMessage
   }
 }

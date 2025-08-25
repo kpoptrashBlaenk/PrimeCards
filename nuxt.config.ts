@@ -8,7 +8,7 @@ export default defineNuxtConfig({
       title: 'PrimeCards',
       htmlAttrs: {
         lang: 'en',
-        class: 'p-dark'
+        class: 'p-dark',
       },
     },
   },

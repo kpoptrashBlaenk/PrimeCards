@@ -3,3 +3,7 @@ export interface RegisterBody {
   email: string
   password: string
 }
+
+export interface RefreshBody {
+  refresh_token: string
+}
