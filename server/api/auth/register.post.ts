@@ -11,11 +11,10 @@ export default defineEventHandler(async (event: H3Event) => {
     throw createError({ statusCode: 422, statusMessage: result.error.message })
   }
 
-  // database
+  // sign up
   const { email, password } = result.data
   const supabase = (await serverSupabaseClient(event)).auth
 
-  // sign up
   const { data, error } = await supabase.signUp({ email, password })
 
   if (error) {

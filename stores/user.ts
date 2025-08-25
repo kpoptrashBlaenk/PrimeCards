@@ -1,5 +1,6 @@
 import type { User } from '@supabase/auth-js'
 import { defineStore } from 'pinia'
+import type { LoginBody } from '~~/shared/types/body'
 
 export const useUserStore = defineStore('userStore', {
   state: () => ({
@@ -45,7 +46,15 @@ export const useUserStore = defineStore('userStore', {
         return { error: error }
       }
     },
-    async login() {},
+    async login(body: LoginBody) {
+      try {
+        const data = await publicFetch<AuthResponse>('/api/auth/login', 'post', body)
+
+        this.setSession(data.user, data.session.access_token, data.session.refresh_token)
+      } catch (error: any) {
+        return { error: error }
+      }
+    },
     async logout() {
       this.clearSession()
     },
