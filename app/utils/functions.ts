@@ -4,7 +4,7 @@ import { useUserStore } from '~~/stores/user'
 
 export async function publicFetch<T>(url: NitroFetchRequest, method: RouterMethod, body?: any): Promise<T> {
   try {
-    return await $fetch<T>(url, { method, body })
+    return await $fetch<T>(url, { method, body, credentials: 'include' })
   } catch (error: any) {
     throw error
   }
@@ -15,14 +15,9 @@ export async function authFetch<T>(url: NitroFetchRequest, method: RouterMethod,
 
   // set token header
   const headers: Record<string, string> = {}
-  if (userStore.accessToken) {
-    console.log('token', userStore.accessToken)
-    headers['Authorization'] = `Bearer ${userStore.accessToken}`
-  }
-
   // try to fetch, if access token expired, refresh and try again
   try {
-    return await $fetch<T>(url, { method, body, headers })
+    return await $fetch<T>(url, { method, body, headers, credentials: 'include' })
   } catch (error: any) {
     if (retry && error.statusCode === 401) {
       try {

@@ -1,4 +1,5 @@
 import { serverSupabaseClient } from '#supabase/server'
+import type { User } from '@supabase/auth-js'
 import { H3Event } from 'h3'
 
 export default defineEventHandler(async (event: H3Event) => {
@@ -16,5 +17,5 @@ export default defineEventHandler(async (event: H3Event) => {
     throw createError({ statusCode: error.status, statusMessage: error.message })
   }
 
-  return data as AuthResponse
+  return data.user as User
 })

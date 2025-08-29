@@ -1,6 +1,11 @@
 import AuraDarkPink from './assets/themes/auraDarkPink'
 
 export default defineNuxtConfig({
+  typescript: {
+    tsConfig: {
+      include: ['../middleware/*'],
+    },
+  },
   compatibilityDate: '2025-07-15',
   devtools: { enabled: false },
   app: {

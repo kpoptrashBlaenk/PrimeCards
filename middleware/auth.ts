@@ -1,8 +1,10 @@
-import { defineNuxtRouteMiddleware } from 'nuxt/app'
+import { defineNuxtRouteMiddleware, navigateTo } from 'nuxt/app'
 import { useUserStore } from '~~/stores/user'
 
-export default defineNuxtRouteMiddleware((to, from) => {
-  useUserStore().restoreSession()
+export default defineNuxtRouteMiddleware(async (to, from) => {
+  const userStore = useUserStore()
 
-  return navigateTo('/login')
+  if (!userStore.user) await userStore.restoreSession()
+
+  if (!userStore.user) return navigateTo('/login')
 })
