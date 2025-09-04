@@ -2,8 +2,8 @@ import AuraDarkPink from './assets/themes/auraDarkPink'
 
 export default defineNuxtConfig({
   typescript: {
-    tsConfig: {
-      include: ['../middleware/*'],
+    sharedTsConfig: {
+      include: ['../node_modules/@supabase/supabase-js/**/*'],
     },
   },
   compatibilityDate: '2025-07-15',
@@ -36,5 +36,5 @@ export default defineNuxtConfig({
         },
       },
     },
-  },
+  }
 })

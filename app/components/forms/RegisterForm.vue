@@ -26,13 +26,12 @@
 
 <script setup lang="ts">
 /* Import */
-import { FormsField, FormsSubmitButton } from '#components'
-import type { FormSubmitEvent } from '@primevue/forms/form'
+import type { FormSubmitEvent } from '@primevue/forms'
 import { zodResolver } from '@primevue/forms/resolvers/zod'
 import registerSchema from '~~/shared/utils/schemas/register'
 import { useUserStore } from '~~/stores/user'
 
-/* Stores */
+/* Store */
 const userStore = useUserStore()
 
 /* Ref */

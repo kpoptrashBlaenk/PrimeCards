@@ -1,7 +1,4 @@
-import type { User } from '@supabase/auth-js'
-import { defineStore } from 'pinia'
-import { publicFetch } from '~/utils/functions'
-import type { LoginBody, RegisterBody } from '~~/shared/types/body'
+import type { User } from '@supabase/supabase-js'
 
 export const useUserStore = defineStore('userStore', {
   state: () => ({
@@ -26,15 +23,26 @@ export const useUserStore = defineStore('userStore', {
       }
     },
     async clearSession() {
-      this.user = null
+      try {
+        await $fetch('/api/auth/logout', {
+          method: 'post',
+          credentials: 'include',
+        })
 
-      await authFetch('/api/auth/logout', 'post')
+        this.user = null
+      } catch (error) {
+        console.log("couldn't clear session")
+      }
     },
 
     // Auth
     async register(body: RegisterBody) {
       try {
-        const data = await publicFetch<User>('/api/auth/register', 'post', body)
+        const data = await $fetch<User>('/api/auth/register', {
+          body: body,
+          method: 'post',
+          credentials: 'include',
+        })
 
         this.setSession(data)
       } catch (error: any) {
@@ -43,7 +51,11 @@ export const useUserStore = defineStore('userStore', {
     },
     async login(body: LoginBody) {
       try {
-        const data = await publicFetch<User>('/api/auth/login', 'post', body)
+        const data = await $fetch<User>('/api/auth/login', {
+          body: body,
+          method: 'post',
+          credentials: 'include',
+        })
 
         this.setSession(data)
       } catch (error: any) {

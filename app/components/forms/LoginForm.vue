@@ -25,12 +25,10 @@
 
 <script setup lang="ts">
 /* Import */
-import { FormsField, FormsSubmitButton } from '#components'
-import type { FormSubmitEvent } from '@primevue/forms/form'
-import type { LoginBody } from '~~/shared/types/body'
+import type { FormSubmitEvent } from '@primevue/forms'
 import { useUserStore } from '~~/stores/user'
 
-/* Stores */
+/* Store */
 const userStore = useUserStore()
 
 /* Ref */
