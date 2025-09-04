@@ -22,9 +22,6 @@
 </template>
 
 <script setup lang="ts">
-/* Import */
-import type { InputTypeHTMLAttribute } from 'vue'
-
 /* Emits */
 const emits = defineEmits(['focus'])
 

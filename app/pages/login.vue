@@ -4,11 +4,11 @@
 
 <script setup lang="ts">
 /* Import */
-import guest from '~~/middleware/guest.global'
+import guestGlobal from '@middleware/guest.global'
 
 /* PageMeta */
 definePageMeta({
   pageTransition: { name: 'scale', mode: 'out-in' },
-  middleware: guest,
+  middleware: guestGlobal,
 })
 </script>

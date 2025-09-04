@@ -31,10 +31,8 @@
 
 <script setup lang="ts">
 /* Import */
-import type { FormSubmitEvent } from '@primevue/forms'
 import { zodResolver } from '@primevue/forms/resolvers/zod'
-import { useAuth } from '~/composables/useAuth'
-import registerSchema from '~~/shared/utils/schemas/register'
+import registerSchema from '@schemas/register'
 
 /* Composable */
 const { register } = useAuth()

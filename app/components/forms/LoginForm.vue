@@ -29,10 +29,6 @@
 </template>
 
 <script setup lang="ts">
-/* Import */
-import type { FormSubmitEvent } from '@primevue/forms'
-import { useAuth } from '~/composables/useAuth'
-
 /* Composable */
 const { login } = useAuth()
 
