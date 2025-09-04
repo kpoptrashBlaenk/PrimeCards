@@ -1,4 +1,4 @@
-import type { SupabaseClient } from '@supabase/supabase-js'
+import type { SupabaseClient, User as SupabaseUser } from '@supabase/supabase-js'
 
 declare module '#app' {
   interface NuxtApp {
@@ -6,8 +6,6 @@ declare module '#app' {
   }
 }
 
-// declare module 'vue' {
-//   interface ComponentCustomProperties {
-//     $supabase: SupabaseClient
-//   }
-// }
+declare global {
+  interface User extends SupabaseUser {}
+}

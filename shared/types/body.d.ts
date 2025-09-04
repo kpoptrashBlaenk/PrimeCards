@@ -1,8 +1,8 @@
-export interface RegisterBody extends LoginBody {
+interface RegisterBody extends LoginBody {
   name: string
 }
 
-export interface LoginBody {
+interface LoginBody {
   email: string
   password: string
 }
