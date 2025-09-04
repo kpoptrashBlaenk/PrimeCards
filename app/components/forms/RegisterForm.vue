@@ -16,7 +16,7 @@
               @focus="clearField($form, field.name)"
             />
             <FormsErrorMessage v-if="errorMessage" :message="errorMessage" />
-            <FormsSubmitButton :label="'Register'"></FormsSubmitButton>
+            <FormsSubmitButton :label="'Register'" :loading="loading"></FormsSubmitButton>
           </Form>
         </ClientOnly>
       </template>
@@ -28,14 +28,15 @@
 /* Import */
 import type { FormSubmitEvent } from '@primevue/forms'
 import { zodResolver } from '@primevue/forms/resolvers/zod'
+import { useAuth } from '~/composables/useAuth'
 import registerSchema from '~~/shared/utils/schemas/register'
-import { useUserStore } from '~~/stores/user'
 
-/* Store */
-const userStore = useUserStore()
+/* Composable */
+const { register } = useAuth()
 
 /* Ref */
 const errorMessage = ref<string>()
+const loading = ref<boolean>(false)
 
 /* Fields */
 const fields = [
@@ -49,7 +50,10 @@ const resolver = ref(zodResolver(registerSchema))
 
 /* Submit */
 async function onSubmit(event: FormSubmitEvent) {
+  if (!event.valid) return
+
   errorMessage.value = undefined
+  loading.value = true
 
   const body: RegisterBody = {
     name: event.values.name,
@@ -57,10 +61,16 @@ async function onSubmit(event: FormSubmitEvent) {
     password: event.values.password,
   }
 
-  const response = await userStore.register(body)
+  try {
+    const data = await register(body)
 
-  if (response?.error) {
-    errorMessage.value = response.error.statusMessage
+    if (data.user) {
+      navigateTo('/')
+    }
+  } catch (error: any) {
+    errorMessage.value = error.message || 'Registration failed'
+  } finally {
+    loading.value = false
   }
 }
 

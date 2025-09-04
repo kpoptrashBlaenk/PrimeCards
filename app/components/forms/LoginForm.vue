@@ -15,7 +15,7 @@
               :errorMessage="$form[field.name]?.error?.message"
             />
             <FormsErrorMessage v-if="errorMessage" :message="errorMessage" />
-            <FormsSubmitButton :label="'Login'"></FormsSubmitButton>
+            <FormsSubmitButton :label="'Login'" :loading="loading"></FormsSubmitButton>
           </Form>
         </ClientOnly>
       </template>
@@ -26,13 +26,14 @@
 <script setup lang="ts">
 /* Import */
 import type { FormSubmitEvent } from '@primevue/forms'
-import { useUserStore } from '~~/stores/user'
+import { useAuth } from '~/composables/useAuth'
 
-/* Store */
-const userStore = useUserStore()
+/* Composable */
+const { login } = useAuth()
 
 /* Ref */
 const errorMessage = ref<string>()
+const loading = ref<boolean>(false)
 
 /* Fields */
 const fields = [
@@ -42,17 +43,26 @@ const fields = [
 
 /* Submit */
 async function onSubmit(event: FormSubmitEvent) {
+  if (!event.valid) return
+
   errorMessage.value = undefined
+  loading.value = true
 
   const body: LoginBody = {
     email: event.values.email,
     password: event.values.password,
   }
 
-  const response = await userStore.login(body)
+  try {
+    const data = await login(body)
 
-  if (response?.error) {
-    errorMessage.value = response.error.statusMessage
+    if (data.user) {
+      navigateTo('/')
+    }
+  } catch (error: any) {
+    errorMessage.value = error.message || 'Login failed'
+  } finally {
+    loading.value = false
   }
 }
 </script>
