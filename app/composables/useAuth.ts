@@ -28,12 +28,15 @@ export function useAuth() {
     const { error } = await $supabase.client.auth.signOut()
 
     if (error) throw error
+
+    userStore.clearUser()
   }
 
   const restore = async () => {
     const { data, error } = await $supabase.client.auth.getUser()
 
-    if (error) throw error
+    // silently continue on error
+    // if (error) throw error
 
     if (data.user) userStore.setUser(data.user)
   }
