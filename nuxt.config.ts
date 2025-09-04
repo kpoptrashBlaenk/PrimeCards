@@ -2,12 +2,16 @@ import AuraDarkPink from './assets/themes/auraDarkPink'
 
 export default defineNuxtConfig({
   typescript: {
+    tsConfig: {
+      include: ['../plugins/**/*.ts', '../middleware/*.ts'],
+    },
     sharedTsConfig: {
       include: ['../node_modules/@supabase/supabase-js/**/*'],
     },
   },
   compatibilityDate: '2025-07-15',
   devtools: { enabled: false },
+  plugins: ['~~/plugins/session.server'],
   app: {
     head: {
       title: 'PrimeCards',
@@ -36,5 +40,5 @@ export default defineNuxtConfig({
         },
       },
     },
-  }
+  },
 })
