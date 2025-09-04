@@ -19,6 +19,7 @@ logs
 .idea
 package-lock.json
 .vscode
+TODO.md
 
 # Local env files
 .env

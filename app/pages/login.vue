@@ -1,0 +1,14 @@
+<template>
+  <FormsLoginForm />
+</template>
+
+<script setup lang="ts">
+/* Import */
+import guestGlobal from '@middleware/guest.global'
+
+/* PageMeta */
+definePageMeta({
+  pageTransition: { name: 'scale', mode: 'out-in' },
+  middleware: guestGlobal,
+})
+</script>
