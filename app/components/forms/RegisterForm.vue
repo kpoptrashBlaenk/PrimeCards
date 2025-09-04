@@ -4,8 +4,12 @@
     <p class="text-center mb-3 -mt-3 text-lg text-500">Sign up to create your own card!</p>
     <Card class="w-4">
       <template #content>
-        <ClientOnly>
-          <Form v-slot="$form" :resolver @submit="onSubmit" class="flex flex-column gap-4" :validateOnValueUpdate="false">
+        <div v-if="!mounted" class="flex flex-column gap-4">
+          <FormsSkeletons :context="'register'" />
+        </div>
+
+        <ClientOnly v-else>
+          <Form v-slot="$form" :resolver @submit="onSubmit" :validateOnValueUpdate="false" class="flex flex-column gap-4">
             <FormsField
               v-for="field in fields"
               :name="field.name"
@@ -38,6 +42,7 @@ const { register } = useAuth()
 /* Ref */
 const errorMessage = ref<string>()
 const loading = ref<boolean>(false)
+const mounted = ref<boolean>(false)
 
 /* Fields */
 const fields = [
@@ -79,4 +84,9 @@ async function onSubmit(event: FormSubmitEvent) {
 function clearField(form: any, field: string) {
   if (form[field]) form[field].invalid = false
 }
+
+/* OnMounted */
+onMounted(() => {
+  mounted.value = true
+})
 </script>

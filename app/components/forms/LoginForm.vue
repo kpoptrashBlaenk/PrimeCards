@@ -4,6 +4,10 @@
     <p class="text-center mb-3 -mt-3 text-lg text-500">Sign in to create your own card!</p>
     <Card class="w-4">
       <template #content>
+        <div v-if="!mounted" class="flex flex-column gap-4">
+          <FormsSkeletons :context="'register'" />
+        </div>
+
         <ClientOnly>
           <Form v-slot="$form" @submit="onSubmit" class="flex flex-column gap-4" :validateOnValueUpdate="false">
             <FormsField
@@ -35,6 +39,7 @@ const { login } = useAuth()
 /* Ref */
 const errorMessage = ref<string>()
 const loading = ref<boolean>(false)
+const mounted = ref<boolean>(false)
 
 /* Fields */
 const fields = [
@@ -66,4 +71,9 @@ async function onSubmit(event: FormSubmitEvent) {
     loading.value = false
   }
 }
+
+/* OnMounted */
+onMounted(() => {
+  mounted.value = true
+})
 </script>
