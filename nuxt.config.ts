@@ -20,6 +20,10 @@ export default defineNuxtConfig({
         class: 'p-dark',
       },
     },
+    pageTransition: {
+      name: 'fade',
+      mode: 'out-in',
+    },
   },
   css: ['primeflex/primeflex.css', 'primeicons/primeicons.css', '~~/assets/css/main.css'],
   modules: ['@nuxtjs/supabase', '@pinia/nuxt', '@primevue/nuxt-module'],

@@ -17,6 +17,7 @@
             />
             <FormsErrorMessage v-if="errorMessage" :message="errorMessage" />
             <FormsSubmitButton :label="'Register'" :loading="loading"></FormsSubmitButton>
+            <p class="text-center text-400 -mt-1">Already have an account? <NuxtLink to="/login">Sign in now!</NuxtLink></p>
           </Form>
         </ClientOnly>
       </template>
