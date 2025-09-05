@@ -1,20 +1,20 @@
 <template>
-  <!-- Avatar trigger -->
+  <!-- Nav Avatar -->
   <Avatar icon="pi pi-user" shape="circle" class="bg-primary cursor-pointer" @click="profileMenu.toggle($event)" />
 
-  <!-- Popup menu -->
+  <!-- Profile popup -->
   <Menu ref="profileMenu" :model="items" popup>
     <template #item="{ item, props }">
       <!-- Separator -->
       <Divider v-if="item.separator" class="my-1" />
 
-      <!-- Header / non-clickable -->
+      <!-- Header -->
       <div v-else-if="item.header" class="flex align-items-center p-2 surface-0 cursor-default" style="pointer-events: none">
         <Avatar :icon="item.icon" shape="circle" class="bg-primary mr-2" />
         <span>{{ item.label }}</span>
       </div>
 
-      <!-- Normal clickable items -->
+      <!-- Clickable item -->
       <a v-else v-bind="props.action" class="flex align-items-center gap-2">
         <span :class="item.icon"></span>
         <span>{{ item.label }}</span>
@@ -30,7 +30,9 @@ const profileMenu = ref()
 const items = ref([
   { header: true, label: 'kpoptrash', icon: 'pi pi-user' },
   { separator: true },
-  { label: 'Profile', icon: 'pi pi-user', command: () => alert('Profile clicked') },
+  { label: 'Profile', icon: 'pi pi-user', to: '/profile', command: () => navigateTo('/profile') },
+  { separator: true },
+  { label: 'Settings', icon: 'pi pi-cog', to: '/profile', command: () => navigateTo('/settings') },
   { separator: true },
   {
     label: 'Sign out',
