@@ -32,6 +32,13 @@ const items = ref([
   { separator: true },
   { label: 'Profile', icon: 'pi pi-user', command: () => alert('Profile clicked') },
   { separator: true },
-  { label: 'Sign out', icon: 'pi pi-sign-out', command: () => alert('Logout clicked') },
+  {
+    label: 'Sign out',
+    icon: 'pi pi-sign-out',
+    command: () => {
+      useAuth().logout()
+      location.reload()
+    },
+  },
 ])
 </script>
