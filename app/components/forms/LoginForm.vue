@@ -1,31 +1,25 @@
 <template>
-  <div class="flex flex-column justify-content-center align-items-center">
-    <h1 class="text-center text-6xl text-primary">Sign In</h1>
-    <p class="text-center mb-3 -mt-3 text-lg text-500">Sign in to create your own card!</p>
-    <Card class="w-4">
-      <template #content>
-        <div v-if="!mounted" class="flex flex-column gap-4">
-          <FormsSkeletons :context="'register'" />
-        </div>
+  <FormsLayout :header="'Sign in to create your own card!'">
+    <div v-if="!mounted" class="flex flex-column gap-4">
+      <FormsSkeletons :context="'register'" />
+    </div>
 
-        <ClientOnly>
-          <Form v-slot="$form" @submit="onSubmit" class="flex flex-column gap-4" :validateOnValueUpdate="false">
-            <FormsField
-              v-for="field in fields"
-              :name="field.name"
-              :label="field.label"
-              :type="field.type"
-              :invalid="$form[field.name]?.invalid"
-              :errorMessage="$form[field.name]?.error?.message"
-            />
-            <FormsErrorMessage v-if="errorMessage" :message="errorMessage" />
-            <FormsSubmitButton :label="'Login'" :loading="loading"></FormsSubmitButton>
-            <p class="text-center text-400 -mt-1">Don't have an account? <NuxtLink to="/register">Sign up now!</NuxtLink></p>
-          </Form>
-        </ClientOnly>
-      </template>
-    </Card>
-  </div>
+    <ClientOnly>
+      <Form v-slot="$form" @submit="onSubmit" class="flex flex-column gap-4" :validateOnValueUpdate="false">
+        <FormsField
+          v-for="field in fields"
+          :name="field.name"
+          :label="field.label"
+          :type="field.type"
+          :invalid="$form[field.name]?.invalid"
+          :errorMessage="$form[field.name]?.error?.message"
+        />
+        <FormsErrorMessage v-if="errorMessage" :message="errorMessage" />
+        <FormsSubmitButton :label="'Login'" :loading="loading"></FormsSubmitButton>
+        <p class="text-center text-400 -mt-1">Don't have an account? <NuxtLink to="/register">Sign up now!</NuxtLink></p>
+      </Form>
+    </ClientOnly>
+  </FormsLayout>
 </template>
 
 <script setup lang="ts">

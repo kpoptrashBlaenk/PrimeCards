@@ -1,32 +1,26 @@
 <template>
-  <div class="flex flex-column justify-content-center align-items-center">
-    <h1 class="text-center text-6xl text-primary">Sign Up</h1>
-    <p class="text-center mb-3 -mt-3 text-lg text-500">Sign up to create your own card!</p>
-    <Card class="w-4">
-      <template #content>
-        <div v-if="!mounted" class="flex flex-column gap-4">
-          <FormsSkeletons :context="'register'" />
-        </div>
+  <FormsLayout :header="'Sign up to create your own card!'">
+    <div v-if="!mounted" class="flex flex-column gap-4">
+      <FormsSkeletons :context="'register'" />
+    </div>
 
-        <ClientOnly v-else>
-          <Form v-slot="$form" :resolver @submit="onSubmit" :validateOnValueUpdate="false" class="flex flex-column gap-4">
-            <FormsField
-              v-for="field in fields"
-              :name="field.name"
-              :label="field.label"
-              :type="field.type"
-              :invalid="$form[field.name]?.invalid"
-              :errorMessage="$form[field.name]?.error?.message"
-              @focus="clearField($form, field.name)"
-            />
-            <FormsErrorMessage v-if="errorMessage" :message="errorMessage" />
-            <FormsSubmitButton :label="'Register'" :loading="loading"></FormsSubmitButton>
-            <p class="text-center text-400 -mt-1">Already have an account? <NuxtLink to="/login">Sign in now!</NuxtLink></p>
-          </Form>
-        </ClientOnly>
-      </template>
-    </Card>
-  </div>
+    <ClientOnly v-else>
+      <Form v-slot="$form" :resolver @submit="onSubmit" :validateOnValueUpdate="false" class="flex flex-column gap-4">
+        <FormsField
+          v-for="field in fields"
+          :name="field.name"
+          :label="field.label"
+          :type="field.type"
+          :invalid="$form[field.name]?.invalid"
+          :errorMessage="$form[field.name]?.error?.message"
+          @focus="clearField($form, field.name)"
+        />
+        <FormsErrorMessage v-if="errorMessage" :message="errorMessage" />
+        <FormsSubmitButton :label="'Register'" :loading="loading"></FormsSubmitButton>
+        <p class="text-center text-400 -mt-1">Already have an account? <NuxtLink to="/login">Sign in now!</NuxtLink></p>
+      </Form>
+    </ClientOnly>
+  </FormsLayout>
 </template>
 
 <script setup lang="ts">

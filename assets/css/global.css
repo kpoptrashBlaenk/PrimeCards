@@ -4,6 +4,7 @@
 
 body {
   background-color: var(--p-surface-950) !important;
+  margin: 0;
 }
 
 /* Text Outline */
@@ -18,4 +19,12 @@ body {
 .text-outline:active {
   text-shadow: 1px 1px 2px rgba(255, 255, 255, 1);
   color: white;
+}
+
+/* Text Logo */
+.text-logo {
+  background: linear-gradient(90deg, var(--p-primary-100), var(--p-primary-300), var(--p-primary-500), var(--p-primary-800));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

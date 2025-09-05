@@ -9,6 +9,7 @@ import guestGlobal from '@middleware/guest.global'
 /* PageMeta */
 definePageMeta({
   pageTransition: { name: 'scale', mode: 'out-in' },
+  layout: false,
   middleware: guestGlobal,
 })
 </script>
