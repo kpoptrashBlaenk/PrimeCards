@@ -5,40 +5,73 @@ export function useAuth() {
   const userStore = useUserStore()
 
   const register = async (body: RegisterBody) => {
-    const { data, error } = await $supabase.client.auth.signUp({ email: body.email, password: body.password })
+    // sign up
+    const user = await $supabase.client.auth.signUp({
+      email: body.email,
+      password: body.password,
+    })
 
-    if (error) throw error
+    if (user.error) throw user.error
 
-    if (data.user) userStore.setUser(data.user)
+    if (!user.data.user) throw new Error('User not found')
 
-    return data
+    // create profile
+    const profile = await $supabase.client
+      .from('profiles')
+      .insert([
+        {
+          id: user.data.user.id,
+          email: user.data.user.email,
+          name: '',
+          avatar_url: '',
+        },
+      ])
+      .select()
+      .single()
+
+    if (profile.error) throw profile.error
+
+    userStore.setUser(profile.data)
   }
 
   const login = async (body: LoginBody) => {
-    const { data, error } = await $supabase.client.auth.signInWithPassword(body)
+    // login
+    const user = await $supabase.client.auth.signInWithPassword(body)
 
-    if (error) throw error
+    if (user.error) throw user.error
 
-    if (data.user) userStore.setUser(data.user)
+    if (!user.data.user) throw new Error('User not found')
 
-    return data
+    // find profile
+    const profile = await $supabase.client.from('profile').select('*').eq('user_id', user.data.user.id).single()
+
+    if (profile.error) throw profile.error
+
+    userStore.setUser(profile.data)
   }
 
   const logout = async () => {
-    const { error } = await $supabase.client.auth.signOut()
+    const user = await $supabase.client.auth.signOut()
 
-    if (error) throw error
+    if (user.error) throw user.error
 
     userStore.clearUser()
   }
 
   const restore = async () => {
-    const { data, error } = await $supabase.client.auth.getUser()
+    // get user
+    const user = await $supabase.client.auth.getUser()
 
     // silently continue on error
-    // if (error) throw error
+    if (user.error || !user.data) return
 
-    if (data.user) userStore.setUser(data.user)
+    // find profile
+    const profile = await $supabase.client.from('profile').select('*').eq('user_id', user.data.user.id).single()
+
+    // silently continue on error
+    if (profile.error) return
+
+    userStore.setUser(profile.data)
   }
 
   return { register, login, logout, restore }
