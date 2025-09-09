@@ -23,16 +23,14 @@
   </Menu>
 </template>
 <script setup lang="ts">
+/* Imports */
 import { useUserStore } from '@stores/user'
 
-/* Ref */
+/* Refs */
 const profileMenu = ref()
 
-/* Stores */
-const userStore = useUserStore()
-
-/* Items */
-const items = ref([
+/* Computeds */
+const items = computed(() => [
   { header: true, label: userStore.user?.name, icon: 'pi pi-user' },
   { separator: true },
   { label: 'Profile', icon: 'pi pi-user', to: '/profile', command: () => navigateTo('/profile') },
@@ -48,4 +46,7 @@ const items = ref([
     },
   },
 ])
+
+/* Stores */
+const userStore = useUserStore()
 </script>

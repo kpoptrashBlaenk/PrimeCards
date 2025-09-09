@@ -15,7 +15,7 @@
   </Menubar>
 </template>
 <script setup lang="ts">
-/* Import */
+/* Imports */
 import { useUserStore } from '@stores/user'
 
 /* Stores */

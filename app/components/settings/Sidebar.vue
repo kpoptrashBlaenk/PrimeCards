@@ -17,18 +17,19 @@
 </template>
 
 <script setup lang="ts">
+/* Imports */
 import { useUserStore } from '@stores/user'
 
-/* Router */
-const route = useRoute()
+/* Computeds */
+const items = computed(() => [
+  { label: 'Account', icon: 'pi pi-user', page: '/settings/account', command: () => navigateTo('/settings/account') },
+])
 
 /* Stores */
 const userStore = useUserStore()
 
-/* Items */
-const items = ref([
-  { label: 'Account', icon: 'pi pi-user', page: '/settings/account', command: () => navigateTo('/settings/account') },
-])
+/* Router */
+const route = useRoute()
 </script>
 
 <style lang="css" scoped>

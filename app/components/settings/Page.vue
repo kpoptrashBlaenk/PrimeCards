@@ -56,7 +56,7 @@
 </template>
 
 <script setup lang="ts">
-/* Import */
+/* Imports */
 import { zodResolver } from '@primevue/forms/resolvers/zod'
 import settingsAccountSchema from '@schemas/settings.account'
 import { useUserStore } from '@stores/user'
@@ -66,25 +66,25 @@ defineProps<{
   title: string
 }>()
 
-/* Composable */
-const { account } = useSettings()
-
 /* Stores */
 const userStore = useUserStore()
 
-/* Ref */
-const fileUpload = ref()
-const errorMessage = ref<string>()
-const loading = ref<boolean>(false)
+/* Composables */
+const { account } = useSettings()
 
-/* Fields */
-const fields = [{ name: 'name', label: 'Name', type: 'text' }]
+/* Refs */
+const errorMessage = ref<string>()
+const fileUpload = ref()
+const loading = ref<boolean>(false)
+const resolver = ref(zodResolver(settingsAccountSchema))
+
+/* Computeds */
 const initialValues = computed(() => ({
   name: userStore.user?.name ?? '',
 }))
 
-/* Resolver */
-const resolver = ref(zodResolver(settingsAccountSchema))
+/* Constants */
+const fields = [{ name: 'name', label: 'Name', type: 'text' }]
 
 /* Submit */
 async function onSubmit(event: FormSubmitEvent) {

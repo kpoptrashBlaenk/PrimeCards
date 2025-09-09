@@ -22,9 +22,6 @@
 </template>
 
 <script setup lang="ts">
-/* Emits */
-const emits = defineEmits(['focus'])
-
 /* Props */
 const props = defineProps<{
   name: string
@@ -34,8 +31,13 @@ const props = defineProps<{
   errorMessage?: string
 }>()
 
-/* Const */
+/* Emits */
+const emits = defineEmits(['focus'])
+
+/* Refs */
 const isPassword = ref<boolean>(props.type === 'password')
+
+/* Constants */
 const passwordProps = isPassword.value
   ? { toggleMask: true, strongRegex: '^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>])(?!.*\\s).{8,128}$' }
   : {}

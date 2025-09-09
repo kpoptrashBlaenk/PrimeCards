@@ -24,27 +24,25 @@
 </template>
 
 <script setup lang="ts">
-/* Import */
+/* Imports */
 import { zodResolver } from '@primevue/forms/resolvers/zod'
 import registerSchema from '@schemas/register'
 
-/* Composable */
-const { register } = useAuth()
-
-/* Ref */
+/* Refs */
 const errorMessage = ref<string>()
 const loading = ref<boolean>(false)
 const mounted = ref<boolean>(false)
+const resolver = ref(zodResolver(registerSchema))
 
-/* Fields */
+/* Composables */
+const { register } = useAuth()
+
+/* Constants */
 const fields = [
   { name: 'name', label: 'Name', type: 'text' },
   { name: 'email', label: 'Email', type: 'email' },
   { name: 'password', label: 'Password', type: 'password' },
 ]
-
-/* Resolver */
-const resolver = ref(zodResolver(registerSchema))
 
 /* Submit */
 async function onSubmit(event: FormSubmitEvent) {
@@ -70,12 +68,12 @@ async function onSubmit(event: FormSubmitEvent) {
   }
 }
 
-/* Clear Field */
+/* Utils */
 function clearField(form: any, field: string) {
   if (form[field]) form[field].invalid = false
 }
 
-/* OnMounted */
+/* Hooks */
 onMounted(() => {
   mounted.value = true
 })

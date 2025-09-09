@@ -23,15 +23,15 @@
 </template>
 
 <script setup lang="ts">
-/* Composable */
-const { login } = useAuth()
-
-/* Ref */
+/* Refs */
 const errorMessage = ref<string>()
 const loading = ref<boolean>(false)
 const mounted = ref<boolean>(false)
 
-/* Fields */
+/* Composables */
+const { login } = useAuth()
+
+/* Constants */
 const fields = [
   { name: 'email', label: 'Email', type: 'email' },
   { name: 'password', label: 'Password', type: 'password' },
@@ -60,7 +60,7 @@ async function onSubmit(event: FormSubmitEvent) {
   }
 }
 
-/* OnMounted */
+/* Hooks */
 onMounted(() => {
   mounted.value = true
 })
