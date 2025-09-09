@@ -1,7 +1,6 @@
 <template>
   <!-- Nav Avatar -->
-  <Avatar icon="pi pi-user" shape="circle" class="bg-primary cursor-pointer" @click="profileMenu.toggle($event)" />
-
+  <UiAvatar size="normal" class="cursor-pointer" @click="profileMenu.toggle($event)" />
   <!-- Profile popup -->
   <Menu ref="profileMenu" :model="items" popup>
     <template #item="{ item, props }">
@@ -10,7 +9,7 @@
 
       <!-- Header -->
       <div v-else-if="item.header" class="flex align-items-center p-2 surface-0 cursor-default" style="pointer-events: none">
-        <Avatar :icon="item.icon" shape="circle" class="bg-primary mr-2" />
+        <UiAvatar size="normal" class="bg-primary mr-2" />
         <span>{{ item.label }}</span>
       </div>
 
@@ -31,7 +30,7 @@ const profileMenu = ref()
 
 /* Computeds */
 const items = computed(() => [
-  { header: true, label: userStore.user?.name, icon: 'pi pi-user' },
+  { header: true, label: userStore.user?.name },
   { separator: true },
   { label: 'Profile', icon: 'pi pi-user', to: '/profile', command: () => navigateTo('/profile') },
   { separator: true },

@@ -12,7 +12,7 @@ declare global {
     created_at: string
     email: string
     name: string
-    avatar_url: string
+    avatar_path: string
     active: boolean
   }
 }

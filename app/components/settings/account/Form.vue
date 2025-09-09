@@ -19,7 +19,7 @@
           class="lg:w-8"
         />
         <FormsErrorMessage v-if="errorMessage" :message="errorMessage" />
-        <SettingsFormButtons :loading="loading" />
+        <SettingsFormButtons :loading="loading" @click="errorMessage = undefined" />
       </Form>
     </ClientOnly>
   </div>

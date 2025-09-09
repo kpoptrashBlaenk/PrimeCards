@@ -1,8 +1,10 @@
+import { useImageStore } from '@stores/image'
 import { useUserStore } from '@stores/user'
 
 export function useSettings() {
   const { $supabase } = useNuxtApp()
   const userStore = useUserStore()
+  const imageStore = useImageStore()
 
   const account = async (body: SettingsAccountBody) => {
     if (!userStore.user) throw new Error('No user logged in')
@@ -14,5 +16,38 @@ export function useSettings() {
     userStore.setUser(profile.data)
   }
 
-  return { account }
+  const saveAvatar = async (file: File) => {
+    const bucket = await $supabase.client.storage
+      .from('primecards')
+      .upload(`${userStore.user?.user_id}/avatar.png`, file, { upsert: true })
+
+    if (bucket.error) throw bucket.error
+
+    const profile = await $supabase.client
+      .from('profile')
+      .update({ avatar_path: bucket.data.path })
+      .eq('user_id', userStore.user?.user_id)
+      .select()
+      .single()
+
+    if (profile.error) {
+      // rollback
+      await $supabase.client.storage.from('primecards').remove([bucket.data.path])
+      throw profile.error
+    }
+
+    userStore.setUser(profile.data)
+  }
+
+  const getAvatar = async (path: string) => {
+    if (!path) return
+
+    const avatar = await $supabase.client.storage.from('primecards').createSignedUrl(path, 60 * 60 * 24)
+
+    if (!avatar.data?.signedUrl) return
+
+    imageStore.set(path, avatar.data.signedUrl)
+  }
+
+  return { account, saveAvatar, getAvatar }
 }
