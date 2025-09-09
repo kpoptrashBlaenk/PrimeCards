@@ -1,5 +1,5 @@
 <template>
-  <SettingsPage :title="'Account'" />
+  <SettingsAccountPage />
 </template>
 
 <script setup lang="ts">
