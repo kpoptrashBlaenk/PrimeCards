@@ -23,12 +23,17 @@
   </Menu>
 </template>
 <script setup lang="ts">
+import { useUserStore } from '@stores/user'
+
 /* Ref */
 const profileMenu = ref()
 
+/* Stores */
+const userStore = useUserStore()
+
 /* Items */
 const items = ref([
-  { header: true, label: 'kpoptrash', icon: 'pi pi-user' },
+  { header: true, label: userStore.user?.name, icon: 'pi pi-user' },
   { separator: true },
   { label: 'Profile', icon: 'pi pi-user', to: '/profile', command: () => navigateTo('/profile') },
   { separator: true },

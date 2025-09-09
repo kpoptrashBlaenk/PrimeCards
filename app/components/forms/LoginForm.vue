@@ -15,7 +15,7 @@
           :errorMessage="$form[field.name]?.error?.message"
         />
         <FormsErrorMessage v-if="errorMessage" :message="errorMessage" />
-        <FormsSubmitButton :label="'Login'" :loading="loading"></FormsSubmitButton>
+        <Button type="submit" size="large" rounded :disabled="loading" class="font-bold text-outline">Login</Button>
         <p class="text-center text-400 -mt-1">Don't have an account? <NuxtLink to="/register">Sign up now!</NuxtLink></p>
       </Form>
     </ClientOnly>
@@ -50,11 +50,9 @@ async function onSubmit(event: FormSubmitEvent) {
   }
 
   try {
-    const data = await login(body)
+    await login(body)
 
-    if (data.user) {
-      navigateTo('/')
-    }
+    navigateTo('/')
   } catch (error: any) {
     errorMessage.value = error.message || 'Login failed'
   } finally {

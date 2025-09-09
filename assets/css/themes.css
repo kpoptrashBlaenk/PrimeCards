@@ -2,3 +2,17 @@
 html.p-dark .surface-950 {
   background-color: var(--p-surface-950);
 }
+
+/* Avatar */
+.avatar-giant {
+  width: 10rem !important;
+  height: 10rem !important;
+  font-size: 10rem !important;
+}
+.avatar-giant-icon {
+  width: 5rem !important;
+  height: 5rem !important;
+}
+.avatar-giant-icon::before {
+  font-size: 5rem !important;
+}

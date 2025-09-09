@@ -1,12 +1,10 @@
 <template>
-  <SettingsPage />
+  <SettingsPage :title="'Account'" />
 </template>
 
 <script setup lang="ts">
 /* Import */
 import authGlobal from '@middleware/auth.global'
-
-/* Import */
 
 /* PageMeta */
 definePageMeta({

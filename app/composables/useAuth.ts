@@ -17,13 +17,12 @@ export function useAuth() {
 
     // create profile
     const profile = await $supabase.client
-      .from('profiles')
+      .from('profile')
       .insert([
         {
-          id: user.data.user.id,
-          email: user.data.user.email,
-          name: '',
-          avatar_url: '',
+          user_id: user.data.user.id,
+          email: body.email,
+          name: body.name,
         },
       ])
       .select()
@@ -43,7 +42,7 @@ export function useAuth() {
     if (!user.data.user) throw new Error('User not found')
 
     // find profile
-    const profile = await $supabase.client.from('profile').select('*').eq('user_id', user.data.user.id).single()
+    const profile = await $supabase.client.from('profile').select().eq('user_id', user.data.user.id).single()
 
     if (profile.error) throw profile.error
 
@@ -66,7 +65,7 @@ export function useAuth() {
     if (user.error || !user.data) return
 
     // find profile
-    const profile = await $supabase.client.from('profile').select('*').eq('user_id', user.data.user.id).single()
+    const profile = await $supabase.client.from('profile').select().eq('user_id', user.data.user.id).single()
 
     // silently continue on error
     if (profile.error) return

@@ -16,7 +16,7 @@
           @focus="clearField($form, field.name)"
         />
         <FormsErrorMessage v-if="errorMessage" :message="errorMessage" />
-        <FormsSubmitButton :label="'Register'" :loading="loading"></FormsSubmitButton>
+        <Button type="submit" size="large" rounded :disabled="loading" class="font-bold text-outline">Register</Button>
         <p class="text-center text-400 -mt-1">Already have an account? <NuxtLink to="/login">Sign in now!</NuxtLink></p>
       </Form>
     </ClientOnly>
@@ -60,11 +60,9 @@ async function onSubmit(event: FormSubmitEvent) {
   }
 
   try {
-    const data = await register(body)
+    await register(body)
 
-    if (data.user) {
-      navigateTo('/')
-    }
+    navigateTo('/')
   } catch (error: any) {
     errorMessage.value = error.message || 'Registration failed'
   } finally {

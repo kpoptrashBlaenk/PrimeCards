@@ -2,7 +2,7 @@
   <div class="flex gap-3 pt-4 pb-3 pl-2">
     <Avatar icon="pi pi-user" shape="circle" class="bg-primary" size="large" />
     <div class="flex flex-column justify-content-center">
-      <span class="text-xl">TODO: NAME</span>
+      <span class="text-xl">{{ userStore.user?.name }}</span>
       <span class="text-md text-400">{{ userStore.user?.email }}</span>
     </div>
   </div>

@@ -15,7 +15,7 @@
       </template>
     </component>
     <label :for="name">{{ label }}</label>
-    <Message v-if="invalid" icon="pi pi-exclamation-circle" severity="error" size="small" variant="simple" class="mt-1">
+    <Message v-if="invalid" icon="pi pi-exclamation-circle" severity="error" size="small" class="mt-1">
       {{ errorMessage }}
     </Message>
   </IftaLabel>

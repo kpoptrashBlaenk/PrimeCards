@@ -1,6 +1,7 @@
 import z from 'zod'
 
 const registerSchema = z.object({
+  name: z.string('Name must not be empty').min(1, 'Name must not be empty'),
   email: z.email('Email not valid'),
   password: z
     .string('Password must not be empty')
