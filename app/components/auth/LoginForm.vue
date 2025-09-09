@@ -1,5 +1,5 @@
 <template>
-  <FormsLayout :header="'Sign in to create your own card!'">
+  <AuthLayout :header="'Sign in to create your own card!'">
     <div v-if="!mounted" class="flex flex-column gap-4">
       <FormsSkeletons :context="'register'" />
     </div>
@@ -19,7 +19,7 @@
         <p class="text-center text-400 -mt-1">Don't have an account? <NuxtLink to="/register">Sign up now!</NuxtLink></p>
       </Form>
     </ClientOnly>
-  </FormsLayout>
+  </AuthLayout>
 </template>
 
 <script setup lang="ts">
