@@ -1,54 +1,57 @@
 <template>
-  <div class="text-4xl -mb-2 mt-3">{{ title }}</div>
-  <Divider />
-  <!-- Avatar -->
   <div>
-    <Avatar
-      icon="pi pi-user"
-      shape="circle"
-      class="bg-primary avatar-giant"
-      :pt="{
-        icon: { class: 'avatar-giant-icon' },
-      }"
-    />
-    <FileUpload
-      url="''"
-      mode="basic"
-      accept="image/*"
-      :auto="true"
-      :maxFileSize="1000000"
-      invalidFileSizeMessage="File can't be bigger than 1Mb"
-      chooseIcon="pi pi-upload"
-      :chooseButtonProps="{ size: 'small', label: 'Upload' }"
-      class="absolute ml-8 mb-2 p-1 surface-0 text-primary"
-    />
-  </div>
-  <!-- Form -->
-  <div class="mt-5">
-    <ClientOnly>
-      <Form
-        v-slot="$form"
-        :initialValues="initialValues"
-        @submit="onSubmit"
-        :resolver
-        :validateOnValueUpdate="false"
-        class="flex flex-column gap-4"
-      >
-        <FormsField
-          v-for="field in fields"
-          :name="field.name"
-          :label="field.label"
-          :type="field.type"
-          :invalid="$form[field.name]?.invalid"
-          :errorMessage="$form[field.name]?.error?.message"
-        />
-        <FormsErrorMessage v-if="errorMessage" :message="errorMessage" />
-        <div class="flex gap-3">
-          <Button type="submit" :loading="loading" severity="success" size="small" class="font-bold">Save changes</Button>
-          <Button type="reset" :loading="loading" severity="danger" size="small" class="font-bold">Reset changes</Button>
-        </div>
-      </Form>
-    </ClientOnly>
+    <div class="text-4xl -mb-2 mt-3">{{ title }}</div>
+    <Divider />
+    <!-- Avatar -->
+    <div>
+      <Avatar
+        icon="pi pi-user"
+        shape="circle"
+        class="bg-primary avatar-giant"
+        :pt="{
+          icon: { class: 'avatar-giant-icon' },
+        }"
+      />
+      <FileUpload
+        url="''"
+        mode="basic"
+        accept="image/*"
+        :auto="true"
+        :maxFileSize="1000000"
+        invalidFileSizeMessage="File can't be bigger than 1Mb"
+        chooseIcon="pi pi-upload"
+        :chooseButtonProps="{ size: 'small', label: 'Upload' }"
+        class="absolute ml-8 mb-2 p-1 surface-0 text-primary"
+      />
+    </div>
+    <!-- Form -->
+    <div class="mt-5">
+      <ClientOnly>
+        <Form
+          v-slot="$form"
+          :initialValues="initialValues"
+          @submit="onSubmit"
+          :resolver
+          :validateOnValueUpdate="false"
+          class="flex flex-column gap-4"
+        >
+          <FormsField
+            v-for="field in fields"
+            :name="field.name"
+            :label="field.label"
+            :type="field.type"
+            :invalid="$form[field.name]?.invalid"
+            :errorMessage="$form[field.name]?.error?.message"
+            class="lg:w-8"
+          />
+          <FormsErrorMessage v-if="errorMessage" :message="errorMessage" />
+          <div class="flex gap-3">
+            <Button type="submit" :loading="loading" severity="success" size="small" class="font-bold">Save changes</Button>
+            <Button type="reset" :loading="loading" severity="danger" size="small" class="font-bold">Reset changes</Button>
+          </div>
+        </Form>
+      </ClientOnly>
+    </div>
   </div>
 </template>
 
