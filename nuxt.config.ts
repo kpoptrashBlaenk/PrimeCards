@@ -49,6 +49,7 @@ export default defineNuxtConfig({
   supabase: {
     url: process.env.NUXT_PUBLIC_SUPABASE_URL,
     key: process.env.NUXT_PUBLIC_SUPABASE_ANON_KEY,
+    serviceKey: process.env.NUXT_SECRET_SUPABASE_SERVICE_KEY,
     redirect: false,
   },
   primevue: {

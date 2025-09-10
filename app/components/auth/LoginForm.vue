@@ -18,8 +18,8 @@
         <p class="text-center text-400 -mt-1">Don't have an account? <NuxtLink to="/register">Sign up now!</NuxtLink></p>
       </Form>
     </ClientOnly>
+    <Toast />
   </AuthLayout>
-  <Toast />
 </template>
 
 <script setup lang="ts">

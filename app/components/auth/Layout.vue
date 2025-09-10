@@ -1,8 +1,8 @@
 <template>
-  <div class="flex flex-column justify-content-center align-items-center h-screen auth-div-mb mb-8">
+  <div class="flex flex-column justify-content-center align-items-center h-screen">
     <NuxtLink class="text-2xl font-bold text-primary no-underline pt-3 text-logo" :to="'/'">PrimeCards</NuxtLink>
-    <p class="mt-5 mb-5 px-4 sm:px-0 text-center text-4xl text-500">{{ header }}</p>
-    <Card class="w-12 auth-form-mb sm:w-10 md:w-8 lg:w-6 xl:w-4 py-4">
+    <div class="my-2 px-4 sm:px-0 text-center text-4xl text-500">{{ header }}</div>
+    <Card class="w-12 auth-card sm:w-10 md:w-8 lg:w-6 xl:w-4 py-4 mt-4">
       <template #content>
         <slot></slot>
       </template>
@@ -19,14 +19,10 @@ defineProps<{
 
 <style lang="css" scoped>
 @media (max-height: 700px) {
-  .auth-form-mb {
-    margin-bottom: 0rem;
+  .auth-card {
+    margin-top: 0rem !important;
     padding-bottom: 0rem !important;
     padding-top: 0rem !important;
-  }
-
-  .auth-div-mb {
-    margin-bottom: 0rem !important;
   }
 }
 </style>

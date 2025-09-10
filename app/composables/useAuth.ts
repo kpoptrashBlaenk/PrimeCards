@@ -27,7 +27,11 @@ export function useAuth() {
       .select()
       .single()
 
-    if (profile.error) throw profile.error
+    if (profile.error) {
+      // rollback
+      await $fetch('/api/deleteUser', { method: 'POST', body: { id: user.data.user.id } })
+      throw profile.error
+    }
 
     userStore.setUser({ email: user.data.user.email, ...profile.data })
   }
