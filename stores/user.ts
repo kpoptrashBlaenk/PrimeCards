@@ -7,6 +7,14 @@ export const useUserStore = defineStore('userStore', {
     setUser(user: SupabaseProfile) {
       this.user = user
     },
+    updateUser(updates: Partial<SupabaseProfile>) {
+      if (!this.user) return
+
+      this.user = {
+        ...this.user,
+        ...updates,
+      }
+    },
     clearUser() {
       this.user = null
     },

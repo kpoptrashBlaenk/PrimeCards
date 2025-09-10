@@ -21,7 +21,6 @@ export function useAuth() {
       .insert([
         {
           user_id: user.data.user.id,
-          email: body.email,
           name: body.name,
         },
       ])
@@ -30,7 +29,7 @@ export function useAuth() {
 
     if (profile.error) throw profile.error
 
-    userStore.setUser(profile.data)
+    userStore.setUser({ email: user.data.user.email, ...profile.data })
   }
 
   const login = async (body: LoginBody) => {
@@ -46,7 +45,7 @@ export function useAuth() {
 
     if (profile.error) throw profile.error
 
-    userStore.setUser(profile.data)
+    userStore.setUser({ email: user.data.user.email, ...profile.data })
   }
 
   const logout = async () => {
@@ -70,8 +69,16 @@ export function useAuth() {
     // silently continue on error
     if (profile.error) return
 
-    userStore.setUser(profile.data)
+    userStore.setUser({ email: user.data.user.email, ...profile.data })
   }
 
-  return { register, login, logout, restore }
+  const updateEmail = async (email: string) => {
+    if (!email) throw new Error('No email provided')
+
+    const user = await $supabase.client.auth.updateUser({ email: email })
+
+    if (user.error) throw user.error
+  }
+
+  return { register, login, logout, restore, updateEmail }
 }

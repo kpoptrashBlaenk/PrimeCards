@@ -53,7 +53,7 @@ async function onSubmit(event: FormSubmitEvent) {
 
     navigateTo('/')
   } catch (error: any) {
-    toast.add({ severity: 'error', summary: 'Error', detail: error.message, life: 3000 })
+    toast.add({ severity: 'error', summary: 'Login Error', detail: error.message, life: 3000 })
   } finally {
     loading.value = false
   }

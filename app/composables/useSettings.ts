@@ -6,14 +6,14 @@ export function useSettings() {
   const userStore = useUserStore()
   const imageStore = useImageStore()
 
-  const account = async (body: SettingsAccountBody) => {
+  const updateAccount = async (body: SettingsAccountBody) => {
     if (!userStore.user) throw new Error('No user logged in')
 
     const profile = await $supabase.client.from('profile').update(body).eq('user_id', userStore.user.user_id).select().single()
 
     if (profile.error) throw profile.error
 
-    userStore.setUser(profile.data)
+    userStore.updateUser({ ...profile.data })
   }
 
   const saveAvatar = async (file: File) => {
@@ -36,7 +36,7 @@ export function useSettings() {
       throw profile.error
     }
 
-    userStore.setUser(profile.data)
+    userStore.updateUser({ ...profile.data })
   }
 
   const getAvatar = async (path: string) => {
@@ -49,5 +49,5 @@ export function useSettings() {
     imageStore.set(path, avatar.data.signedUrl)
   }
 
-  return { account, saveAvatar, getAvatar }
+  return { updateAccount, saveAvatar, getAvatar }
 }

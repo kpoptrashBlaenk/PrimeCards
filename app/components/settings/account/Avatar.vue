@@ -10,7 +10,6 @@
     class="absolute ml-8 mb-2 p-1 surface-0 text-primary"
     @select="onUpload"
   />
-  <Toast />
 </template>
 
 <script setup lang="ts">
@@ -49,7 +48,7 @@ async function onUpload(event: FileUploadSelectEvent) {
     await saveAvatar(file)
     await getAvatar(userStore.user!.avatar_path)
   } catch (error: any) {
-    toast.add({ severity: 'error', summary: 'Error', detail: error.message, life: 3000 })
+    toast.add({ severity: 'error', summary: 'Save Avatar Error', detail: error.message, life: 3000 })
   } finally {
     loading.value = false
   }
