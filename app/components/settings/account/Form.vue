@@ -18,8 +18,8 @@
           :errorMessage="$form[field.name]?.error?.message"
           class="lg:w-8"
         />
-        <FormsErrorMessage v-if="errorMessage" :message="errorMessage" />
         <SettingsFormButtons :loading="loading" @click="errorMessage = undefined" />
+        <FormsErrorMessage v-if="errorMessage" :message="errorMessage" />
       </Form>
     </ClientOnly>
   </div>
