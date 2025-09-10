@@ -40,11 +40,11 @@ export function useSettings() {
   }
 
   const getAvatar = async (path: string) => {
-    if (!path) return
+    if (!path) throw new Error('No path provided')
 
     const avatar = await $supabase.client.storage.from('primecards').createSignedUrl(path, 60 * 60 * 24)
 
-    if (!avatar.data?.signedUrl) return
+    if (!avatar.data?.signedUrl) throw new Error('No avatar found')
 
     imageStore.set(path, avatar.data.signedUrl)
   }

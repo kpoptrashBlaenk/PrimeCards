@@ -14,9 +14,11 @@ export const useImageStore = defineStore('imageStore', {
     async find(path: string) {
       if (this.cache[path]) return this.cache[path]
 
-      await useSettings().getAvatar(path)
+      try {
+        await useSettings().getAvatar(path)
 
-      return this.cache[path]
+        return this.cache[path]
+      } catch (error: any) {}
     },
   },
 })
