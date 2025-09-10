@@ -15,12 +15,12 @@
           :errorMessage="$form[field.name]?.error?.message"
           @focus="clearField($form, field.name)"
         />
-        <FormsErrorMessage v-if="errorMessage" :message="errorMessage" />
         <Button type="submit" size="large" rounded :disabled="loading" class="font-bold text-outline">Register</Button>
         <p class="text-center text-400 -mt-1">Already have an account? <NuxtLink to="/login">Sign in now!</NuxtLink></p>
       </Form>
     </ClientOnly>
   </AuthLayout>
+  <Toast />
 </template>
 
 <script setup lang="ts">
@@ -29,7 +29,6 @@ import { zodResolver } from '@primevue/forms/resolvers/zod'
 import registerSchema from '@schemas/register'
 
 /* Refs */
-const errorMessage = ref<string>()
 const loading = ref<boolean>(false)
 const mounted = ref<boolean>(false)
 const resolver = ref(zodResolver(registerSchema))
@@ -43,12 +42,12 @@ const fields = [
   { name: 'email', label: 'Email', type: 'email' },
   { name: 'password', label: 'Password', type: 'password' },
 ]
+const toast = useToast()
 
 /* Submit */
 async function onSubmit(event: FormSubmitEvent) {
   if (!event.valid) return
 
-  errorMessage.value = undefined
   loading.value = true
 
   const body: RegisterBody = {
@@ -62,7 +61,7 @@ async function onSubmit(event: FormSubmitEvent) {
 
     navigateTo('/')
   } catch (error: any) {
-    errorMessage.value = error.message || 'Registration failed'
+    toast.add({ severity: 'error', summary: 'Error', detail: error.message, life: 3000 })
   } finally {
     loading.value = false
   }

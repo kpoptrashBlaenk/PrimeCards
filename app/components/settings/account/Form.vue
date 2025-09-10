@@ -18,11 +18,11 @@
           :errorMessage="$form[field.name]?.error?.message"
           class="lg:w-8"
         />
-        <SettingsFormButtons :loading="loading" @click="errorMessage = undefined" />
-        <FormsErrorMessage v-if="errorMessage" :message="errorMessage" />
+        <SettingsFormButtons :loading="loading" />
       </Form>
     </ClientOnly>
   </div>
+  <Toast />
 </template>
 
 <script setup lang="ts">
@@ -38,7 +38,6 @@ const userStore = useUserStore()
 const { account } = useSettings()
 
 /* Refs */
-const errorMessage = ref<string>()
 const loading = ref<boolean>(false)
 const resolver = ref(zodResolver(settingsAccountSchema))
 
@@ -49,12 +48,12 @@ const initialValues = computed(() => ({
 
 /* Constants */
 const fields = [{ name: 'name', label: 'Name', type: 'text' }]
+const toast = useToast()
 
 /* Submit */
 async function onSubmit(event: FormSubmitEvent) {
   if (!event.valid) return
 
-  errorMessage.value = undefined
   loading.value = true
 
   const body: SettingsAccountBody = {}
@@ -65,7 +64,7 @@ async function onSubmit(event: FormSubmitEvent) {
 
     await account(body)
   } catch (error: any) {
-    errorMessage.value = error.message || 'Saving changes failed'
+    toast.add({ severity: 'error', summary: 'Error', detail: error.message, life: 3000 })
   } finally {
     loading.value = false
   }
