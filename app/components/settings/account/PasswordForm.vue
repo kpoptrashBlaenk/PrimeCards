@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="!mounted" class="flex flex-column gap-4">
+    <div v-if="!mounted" class="flex flex-column gap-3">
       <UiSkeletons :fields="skeletonFields" />
     </div>
     <ClientOnly v-else>
@@ -10,7 +10,7 @@
         @submit="onSubmit"
         :resolver
         :validateOnValueUpdate="false"
-        class="flex flex-column gap-4"
+        class="flex flex-column gap-3"
       >
         <FormsField
           v-for="field in fields"
@@ -21,7 +21,7 @@
           :errorMessage="$form[field.name]?.error?.message"
           class="lg:w-8"
         />
-        <SettingsFormButtons :loading="loading" :reset="true" />
+        <SettingsFormButtons :loading="loading" class="pt-2" />
       </Form>
     </ClientOnly>
   </div>
@@ -30,36 +30,39 @@
 <script setup lang="ts">
 /* Imports */
 import { zodResolver } from '@primevue/forms/resolvers/zod'
-import settingsAccountSchema from '@schemas/settings.account'
+import passwordSchema from '@schemas/password'
 import { useUserStore } from '@stores/user'
 
 /* Stores */
 const userStore = useUserStore()
 
 /* Composables */
-const { updateAccount } = useSettings()
+const { updatePassword } = useAuth()
 
 /* Refs */
 const loading = ref<boolean>(false)
 const mounted = ref<boolean>(false)
-const resolver = ref(zodResolver(settingsAccountSchema))
+const resolver = ref(zodResolver(passwordSchema))
 
 /* Computeds */
 const initialValues = computed(() => ({
-  name: userStore.user?.name ?? '',
+  email: userStore.user?.email ?? '',
 }))
 
 /* Constants */
-const fields = [{ name: 'name', label: 'Name', type: 'text' }]
+const fields = [
+  { name: 'oldPassword', label: 'Old Password', type: 'password' },
+  { name: 'password', label: 'New Password', type: 'password' },
+  { name: 'repeatPassword', label: 'Repeat New password', type: 'password' },
+]
 const skeletonFields: SkeletonProp[] = [
+  { type: 'skeleton', class: 'lg:w-8', height: 3.375 },
+  { type: 'skeleton', class: 'lg:w-8', height: 3.375 },
   { type: 'skeleton', class: 'lg:w-8', height: 3.375 },
   {
     type: 'wrapper',
-    class: 'flex gap-3 -mt-2',
-    fields: [
-      { type: 'skeleton', width: 7.51, height: 1.833 },
-      { type: 'skeleton', width: 7.51, height: 1.833 },
-    ],
+    class: 'flex gap-3 -mt-2 pt-2',
+    fields: [{ type: 'skeleton', width: 7.51, height: 1.833 }],
   },
 ]
 const toast = useToast()
@@ -70,15 +73,16 @@ async function onSubmit(event: FormSubmitEvent) {
 
   loading.value = true
 
-  const body: SettingsAccountBody = {}
-  if (event.states.name?.dirty) body.name = event.states.name.value
-
   try {
-    if (Object.keys(body).length === 0) throw new Error('No changes made')
+    if (event.states.password?.value !== event.states.repeatPassword?.value) throw new Error("Passwords don't match")
 
-    await updateAccount(body)
+    if (event.states.password?.value === event.states.oldPassword?.value) throw new Error('Passwords are the same')
+
+    await updatePassword(event.states.password?.value, event.states.oldPassword?.value)
+
+    toast.add({ severity: 'success', summary: 'Update password', detail: 'Password successfuly changed', life: 3000 })
   } catch (error: any) {
-    toast.add({ severity: 'error', summary: 'Update Account Error', detail: error.message, life: 3000 })
+    toast.add({ severity: 'error', summary: 'Update Password Error', detail: error.message, life: 3000 })
   } finally {
     loading.value = false
   }

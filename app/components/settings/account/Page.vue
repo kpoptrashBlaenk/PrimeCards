@@ -6,8 +6,10 @@
     <SettingsAccountAvatar />
     <SettingsTitle title="General" context="subtitle" />
     <SettingsAccountForm />
-    <SettingsTitle title="Email" context="subtitle" />
+    <SettingsTitle title="Change Email" context="subtitle" />
     <SettingsAccountEmailForm />
+    <SettingsTitle title="Change Password" context="subtitle" />
+    <SettingsAccountPasswordForm />
     <Toast />
   </div>
 </template>

@@ -84,5 +84,18 @@ export function useAuth() {
     if (user.error) throw user.error
   }
 
-  return { register, login, logout, restore, updateEmail }
+  const updatePassword = async (newPassword: string, oldPassword: string) => {
+    const userBefore = await $supabase.client.auth.signInWithPassword({
+      email: userStore.user!.email,
+      password: oldPassword,
+    })
+
+    if (userBefore.error) throw userBefore.error
+
+    const userAfter = await $supabase.client.auth.updateUser({ password: newPassword })
+
+    if (userAfter.error) throw userAfter.error
+  }
+
+  return { register, login, logout, restore, updateEmail, updatePassword }
 }

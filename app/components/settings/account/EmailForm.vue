@@ -56,10 +56,7 @@ const skeletonFields: SkeletonProp[] = [
   {
     type: 'wrapper',
     class: 'flex gap-3 -mt-2',
-    fields: [
-      { type: 'skeleton', width: 7.51, height: 1.833 },
-      { type: 'skeleton', width: 7.51, height: 1.833 },
-    ],
+    fields: [{ type: 'skeleton', width: 7.51, height: 1.833 }],
   },
 ]
 const toast = useToast()
