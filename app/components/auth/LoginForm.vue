@@ -1,7 +1,7 @@
 <template>
   <AuthLayout :header="'Sign in to create your own card!'">
     <div v-if="!mounted" class="flex flex-column gap-4">
-      <FormsSkeletons :context="'register'" />
+      <UiSkeletons :fields="skeletonFields" />
     </div>
 
     <ClientOnly>
@@ -35,6 +35,12 @@ const fields = [
   { name: 'email', label: 'Email', type: 'email' },
   { name: 'password', label: 'Password', type: 'password' },
 ]
+const skeletonFields: SkeletonProp[] = [
+  { type: 'skeleton', width: 22.847, height: 3.375 },
+  { type: 'skeleton', width: 22.847, height: 3.375 },
+  { type: 'skeleton', width: 22.847, height: 2.625 },
+  { type: 'skeleton', width: 22.847, height: 1.167, class: '-mt-1' },
+]
 const toast = useToast()
 
 /* Submit */
@@ -60,7 +66,5 @@ async function onSubmit(event: FormSubmitEvent) {
 }
 
 /* Hooks */
-onMounted(() => {
-  mounted.value = true
-})
+onMounted(() => (mounted.value = true))
 </script>

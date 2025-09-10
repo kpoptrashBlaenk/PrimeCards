@@ -1,11 +1,7 @@
 <template>
   <div>
     <div v-if="!mounted" class="flex flex-column gap-4">
-      <Skeleton class="lg:w-8" height="3.375rem" />
-      <div class="flex gap-3 -mt-2">
-        <Skeleton width="7.51rem" height="1.833rem" />
-        <Skeleton width="7.51rem" height="1.833rem" />
-      </div>
+      <UiSkeletons :fields="skeletonFields" />
     </div>
     <ClientOnly v-else>
       <Form
@@ -55,6 +51,17 @@ const initialValues = computed(() => ({
 
 /* Constants */
 const fields = [{ name: 'name', label: 'Name', type: 'text' }]
+const skeletonFields: SkeletonProp[] = [
+  { type: 'skeleton', class: 'lg:w-8', height: 3.375 },
+  {
+    type: 'wrapper',
+    class: 'flex gap-3 -mt-2',
+    fields: [
+      { type: 'skeleton', width: 7.51, height: 1.833 },
+      { type: 'skeleton', width: 7.51, height: 1.833 },
+    ],
+  },
+]
 const toast = useToast()
 
 /* Submit */

@@ -1,7 +1,7 @@
 <template>
   <AuthLayout :header="'Sign up to create your own card!'">
     <div v-if="!mounted" class="flex flex-column gap-4">
-      <FormsSkeletons :context="'register'" />
+      <UiSkeletons :fields="skeletonFields" />
     </div>
 
     <ClientOnly v-else>
@@ -41,7 +41,16 @@ const fields = [
   { name: 'name', label: 'Name', type: 'text' },
   { name: 'email', label: 'Email', type: 'email' },
   { name: 'password', label: 'Password', type: 'password' },
+  { name: 'repeatPassword', label: 'Repeat Password', type: 'password' },
 ]
+const skeletonFields: SkeletonProp[] = [
+  { type: 'skeleton', width: 22.847, height: 3.375 },
+  { type: 'skeleton', width: 22.847, height: 3.375 },
+  { type: 'skeleton', width: 22.847, height: 3.375 },
+  { type: 'skeleton', width: 22.847, height: 2.625 },
+  { type: 'skeleton', width: 22.847, height: 1.167, class: '-mt-1' },
+]
+
 const toast = useToast()
 
 /* Submit */
@@ -73,7 +82,5 @@ function clearField(form: any, field: string) {
 }
 
 /* Hooks */
-onMounted(() => {
-  mounted.value = true
-})
+onMounted(() => (mounted.value = true))
 </script>
