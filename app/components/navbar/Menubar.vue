@@ -8,7 +8,7 @@
     <!-- End -->
     <template #end>
       <NavbarProfileMenu v-if="userStore.user" />
-      <NuxtLink v-else :to="'/login'">
+      <NuxtLink v-else :to="'/auth/login'">
         <Button type="submit" class="font-bold text-outline">Sign In</Button>
       </NuxtLink>
     </template>

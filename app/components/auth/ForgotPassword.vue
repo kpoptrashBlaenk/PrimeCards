@@ -16,7 +16,7 @@
         />
         <Button type="submit" size="large" rounded :disabled="loading" class="font-bold text-outline">Send</Button>
         <div>
-          <p class="text-center text-400 -mt-1">Don't have an account? <NuxtLink to="/register">Sign up now!</NuxtLink></p>
+          <p class="text-center text-400 -mt-1">Don't have an account? <NuxtLink to="/auth/register">Sign up now!</NuxtLink></p>
         </div>
       </Form>
     </ClientOnly>

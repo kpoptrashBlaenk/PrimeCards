@@ -76,7 +76,7 @@ async function onSubmit(event: FormSubmitEvent) {
     reset.value = true
 
     setTimeout(() => {
-      router.push('/login')
+      router.push('/auth/login')
     }, 2000)
   } catch (error: any) {
     toast.add({ severity: 'error', summary: 'Reset Password Error', detail: error.message, life: 3000 })

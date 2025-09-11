@@ -16,7 +16,7 @@
           @focus="clearField($form, field.name)"
         />
         <Button type="submit" size="large" rounded :disabled="loading" class="font-bold text-outline">Register</Button>
-        <p class="text-center text-400 -mt-1">Already have an account? <NuxtLink to="/login">Sign in now!</NuxtLink></p>
+        <p class="text-center text-400 -mt-1">Already have an account? <NuxtLink to="/auth/login">Sign in now!</NuxtLink></p>
       </Form>
     </ClientOnly>
     <Toast />
