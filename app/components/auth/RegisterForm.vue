@@ -44,12 +44,12 @@ const fields = [
   { name: 'repeatPassword', label: 'Repeat Password', type: 'password' },
 ]
 const skeletonFields: SkeletonProp[] = [
-  { type: 'skeleton', width: 22.847, height: 3.375 },
-  { type: 'skeleton', width: 22.847, height: 3.375 },
-  { type: 'skeleton', width: 22.847, height: 3.375 },
-  { type: 'skeleton', width: 22.847, height: 3.375 },
-  { type: 'skeleton', width: 22.847, height: 2.625 },
-  { type: 'skeleton', width: 22.847, height: 1.167, class: '-mt-1' },
+  { type: 'skeleton', height: 3.375, class: 'w-12' },
+  { type: 'skeleton', height: 3.375, class: 'w-12' },
+  { type: 'skeleton', height: 3.375, class: 'w-12' },
+  { type: 'skeleton', height: 3.375, class: 'w-12' },
+  { type: 'skeleton', height: 2.625, class: 'w-12' },
+  { type: 'skeleton', height: 1.167, class: '-mt-1 w-12' },
 ]
 const toast = useToast()
 
@@ -66,7 +66,7 @@ async function onSubmit(event: FormSubmitEvent) {
   }
 
   try {
-    if (event.states.password?.value !== event.states.repeatPassword?.value) throw new Error("Passwords don't match")
+    if (event.states.password?.value !== event.states.repeatPassword?.value) throw new Error("Passwords don't match.")
 
     await register(body)
 

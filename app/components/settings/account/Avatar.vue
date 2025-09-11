@@ -42,7 +42,7 @@ async function onUpload(event: FileUploadSelectEvent) {
     }
 
     if (file.size > 1000000) {
-      throw new Error("File can't be bigger than 1Mb")
+      throw new Error("File can't be bigger than 1Mb.")
     }
 
     await saveAvatar(file)

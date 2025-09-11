@@ -1,4 +1,4 @@
-import type { SupabaseClient } from '@supabase/supabase-js'
+import type { SupabaseClient, EmailOtpType as SupabaseEmailOtpType } from '@supabase/supabase-js'
 
 declare module '#app' {
   interface NuxtApp {
@@ -7,6 +7,8 @@ declare module '#app' {
 }
 
 declare global {
+  type EmailOtpType = SupabaseEmailOtpType
+
   interface SupabaseProfile {
     user_id: string
     created_at: string

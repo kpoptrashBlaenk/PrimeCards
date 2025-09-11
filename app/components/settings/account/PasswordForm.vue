@@ -56,9 +56,9 @@ const fields = [
   { name: 'repeatPassword', label: 'Repeat New password', type: 'password' },
 ]
 const skeletonFields: SkeletonProp[] = [
-  { type: 'skeleton', class: 'lg:w-8', height: 3.375 },
-  { type: 'skeleton', class: 'lg:w-8', height: 3.375 },
-  { type: 'skeleton', class: 'lg:w-8', height: 3.375 },
+  { type: 'skeleton', class: 'w-12 lg:w-8', height: 3.375 },
+  { type: 'skeleton', class: 'w-12 lg:w-8', height: 3.375 },
+  { type: 'skeleton', class: 'w-12 lg:w-8', height: 3.375 },
   {
     type: 'wrapper',
     class: 'flex gap-3 -mt-2 pt-2',
@@ -74,13 +74,13 @@ async function onSubmit(event: FormSubmitEvent) {
   loading.value = true
 
   try {
-    if (event.states.password?.value !== event.states.repeatPassword?.value) throw new Error("Passwords don't match")
+    if (event.states.password?.value !== event.states.repeatPassword?.value) throw new Error("Passwords don't match.")
 
-    if (event.states.password?.value === event.states.oldPassword?.value) throw new Error('Passwords are the same')
+    if (event.states.password?.value === event.states.oldPassword?.value) throw new Error('Passwords are the same.')
 
     await updatePassword(event.states.password?.value, event.states.oldPassword?.value)
 
-    toast.add({ severity: 'success', summary: 'Update password', detail: 'Password successfuly changed', life: 3000 })
+    toast.add({ severity: 'success', summary: 'Update Password', detail: 'Password successfuly changed.', life: 3000 })
   } catch (error: any) {
     toast.add({ severity: 'error', summary: 'Update Password Error', detail: error.message, life: 3000 })
   } finally {

@@ -53,11 +53,7 @@ const initialValues = computed(() => ({
 const fields = [{ name: 'email', label: 'Email', type: 'email' }]
 const skeletonFields: SkeletonProp[] = [
   { type: 'skeleton', class: 'lg:w-8', height: 3.375 },
-  {
-    type: 'wrapper',
-    class: 'flex gap-3 -mt-2',
-    fields: [{ type: 'skeleton', width: 7.51, height: 1.833 }],
-  },
+  { type: 'skeleton', width: 7.51, height: 1.833 },
 ]
 const toast = useToast()
 
@@ -68,10 +64,10 @@ async function onSubmit(event: FormSubmitEvent) {
   loading.value = true
 
   try {
-    if (!event.states.email?.dirty) throw new Error('No changes made')
+    if (!event.states.email?.dirty) throw new Error('No changes made.')
 
     await updateEmail(event.states.email.value)
-    toast.add({ severity: 'success', summary: 'Update Email', detail: 'A link has been sent to your email', life: 3000 })
+    toast.add({ severity: 'success', summary: 'Update Email', detail: 'A link has been sent to your email.', life: 3000 })
   } catch (error: any) {
     toast.add({ severity: 'error', summary: 'Update Email Error', detail: error.message, life: 3000 })
   } finally {

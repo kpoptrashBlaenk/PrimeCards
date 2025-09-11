@@ -7,7 +7,7 @@ export function useSettings() {
   const imageStore = useImageStore()
 
   const updateAccount = async (body: SettingsAccountBody) => {
-    if (!userStore.user) throw new Error('No user logged in')
+    if (!userStore.user) throw new Error('No user logged in.')
 
     const profile = await $supabase.client.from('profile').update(body).eq('user_id', userStore.user.user_id).select().single()
 
@@ -40,7 +40,7 @@ export function useSettings() {
   }
 
   const getAvatar = async (path: string) => {
-    if (!path) throw new Error('No path provided')
+    if (!path) throw new Error('No path provided.')
 
     const avatar = await $supabase.client.storage.from('primecards').createSignedUrl(path, 60 * 60 * 24)
 

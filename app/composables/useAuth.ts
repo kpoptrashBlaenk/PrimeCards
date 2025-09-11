@@ -13,7 +13,7 @@ export function useAuth() {
 
     if (user.error) throw user.error
 
-    if (!user.data.user) throw new Error('User not found')
+    if (!user.data.user) throw new Error('User not found.')
 
     // create profile
     const profile = await $supabase.client
@@ -42,7 +42,7 @@ export function useAuth() {
 
     if (user.error) throw user.error
 
-    if (!user.data.user) throw new Error('User not found')
+    if (!user.data.user) throw new Error('User not found.')
 
     // find profile
     const profile = await $supabase.client.from('profile').select().eq('user_id', user.data.user.id).single()
@@ -77,7 +77,7 @@ export function useAuth() {
   }
 
   const updateEmail = async (email: string) => {
-    if (!email) throw new Error('No email provided')
+    if (!email) throw new Error('No email provided.')
 
     const user = await $supabase.client.auth.updateUser({ email: email })
 
@@ -97,5 +97,31 @@ export function useAuth() {
     if (userAfter.error) throw userAfter.error
   }
 
-  return { register, login, logout, restore, updateEmail, updatePassword }
+  const forgotPassword = async (email: string) => {
+    const user = await $supabase.client.auth.resetPasswordForEmail(email)
+
+    if (user.error) throw user.error
+  }
+
+  const resetPassword = async (newPassword: string, tokenHash: string, type: EmailOtpType) => {
+    // login
+    const loginUser = await $supabase.client.auth.verifyOtp({
+      token_hash: tokenHash,
+      type: type,
+    })
+
+    if (loginUser.error) throw loginUser.error
+
+    // change password
+    const updateUser = await $supabase.client.auth.updateUser({ password: newPassword })
+
+    if (updateUser.error) throw updateUser.error
+
+    // logout
+    const logoutUser = await $supabase.client.auth.signOut()
+
+    if (logoutUser.error) throw logoutUser.error
+  }
+
+  return { register, login, logout, restore, updateEmail, updatePassword, forgotPassword, resetPassword }
 }

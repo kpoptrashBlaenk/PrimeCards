@@ -52,10 +52,10 @@ const initialValues = computed(() => ({
 /* Constants */
 const fields = [{ name: 'name', label: 'Name', type: 'text' }]
 const skeletonFields: SkeletonProp[] = [
-  { type: 'skeleton', class: 'lg:w-8', height: 3.375 },
+  { type: 'skeleton', class: 'w-12 lg:w-8', height: 3.375 },
   {
     type: 'wrapper',
-    class: 'flex gap-3 -mt-2',
+    class: 'flex gap-3 -mt-2 w-12',
     fields: [
       { type: 'skeleton', width: 7.51, height: 1.833 },
       { type: 'skeleton', width: 7.51, height: 1.833 },
@@ -74,7 +74,7 @@ async function onSubmit(event: FormSubmitEvent) {
   if (event.states.name?.dirty) body.name = event.states.name.value
 
   try {
-    if (Object.keys(body).length === 0) throw new Error('No changes made')
+    if (Object.keys(body).length === 0) throw new Error('No changes made.')
 
     await updateAccount(body)
   } catch (error: any) {

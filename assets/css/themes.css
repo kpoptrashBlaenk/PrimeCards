@@ -16,3 +16,11 @@ html.p-dark .surface-950 {
 .avatar-giant-icon::before {
   font-size: 5rem !important;
 }
+
+/* ProgressSpinner */
+:root {
+  --p-progressspinner-color-one: var(--p-primary-100) !important;
+  --p-progressspinner-color-two: var(--p-primary-300) !important;
+  --p-progressspinner-color-three: var(--p-primary-500) !important;
+  --p-progressspinner-color-four: var(--p-primary-800) !important;
+}
