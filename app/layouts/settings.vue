@@ -1,6 +1,6 @@
 <template>
   <NavbarMenubar />
-  <div class="grid container px-2">
+  <div class="grid container-xl px-2">
     <div class="col-12 md:col-5 lg:col-4 xl:col-3">
       <SettingsSidebar />
     </div>
