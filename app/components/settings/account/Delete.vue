@@ -60,7 +60,7 @@ async function onSubmit(event: FormSubmitEvent) {
   try {
     await deleteAccount()
 
-    location.reload()
+    // location.reload()
   } catch (error: any) {
     toast.add({ severity: 'error', summary: 'Delete Account Error', detail: error.message, life: 3000 })
   } finally {

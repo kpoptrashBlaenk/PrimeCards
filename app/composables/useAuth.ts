@@ -3,6 +3,7 @@ import { useUserStore } from '@stores/user'
 export function useAuth() {
   const { $supabase } = useNuxtApp()
   const userStore = useUserStore()
+  const { deleteAvatar } = useSettings()
 
   const register = async (body: RegisterBody) => {
     // sign up
@@ -124,6 +125,8 @@ export function useAuth() {
   }
 
   const deleteAccount = async () => {
+    await deleteAvatar()
+
     await $fetch('/api/deleteUser', { method: 'post', body: { id: userStore.user?.user_id } })
   }
 

@@ -39,7 +39,27 @@ export function useSettings() {
     userStore.updateUser({ ...profile.data })
   }
 
-  const getAvatar = async (path: string) => {
+  const deleteAvatar = async () => {
+    const user = userStore.user as SupabaseProfile
+
+    const bucket = await $supabase.client.storage.from('primecards').list(user.user_id)
+
+    if (bucket.error) throw bucket.error
+
+    const fileList = bucket.data.map((file) => `${user.user_id}/${file.name}`)
+
+    const deleteFile = await $supabase.client.storage.from('primecards').remove(fileList)
+
+    if (deleteFile.error) throw deleteFile.error
+
+    const deleteUser = await $supabase.client.from('profile').update({ avatar_path: null }).eq('user_id', user.user_id)
+
+    if (deleteUser.error) throw deleteUser.error
+
+    user.avatar_path = null
+  }
+
+  const getAvatar = async (path: string | null) => {
     if (!path) throw new Error('No path provided.')
 
     const avatar = await $supabase.client.storage.from('primecards').createSignedUrl(path, 60 * 60 * 24)
@@ -49,5 +69,5 @@ export function useSettings() {
     imageStore.set(path, avatar.data.signedUrl)
   }
 
-  return { updateAccount, saveAvatar, getAvatar }
+  return { updateAccount, saveAvatar, getAvatar, deleteAvatar }
 }

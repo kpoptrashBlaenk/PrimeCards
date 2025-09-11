@@ -14,7 +14,7 @@ declare global {
     created_at: string
     email: string
     name: string
-    avatar_path: string
+    avatar_path: string | null
     active: boolean
   }
 }

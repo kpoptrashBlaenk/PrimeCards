@@ -1,15 +1,29 @@
 <template>
-  <UiAvatar size="giant" />
-  <FileUpload
-    mode="basic"
-    chooseIcon="pi pi-upload"
-    :chooseButtonProps="{ size: 'small', label: 'Upload' }"
-    auto
-    customUpload
-    :disabled="loading"
-    class="absolute ml-8 mb-2 p-1 surface-0 text-primary"
-    @select="onUpload"
-  />
+  <div>
+    <UiAvatar size="giant" />
+    <div class="flex justify-content-evenly w-10rem -mt-3">
+      <FileUpload
+        mode="basic"
+        :chooseButtonProps="{ size: 'small', label: 'Upload' }"
+        auto
+        customUpload
+        :disabled="loading"
+        class="p-1 surface-0 hover:surface-50 text-green-400 border-green-400"
+        @select="onUpload"
+      />
+      <Button
+        mode="basic"
+        size="small"
+        auto
+        customUpload
+        :disabled="loading || !userStore.user?.avatar_path"
+        @click="onDelete"
+        class="p-1 surface-0 hover:surface-50 text-red-400 border-red-400"
+      >
+        Remove
+      </Button>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -23,7 +37,7 @@ const loading = ref<boolean>(false)
 const userStore = useUserStore()
 
 /* Composables */
-const { saveAvatar, getAvatar } = useSettings()
+const { saveAvatar, getAvatar, deleteAvatar } = useSettings()
 
 /* Constants */
 const toast = useToast()
@@ -53,4 +67,23 @@ async function onUpload(event: FileUploadSelectEvent) {
     loading.value = false
   }
 }
+
+/* Delete */
+async function onDelete() {
+  try {
+    loading.value = true
+
+    await deleteAvatar()
+  } catch (error: any) {
+    toast.add({ severity: 'error', summary: 'Remove Avatar Error', detail: error.message, life: 3000 })
+  } finally {
+    loading.value = false
+  }
+}
 </script>
+
+<style lang="css">
+.p-icon.p-button-icon.p-button-icon-left {
+  display: none !important;
+}
+</style>
