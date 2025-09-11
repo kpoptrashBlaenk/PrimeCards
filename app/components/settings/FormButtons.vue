@@ -1,7 +1,25 @@
 <template>
   <div class="flex gap-3 -mt-2">
-    <Button type="submit" :loading="loading" severity="success" size="small" class="font-bold">Save changes</Button>
-    <Button v-if="reset" type="reset" :loading="loading" severity="danger" size="small" class="font-bold"> Reset changes </Button>
+    <Button
+      v-if="confirmText"
+      type="submit"
+      :loading="loading"
+      :severity="confirmSeverity ?? 'success'"
+      size="small"
+      class="font-bold"
+    >
+      {{ confirmText }}
+    </Button>
+    <Button
+      v-if="cancelText"
+      type="reset"
+      :loading="loading"
+      :severity="cancelSeverity ?? 'danger'"
+      size="small"
+      class="font-bold"
+    >
+      {{ cancelText }}
+    </Button>
   </div>
 </template>
 
@@ -9,6 +27,9 @@
 /* Props */
 defineProps<{
   loading: boolean
-  reset?: boolean
+  confirmText?: string
+  cancelText?: string
+  confirmSeverity?: 'secondary' | 'success' | 'info' | 'warn' | 'help' | 'danger' | 'contrast'
+  cancelSeverity?: 'secondary' | 'success' | 'info' | 'warn' | 'help' | 'danger' | 'contrast'
 }>()
 </script>

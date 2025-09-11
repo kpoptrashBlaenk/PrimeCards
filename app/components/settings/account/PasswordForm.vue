@@ -21,7 +21,7 @@
           :errorMessage="$form[field.name]?.error?.message"
           class="lg:w-8"
         />
-        <SettingsFormButtons :loading="loading" class="pt-2" />
+        <SettingsFormButtons :loading="loading" class="pt-2" confirmText="Update Password" />
       </Form>
     </ClientOnly>
   </div>

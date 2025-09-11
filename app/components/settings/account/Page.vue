@@ -10,6 +10,8 @@
     <SettingsAccountEmailForm />
     <SettingsTitle title="Change Password" context="subtitle" />
     <SettingsAccountPasswordForm />
+    <SettingsTitle title="Delete Account" context="subtitle" />
+    <SettingsAccountDelete />
     <Toast />
   </div>
 </template>

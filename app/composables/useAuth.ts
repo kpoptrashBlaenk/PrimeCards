@@ -123,5 +123,9 @@ export function useAuth() {
     if (logoutUser.error) throw logoutUser.error
   }
 
-  return { register, login, logout, restore, updateEmail, updatePassword, forgotPassword, resetPassword }
+  const deleteAccount = async () => {
+    await $fetch('/api/deleteUser', { method: 'post', body: { id: userStore.user?.user_id } })
+  }
+
+  return { register, login, logout, restore, updateEmail, updatePassword, forgotPassword, resetPassword, deleteAccount }
 }

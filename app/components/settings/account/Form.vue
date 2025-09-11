@@ -21,7 +21,7 @@
           :errorMessage="$form[field.name]?.error?.message"
           class="lg:w-8"
         />
-        <SettingsFormButtons :loading="loading" :reset="true" />
+        <SettingsFormButtons :loading="loading" confirmText="Save Changes" cancelText="Reset Changes" />
       </Form>
     </ClientOnly>
   </div>
