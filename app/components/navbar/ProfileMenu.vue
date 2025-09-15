@@ -9,7 +9,7 @@
 
       <!-- Header -->
       <div v-else-if="item.header" class="flex align-items-center p-2 surface-0 cursor-default" style="pointer-events: none">
-        <UiAvatar size="normal" class="bg-primary mr-2" />
+        <UiAvatar size="normal" type="avatar" class="bg-primary mr-2" />
         <span>{{ item.label }}</span>
       </div>
 

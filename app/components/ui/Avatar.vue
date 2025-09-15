@@ -1,7 +1,7 @@
 <template>
   <Avatar
-    :icon="!avatarUrl ? 'pi pi-user' : ''"
-    :image="avatarUrl"
+    :icon="!avatarUrl ? 'pi pi-user' : null"
+    :image="avatarUrl ? avatarUrl : null"
     shape="circle"
     :size="size"
     class="bg-primary mx-auto px-auto"
@@ -18,12 +18,13 @@ import { useImageStore } from '@stores/image'
 import { useUserStore } from '@stores/user'
 
 /* Props */
-defineProps<{
+const props = defineProps<{
   size: 'normal' | 'large' | 'xlarge' | 'giant' | 'enormous'
+  avatar?: string
 }>()
 
 /* Refs */
-const avatarUrl = ref<string>()
+const avatarUrl = ref<string | undefined>(props.avatar)
 
 /* Stores */
 const imageStore = useImageStore()
@@ -33,6 +34,11 @@ const userStore = useUserStore()
 watch(
   () => userStore.user?.avatar_path,
   async (path) => {
+    if (props.avatar) {
+      avatarUrl.value = await imageStore.find(props.avatar)
+      return
+    }
+
     if (!path) {
       avatarUrl.value = undefined
       return

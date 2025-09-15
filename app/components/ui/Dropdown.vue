@@ -43,7 +43,7 @@ const selected = vueComputedEmit(emit, props, 'selected')
 /* Watches */
 watch(
   () => selected.value,
-    (newValue: any, oldValue: any) => {
+  (newValue: any, oldValue: any) => {
     if (newValue == null) {
       nextTick(() => {
         selected.value = oldValue
