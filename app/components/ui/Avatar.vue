@@ -20,7 +20,7 @@ import { useUserStore } from '@stores/user'
 /* Props */
 const props = defineProps<{
   size: 'normal' | 'large' | 'xlarge' | 'giant' | 'enormous'
-  avatar?: string
+  avatar?: string | undefined
 }>()
 
 /* Refs */

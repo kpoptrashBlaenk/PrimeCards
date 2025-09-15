@@ -5,6 +5,7 @@
     :width="field.width + 'rem'"
     :height="field.height + 'rem'"
     :class="field.class"
+    :shape="field.shape"
   >
     <div v-if="!isSkeleton(field) && !isDivider(field)" v-for="wrapField in field.fields">
       <component
