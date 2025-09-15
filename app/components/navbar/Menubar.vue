@@ -10,7 +10,7 @@
     <!-- End -->
     <template #end>
       <div v-if="userStore.user" class="flex align-items-center gap-3">
-        <div class="font-bold text-md">{{ menuTitle }}</div>
+        <div class="font-bold text-md">{{ pageName }}</div>
         <NavbarProfileMenu />
       </div>
 
@@ -28,10 +28,17 @@ import { useUserStore } from '@stores/user'
 const route = useRoute()
 
 /* Computeds */
-const menuTitle = computed(() => {
+const pageName = computed(() => {
   const segments = route.path.split('/').filter(Boolean)
-  const first = segments[0] || ''
-  return first.charAt(0).toUpperCase() + first.slice(1)
+  const page = segments[0] || ''
+  switch (page) {
+    case 'auth':
+      return 'Authentication'
+    case 'settings':
+      return 'Settings'
+    default:
+      return page
+  }
 })
 
 /* Stores */

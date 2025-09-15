@@ -17,6 +17,7 @@ export default defineNuxtConfig({
     '@pages': '../app/pages',
     '@assets': '../assets',
     '@schemas': '../shared/utils/schemas',
+    '@functions': '../shared/utils/functions',
     '@stores': '../stores',
     '@middleware': '../middleware',
     '@plugins': '../plugins',

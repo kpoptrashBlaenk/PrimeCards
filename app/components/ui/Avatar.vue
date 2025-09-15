@@ -1,24 +1,13 @@
 <template>
   <Avatar
-    v-if="avatarUrl"
+    :icon="!avatarUrl ? 'pi pi-user' : ''"
     :image="avatarUrl"
     shape="circle"
     :size="size"
-    class="bg-primary"
-    :class="{ 'avatar-giant': size === 'giant' }"
+    class="bg-primary mx-auto px-auto"
+    :class="{ 'avatar-giant': size === 'giant', 'avatar-enormous': size === 'enormous' }"
     :pt="{
-      icon: { class: size === 'giant' ? 'avatar-giant-icon' : '' },
-    }"
-  />
-  <Avatar
-    v-else
-    icon="pi pi-user"
-    shape="circle"
-    :size="size"
-    class="bg-primary"
-    :class="{ 'avatar-giant': size === 'giant' }"
-    :pt="{
-      icon: { class: size === 'giant' ? 'avatar-giant-icon' : '' },
+      icon: { class: size === 'giant' ? 'avatar-giant-icon' : size === 'enormous' ? 'avatar-enormous-icon' : '' },
     }"
   />
 </template>
@@ -30,7 +19,7 @@ import { useUserStore } from '@stores/user'
 
 /* Props */
 defineProps<{
-  size: 'normal' | 'large' | 'xlarge' | 'giant'
+  size: 'normal' | 'large' | 'xlarge' | 'giant' | 'enormous'
 }>()
 
 /* Refs */

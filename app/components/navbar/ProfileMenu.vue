@@ -32,9 +32,9 @@ const profileMenu = ref()
 const items = computed(() => [
   { header: true, label: userStore.user?.name },
   { separator: true },
-  { label: 'Profile', icon: 'pi pi-user', to: '/profile', command: () => navigateTo('/profile') },
+  { label: 'Profile', icon: 'pi pi-user', command: () => navigateTo(`/${userStore.user?.name}`) },
   { separator: true },
-  { label: 'Settings', icon: 'pi pi-cog', to: '/profile', command: () => navigateTo('/settings') },
+  { label: 'Settings', icon: 'pi pi-cog', command: () => navigateTo('/settings') },
   { separator: true },
   {
     label: 'Sign out',
