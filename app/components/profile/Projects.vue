@@ -28,6 +28,11 @@
     <!-- Projects -->
     <UiSkeletons v-if="loading" v-for="skeletonField in skeletonFields" :field="skeletonField" />
 
+    <div v-else-if="projects && projects.length === 0" class="text-5xl font-bold text-primary text-center mt-8">
+      <div>We couldn't find any projects</div>
+      <div>╥﹏╥</div>
+    </div>
+
     <div v-else v-for="project in projects">
       <div class="grid">
         <div class="col-12 sm:col-8">
@@ -71,13 +76,13 @@
 import { getDate } from '@functions/dates'
 
 /* Props */
-defineProps<{
+const props = defineProps<{
   profile: SupabaseProfile
   loading: boolean
 }>()
 
 /* Refs */
-// const projects = ref<SupabaseProject[]>()
+const projects = ref<SupabaseProject[]>()
 const search = ref<string>('')
 const sort = reactive({
   options: ['Last published', 'Last updated', 'Name'],
@@ -147,23 +152,13 @@ const skeletonFields: SkeletonProp[] = [
   },
   { type: 'divider' },
 ]
-const projects: SupabaseProject[] = [
-  {
-    project_id: 1,
-    user_id: '1',
-    created_at: `${new Date(2024, 4, 1)}`,
-    name: 'HearthstoneAdventureClient',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu auctor dolor. Duis consequat ipsum quis orci dapibus, nec imperdiet velit blandit.',
-    dev_version: 2.3,
-    prod_version: 1.4,
-    dev_date: `${new Date(2025, 4, 15)}`,
-    prod_date: `${new Date(2025, 8, 1)}`,
-  },
-]
 
 /* Hooks */
 onMounted(async () => {
-  // get projects
+  try {
+    await getProjects(props.profile.user_id)
+  } catch (error: any) {
+    projects.value = []
+  }
 })
 </script>
