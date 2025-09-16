@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="!mounted" class="flex flex-column gap-3">
-      <UiSkeletons :fields="skeletonFields" />
+      <UiSkeletons v-for="skeletonField in skeletonFields" :field="skeletonField" />
     </div>
     <ClientOnly v-else>
       <Form

@@ -8,7 +8,7 @@
 
   <AuthLayout v-else :header="'Enter your new password'">
     <div v-if="!mounted" class="flex flex-column gap-4">
-      <UiSkeletons :fields="skeletonFields" />
+      <UiSkeletons v-for="skeletonField in skeletonFields" :field="skeletonField" />
     </div>
 
     <ClientOnly>

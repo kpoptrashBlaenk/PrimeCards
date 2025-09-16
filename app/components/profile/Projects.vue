@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- Header -->
     <div class="flex">
       <div class="w-12 flex flex-column lg:flex-row">
         <!-- Search Bar -->
@@ -23,9 +24,13 @@
       </NuxtLink>
     </div>
     <Divider />
-    <div v-for="project in projects">
+
+    <!-- Projects -->
+    <UiSkeletons v-if="loading" v-for="skeletonField in skeletonFields" :field="skeletonField" />
+
+    <div v-else v-for="project in projects">
       <div class="grid">
-        <div class="col-7">
+        <div class="col-12 sm:col-8">
           <!-- Title -->
           <div class="flex gap-2 align-items-center">
             <NuxtLink :to="`/projects/${project.project_id}`" class="text-2xl no-underline text-primary font-bold">
@@ -43,7 +48,7 @@
           <!-- Date created -->
           <div class="text-400 text-sm mt-3">{{ getDate('Created', new Date(project.created_at)) }}</div>
         </div>
-        <div class="col-5 text-right">
+        <div class="col-12 sm:col-4 flex gap-3 sm:block sm:text-right pr-3">
           <!-- Prod -->
           <div v-if="project.prod_version" class="mb-4">
             <Tag :value="`Production: v.${project.prod_version}`" severity="success" />
@@ -62,7 +67,14 @@
 </template>
 
 <script setup lang="ts">
+/* Imports */
 import { getDate } from '@functions/dates'
+
+/* Props */
+defineProps<{
+  profile: SupabaseProfile
+  loading: boolean
+}>()
 
 /* Refs */
 // const projects = ref<SupabaseProject[]>()
@@ -80,14 +92,69 @@ const filter = reactive({
 const { getProjects } = useUser()
 
 /* Constants */
+const skeletonFields: SkeletonProp[] = [
+  {
+    type: 'wrapper',
+    class: 'grid',
+    fields: [
+      {
+        type: 'wrapper',
+        class: 'col-12 sm:col-8',
+        fields: [
+          {
+            type: 'wrapper',
+            class: 'flex gap-2 align-items-center',
+            fields: [
+              { type: 'skeleton', height: 1.75, width: 20 },
+              { type: 'skeleton', height: 0.875, width: 5 },
+            ],
+          },
+          {
+            type: 'wrapper',
+            class: 'mt-3',
+            fields: [
+              { type: 'skeleton', height: 0.875, width: 25.5 },
+              { type: 'skeleton', height: 0.875, width: 25.5, class: 'mt-1' },
+              { type: 'skeleton', height: 0.875, width: 25.5, class: 'mt-1' },
+            ],
+          },
+          { type: 'skeleton', height: 0.875, width: 10, class: 'mt-3' },
+        ],
+      },
+      {
+        type: 'wrapper',
+        class: 'col-12 sm:col-4 flex gap-3 sm:block sm:text-right pr-3',
+        fields: [
+          {
+            type: 'wrapper',
+            class: 'flex flex-column align-items-end mb-4',
+            fields: [
+              { type: 'skeleton', height: 1, width: 7.875 },
+              { type: 'skeleton', height: 0.875, width: 7.875, class: 'mt-1' },
+            ],
+          },
+          {
+            type: 'wrapper',
+            class: 'flex flex-column align-items-end',
+            fields: [
+              { type: 'skeleton', height: 1, width: 7.875 },
+              { type: 'skeleton', height: 0.875, width: 7.875, class: 'mt-1' },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  { type: 'divider' },
+]
 const projects: SupabaseProject[] = [
   {
     project_id: 1,
     user_id: '1',
     created_at: `${new Date(2024, 4, 1)}`,
-    name: 'test project',
+    name: 'HearthstoneAdventureClient',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu auctor dolor. Duis consequat ipsum quis orci dapibus, nec imperdiet velit blandit. Fusce ac felis tortor. Vivamus imperdiet ex eu laoreet gravida. Mauris lacus mauris, efficitur at pretium non, eleifend vel arcu. Ut ligula augue, euismod nec rutrum nec, viverra at lorem. Donec vitae erat eget magna mattis mattis.',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu auctor dolor. Duis consequat ipsum quis orci dapibus, nec imperdiet velit blandit.',
     dev_version: 2.3,
     prod_version: 1.4,
     dev_date: `${new Date(2025, 4, 15)}`,

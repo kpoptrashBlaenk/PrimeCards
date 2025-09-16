@@ -1,7 +1,7 @@
 <template>
   <AuthLayout :header="'Enter your email to receive a password reset link'">
     <div v-if="!mounted" class="flex flex-column gap-4">
-      <UiSkeletons :fields="skeletonFields" />
+      <UiSkeletons v-for="skeletonField in skeletonFields" :field="skeletonField" />
     </div>
 
     <ClientOnly>

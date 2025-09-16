@@ -1,27 +1,22 @@
 <template>
   <component
-    v-for="field in fields"
     :is="isSkeleton(field) ? 'Skeleton' : isDivider(field) ? 'Divider' : 'div'"
-    :width="field.width + 'rem'"
-    :height="field.height + 'rem'"
+    :width="field.width ? field.width + 'rem' : null"
+    :height="field.height ? field.height + 'rem' : null"
     :class="field.class"
     :shape="field.shape"
   >
-    <div v-if="!isSkeleton(field) && !isDivider(field)" v-for="wrapField in field.fields">
-      <component
-        :is="isSkeleton(wrapField) ? 'Skeleton' : 'Divider'"
-        :width="wrapField.width + 'rem'"
-        :height="wrapField.height + 'rem'"
-        :class="wrapField.class"
-      />
-    </div>
+    <!-- Children Fields -->
+    <template v-if="field.fields">
+      <UiSkeletons v-for="f in field.fields" :field="f" />
+    </template>
   </component>
 </template>
 
 <script setup lang="ts">
 /* Props */
 defineProps<{
-  fields: SkeletonProp[]
+  field: SkeletonProp
 }>()
 
 /* Utils */

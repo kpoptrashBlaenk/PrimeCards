@@ -1,10 +1,10 @@
 <template>
-  <UiSkeletons v-if="loading" :fields="skeletonFields" />
+  <UiSkeletons v-if="loading" v-for="skeletonField in skeletonFields" :field="skeletonField" />
 
   <div v-else class="text-center">
     <UiAvatar size="enormous" :avatar="profile?.avatar_path" />
-    <div class="text-2xl font-bold mt-2">{{ name }}</div>
-    <NuxtLink v-if="name === userStore.user?.name" to="/settings/account">
+    <div class="text-2xl font-bold mt-2">{{ profile.name }}</div>
+    <NuxtLink v-if="profile.user_id === userStore.user?.user_id" to="/settings/account">
       <Button class="mt-3 w-12 font-bold">Edit profile</Button>
     </NuxtLink>
   </div>
@@ -15,19 +15,13 @@
 import { useUserStore } from '@stores/user'
 
 /* Props */
-const props = defineProps<{
-  name: string
+defineProps<{
+  profile: SupabaseProfile
+  loading: boolean
 }>()
 
 /* Stores */
 const userStore = useUserStore()
-
-/* Composables */
-const { getProfile } = useUser()
-
-/* Refs */
-const loading = ref<boolean>(true)
-const profile = ref<SupabaseProfile>()
 
 /* Constants */
 const skeletonFields: SkeletonProp[] = [
@@ -35,15 +29,4 @@ const skeletonFields: SkeletonProp[] = [
   { type: 'skeleton', height: 1.75, class: 'w-12 mt-2' },
   { type: 'skeleton', height: 2.25, class: 'w-12 mt-3' },
 ]
-
-/* Hooks */
-onMounted(async () => {
-  try {
-    profile.value = await getProfile(props.name)
-  } catch (error: any) {
-    // TODO: 404 user not found
-  } finally {
-    loading.value = false
-  }
-})
 </script>
