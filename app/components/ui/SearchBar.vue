@@ -1,5 +1,5 @@
 <template>
-  <IconField class="w-6">
+  <IconField class="w-6 min-w-30rem">
     <InputIcon class="pi pi-search" />
     <InputText id="search" v-model="search" size="small" placeholder="Find project..." class="w-12" />
   </IconField>

@@ -1,7 +1,7 @@
 <template>
   <UiSkeletons v-if="loading" :fields="skeletonFields" />
 
-  <div v-else>
+  <div v-else class="text-center">
     <UiAvatar size="enormous" :avatar="profile?.avatar_path" />
     <div class="text-2xl font-bold mt-2">{{ name }}</div>
     <NuxtLink v-if="name === userStore.user?.name" to="/settings/account">
@@ -31,15 +31,19 @@ const profile = ref<SupabaseProfile>()
 
 /* Constants */
 const skeletonFields: SkeletonProp[] = [
-  { type: 'skeleton', width: 19, height: 19, shape: 'circle' },
+  { type: 'skeleton', width: 19, height: 19, shape: 'circle', class: 'mx-auto' },
   { type: 'skeleton', height: 1.75, class: 'w-12 mt-2' },
   { type: 'skeleton', height: 2.25, class: 'w-12 mt-3' },
 ]
 
 /* Hooks */
 onMounted(async () => {
-  profile.value = await getProfile(props.name)
-
-  loading.value = false
+  try {
+    profile.value = await getProfile(props.name)
+  } catch (error: any) {
+    // TODO: 404 user not found
+  } finally {
+    loading.value = false
+  }
 })
 </script>
