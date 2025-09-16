@@ -19,12 +19,7 @@ export function useAuth() {
     // create profile
     const profile = await $supabase.client
       .from('profile')
-      .insert([
-        {
-          user_id: user.data.user.id,
-          name: body.name,
-        },
-      ])
+      .insert([{ name: body.name }])
       .select()
       .single()
 
