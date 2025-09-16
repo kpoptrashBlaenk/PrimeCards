@@ -1,8 +1,6 @@
 import z from 'zod'
 
-const registerSchema = z.object({
-  name: z.string('Name must not be empty').min(1, 'Name must not be empty'),
-  email: z.email('Email not valid'),
+const passwordSchema = z.object({
   password: z
     .string('Password must not be empty')
     .min(8, 'Password must be at least 8 characters')
@@ -14,4 +12,4 @@ const registerSchema = z.object({
     .refine((val) => !/\s/.test(val), 'Password must not contain spaces'),
 })
 
-export default registerSchema
+export default passwordSchema

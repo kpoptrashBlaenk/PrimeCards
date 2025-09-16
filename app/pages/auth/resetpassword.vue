@@ -1,5 +1,5 @@
 <template>
-  <FormsRegisterForm />
+  <AuthResetPassword />
 </template>
 
 <script setup lang="ts">
@@ -9,6 +9,7 @@ import guestGlobal from '@middleware/guest.global'
 /* PageMeta */
 definePageMeta({
   pageTransition: { name: 'scale', mode: 'out-in' },
+  layout: false,
   middleware: guestGlobal,
 })
 </script>

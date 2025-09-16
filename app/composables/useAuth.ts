@@ -3,43 +3,127 @@ import { useUserStore } from '@stores/user'
 export function useAuth() {
   const { $supabase } = useNuxtApp()
   const userStore = useUserStore()
+  const { deleteAvatar } = useSettings()
 
   const register = async (body: RegisterBody) => {
-    const { data, error } = await $supabase.client.auth.signUp({ email: body.email, password: body.password })
+    // sign up
+    const user = await $supabase.client.auth.signUp({
+      email: body.email,
+      password: body.password,
+    })
 
-    if (error) throw error
+    if (user.error) throw user.error
 
-    if (data.user) userStore.setUser(data.user)
+    if (!user.data.user) throw new Error('User not found.')
 
-    return data
+    // create profile
+    const profile = await $supabase.client
+      .from('profile')
+      .insert([{ name: body.name }])
+      .select()
+      .single()
+
+    if (profile.error) {
+      // rollback
+      await $fetch('/api/deleteUser', { method: 'POST', body: { id: user.data.user.id } })
+      throw profile.error
+    }
+
+    userStore.setUser({ email: user.data.user.email, ...profile.data })
   }
 
   const login = async (body: LoginBody) => {
-    const { data, error } = await $supabase.client.auth.signInWithPassword(body)
+    // login
+    const user = await $supabase.client.auth.signInWithPassword(body)
 
-    if (error) throw error
+    if (user.error) throw user.error
 
-    if (data.user) userStore.setUser(data.user)
+    if (!user.data.user) throw new Error('User not found.')
 
-    return data
+    // find profile
+    const profile = await $supabase.client.from('profile').select().eq('user_id', user.data.user.id).single()
+
+    if (profile.error) throw profile.error
+
+    userStore.setUser({ email: user.data.user.email, ...profile.data })
   }
 
   const logout = async () => {
-    const { error } = await $supabase.client.auth.signOut()
+    const user = await $supabase.client.auth.signOut()
 
-    if (error) throw error
+    if (user.error) throw user.error
 
     userStore.clearUser()
   }
 
   const restore = async () => {
-    const { data, error } = await $supabase.client.auth.getUser()
+    // get user
+    const user = await $supabase.client.auth.getUser()
 
     // silently continue on error
-    // if (error) throw error
+    if (user.error || !user.data) return
 
-    if (data.user) userStore.setUser(data.user)
+    // find profile
+    const profile = await $supabase.client.from('profile').select().eq('user_id', user.data.user.id).single()
+
+    // silently continue on error
+    if (profile.error) return
+
+    userStore.setUser({ email: user.data.user.email, ...profile.data })
   }
 
-  return { register, login, logout, restore }
+  const updateEmail = async (email: string) => {
+    if (!email) throw new Error('No email provided.')
+
+    const user = await $supabase.client.auth.updateUser({ email: email })
+
+    if (user.error) throw user.error
+  }
+
+  const updatePassword = async (newPassword: string, oldPassword: string) => {
+    const userBefore = await $supabase.client.auth.signInWithPassword({
+      email: userStore.user!.email,
+      password: oldPassword,
+    })
+
+    if (userBefore.error) throw userBefore.error
+
+    const userAfter = await $supabase.client.auth.updateUser({ password: newPassword })
+
+    if (userAfter.error) throw userAfter.error
+  }
+
+  const forgotPassword = async (email: string) => {
+    const user = await $supabase.client.auth.resetPasswordForEmail(email)
+
+    if (user.error) throw user.error
+  }
+
+  const resetPassword = async (newPassword: string, tokenHash: string, type: EmailOtpType) => {
+    // login
+    const loginUser = await $supabase.client.auth.verifyOtp({
+      token_hash: tokenHash,
+      type: type,
+    })
+
+    if (loginUser.error) throw loginUser.error
+
+    // change password
+    const updateUser = await $supabase.client.auth.updateUser({ password: newPassword })
+
+    if (updateUser.error) throw updateUser.error
+
+    // logout
+    const logoutUser = await $supabase.client.auth.signOut()
+
+    if (logoutUser.error) throw logoutUser.error
+  }
+
+  const deleteAccount = async () => {
+    await deleteAvatar()
+
+    await $fetch('/api/deleteUser', { method: 'post', body: { id: userStore.user?.user_id } })
+  }
+
+  return { register, login, logout, restore, updateEmail, updatePassword, forgotPassword, resetPassword, deleteAccount }
 }

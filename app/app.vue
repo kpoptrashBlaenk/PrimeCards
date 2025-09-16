@@ -4,3 +4,12 @@
     <NuxtPage />
   </NuxtLayout>
 </template>
+
+<script setup lang="ts">
+/* Head */
+useHead({
+  bodyAttrs: {
+    class: ' surface-950',
+  },
+})
+</script>
