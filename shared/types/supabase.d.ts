@@ -23,10 +23,10 @@ declare global {
     user_id: string
     created_at: string
     name: string
-    description: string
+    description?: string
     dev_version: number
     dev_date: string
-    prod_version: number
-    prod_date: string
+    prod_version?: number
+    prod_date?: string
   }
 }

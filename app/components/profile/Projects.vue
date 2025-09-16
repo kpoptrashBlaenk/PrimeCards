@@ -28,12 +28,12 @@
     <!-- Projects -->
     <UiSkeletons v-if="loading" v-for="skeletonField in skeletonFields" :field="skeletonField" />
 
-    <div v-else-if="projects && projects.length === 0" class="text-5xl font-bold text-primary text-center mt-8">
+    <div v-else-if="filteredProjects && filteredProjects.length === 0" class="text-5xl font-bold text-primary text-center mt-8">
       <div>We couldn't find any projects</div>
       <div>╥﹏╥</div>
     </div>
 
-    <div v-else v-for="project in projects">
+    <div v-else v-for="project in filteredProjects">
       <div class="grid">
         <div class="col-12 sm:col-8">
           <!-- Title -->
@@ -55,7 +55,7 @@
         </div>
         <div class="col-12 sm:col-4 flex gap-3 sm:block sm:text-right pr-3">
           <!-- Prod -->
-          <div v-if="project.prod_version" class="mb-4">
+          <div v-if="project.prod_version && project.prod_date" class="mb-4">
             <Tag :value="`Production: v.${project.prod_version}`" severity="success" />
             <div class="text-xs text-400 ml-1 mt-1">{{ getDate('Published', new Date(project.prod_date)) }}</div>
           </div>
@@ -82,7 +82,7 @@ const props = defineProps<{
 }>()
 
 /* Refs */
-const projects = ref<SupabaseProject[]>()
+const projects = ref<SupabaseProject[]>([])
 const search = ref<string>('')
 const sort = reactive({
   options: ['Last published', 'Last updated', 'Name'],
@@ -90,7 +90,61 @@ const sort = reactive({
 })
 const filter = reactive({
   options: ['Published only'],
-  value: null,
+  value: null as string[] | null,
+})
+
+/* Computeds */
+const filteredProjects = computed(() => {
+  let processedProjects = projects.value
+
+  // filter search
+  processedProjects = projects.value.filter(
+    (project) =>
+      project.name.toLowerCase().includes(search.value.toLowerCase()) ||
+      project.description?.toLowerCase().includes(search.value.toLowerCase()),
+  )
+
+  // filter options
+  if (filter.value && filter.value.length !== 0)
+    processedProjects = processedProjects.filter((project) => {
+      return filter.value?.every((f) => {
+        switch (f) {
+          // published only
+          case filter.options[0]:
+            return project.prod_version && project.prod_date
+
+          // default
+          default:
+            return false
+        }
+      })
+    })
+
+  // sort by
+  processedProjects = [...projects.value].sort((a, b) => {
+    switch (sort.value) {
+      // last published
+      case sort.options[0]:
+        if (a.prod_version && !b.prod_version) return -1
+        if (!a.prod_version && b.prod_version) return 1
+        if (a.prod_version && b.prod_version) return b.prod_version - a.prod_version
+        return b.dev_version - a.dev_version
+
+      // last updated
+      case sort.options[1]:
+        if (a.prod_version && !b.prod_version) return -1
+        if (!a.prod_version && b.prod_version) return 1
+        const aDev = new Date(a.dev_date).getTime()
+        const bDev = new Date(b.dev_date).getTime()
+        return bDev - aDev
+
+      // default
+      default:
+        return 0
+    }
+  })
+
+  return processedProjects
 })
 
 /* Composables */
