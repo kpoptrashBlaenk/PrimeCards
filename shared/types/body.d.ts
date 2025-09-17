@@ -10,3 +10,8 @@ interface LoginBody {
 interface SettingsAccountBody {
   name?: string
 }
+
+interface ProjectNewBody {
+  name: string
+  description: string | null
+}

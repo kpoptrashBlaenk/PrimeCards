@@ -24,8 +24,10 @@ declare global {
     created_at: string
     name: string
     description?: string
+    dev_id: number
     dev_version: number
     dev_date: string
+    prod_id: number
     prod_version?: number
     prod_date?: string
   }

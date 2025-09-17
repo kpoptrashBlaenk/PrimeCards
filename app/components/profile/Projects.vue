@@ -28,12 +28,12 @@
     <!-- Projects -->
     <UiSkeletons v-if="loading" v-for="skeletonField in skeletonFields" :field="skeletonField" />
 
-    <div v-else-if="filteredProjects && filteredProjects.length === 0" class="text-5xl font-bold text-primary text-center mt-8">
+    <div v-else-if="projects && projects.length === 0" class="text-5xl font-bold text-primary text-center mt-8">
       <div>We couldn't find any projects</div>
       <div>╥﹏╥</div>
     </div>
 
-    <div v-else v-for="project in filteredProjects">
+    <div v-else v-for="project in projects">
       <div class="grid">
         <div class="col-12 sm:col-8">
           <!-- Title -->
@@ -56,12 +56,12 @@
         <div class="col-12 sm:col-4 flex gap-3 sm:block sm:text-right pr-3">
           <!-- Prod -->
           <div v-if="project.prod_version && project.prod_date" class="mb-4">
-            <Tag :value="`Production: v.${project.prod_version}`" severity="success" />
+            <Tag :value="`Production: v.${fixVersion(project.prod_version)}`" severity="success" />
             <div class="text-xs text-400 ml-1 mt-1">{{ getDate('Published', new Date(project.prod_date)) }}</div>
           </div>
           <!-- Dev -->
           <div>
-            <Tag :value="`Development: v.${project.dev_version}`" severity="warn" />
+            <Tag :value="`Development: v.${fixVersion(project.dev_version)}`" severity="warn" />
             <div class="text-xs text-400 ml-1 mt-1">{{ getDate('Updated', new Date(project.dev_date)) }}</div>
           </div>
         </div>
@@ -74,6 +74,8 @@
 <script setup lang="ts">
 /* Imports */
 import { getDate } from '@functions/dates'
+import { filterBy, sortBy } from '@functions/filter'
+import { fixVersion } from '@functions/version'
 
 /* Props */
 const props = defineProps<{
@@ -94,61 +96,21 @@ const filter = reactive({
 })
 
 /* Computeds */
-const filteredProjects = computed(() => {
-  let processedProjects = projects.value
+watch(
+  () => props.profile,
+  (profile) => {
+    if (!profile) return
 
-  // filter search
-  processedProjects = projects.value.filter(
-    (project) =>
-      project.name.toLowerCase().includes(search.value.toLowerCase()) ||
-      project.description?.toLowerCase().includes(search.value.toLowerCase()),
-  )
-
-  // filter options
-  if (filter.value && filter.value.length !== 0)
-    processedProjects = processedProjects.filter((project) => {
-      return filter.value?.every((f) => {
-        switch (f) {
-          // published only
-          case filter.options[0]:
-            return project.prod_version && project.prod_date
-
-          // default
-          default:
-            return false
-        }
-      })
-    })
-
-  // sort by
-  processedProjects = [...projects.value].sort((a, b) => {
-    switch (sort.value) {
-      // last published
-      case sort.options[0]:
-        if (a.prod_version && !b.prod_version) return -1
-        if (!a.prod_version && b.prod_version) return 1
-        if (a.prod_version && b.prod_version) return b.prod_version - a.prod_version
-        return b.dev_version - a.dev_version
-
-      // last updated
-      case sort.options[1]:
-        if (a.prod_version && !b.prod_version) return -1
-        if (!a.prod_version && b.prod_version) return 1
-        const aDev = new Date(a.dev_date).getTime()
-        const bDev = new Date(b.dev_date).getTime()
-        return bDev - aDev
-
-      // default
-      default:
-        return 0
-    }
-  })
-
-  return processedProjects
+    fetchProjects(profile.user_id)
+  },
+)
+watch([filter, sort, search], () => {
+  if (!props.profile) return
+  fetchProjects(props.profile.user_id)
 })
 
 /* Composables */
-const { getProjects } = useUser()
+const { getProjects } = useProject()
 
 /* Constants */
 const skeletonFields: SkeletonProp[] = [
@@ -207,12 +169,53 @@ const skeletonFields: SkeletonProp[] = [
   { type: 'divider' },
 ]
 
-/* Hooks */
-onMounted(async () => {
+/* Fetch Projects */
+async function fetchProjects(user_id: string) {
   try {
-    await getProjects(props.profile.user_id)
+    // get projects
+    let processedProjects = await getProjects(user_id)
+
+    // filter search
+    if (search.value && search.value.length > 0) {
+      processedProjects = filterBy(processedProjects, search.value, ['name', 'description'], 'some')
+    }
+
+    // filter options
+    if (filter.value && filter.value.length !== 0) {
+      filter.value.forEach((f) => {
+        switch (f) {
+          // published only
+          case filter.options[0]:
+            processedProjects = filterBy(processedProjects, '', ['prod_version', 'prod_date'], 'every')
+        }
+      })
+    }
+
+    // sort by
+    if (sort.value) {
+      switch (sort.value) {
+        // last published
+        case sort.options[0]:
+          processedProjects = sortBy(processedProjects, 'prod_date', true)
+          break
+
+        // last updated
+        case sort.options[1]:
+          processedProjects = sortBy(processedProjects, 'dev_date', true)
+          break
+
+        // name
+        case sort.options[2]:
+          processedProjects = sortBy(processedProjects, 'name')
+          break
+      }
+    }
+
+    projects.value = processedProjects
   } catch (error: any) {
+    console.error(error)
     projects.value = []
+    return
   }
-})
+}
 </script>

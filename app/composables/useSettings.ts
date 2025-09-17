@@ -56,7 +56,7 @@ export function useSettings() {
 
     if (deleteUser.error) throw deleteUser.error
 
-    user.avatar_path = null
+    user.avatar_path = undefined
   }
 
   const getAvatar = async (path: string | null) => {

@@ -16,7 +16,7 @@ const loading = ref<boolean>(true)
 const profile = ref<SupabaseProfile>()
 
 /* Composables */
-const { getProfile } = useUser()
+const { getProfile } = useAuth()
 
 /* Router */
 const route = useRoute()

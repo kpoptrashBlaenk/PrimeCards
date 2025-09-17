@@ -125,5 +125,26 @@ export function useAuth() {
     await $fetch('/api/deleteUser', { method: 'post', body: { id: userStore.user?.user_id } })
   }
 
-  return { register, login, logout, restore, updateEmail, updatePassword, forgotPassword, resetPassword, deleteAccount }
+  const getProfile = async (name: string) => {
+    if (!name) throw new Error('No name provided.')
+
+    const profile = await $supabase.client.from('profile').select('*').eq('name', name).single()
+
+    if (profile.error) throw profile.error
+
+    return profile.data as SupabaseProfile
+  }
+
+  return {
+    register,
+    login,
+    logout,
+    restore,
+    updateEmail,
+    updatePassword,
+    forgotPassword,
+    resetPassword,
+    deleteAccount,
+    getProfile,
+  }
 }

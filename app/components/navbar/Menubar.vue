@@ -36,6 +36,8 @@ const pageName = computed(() => {
       return 'Authentication'
     case 'settings':
       return 'Settings'
+    case 'projects':
+      return 'Projects'
     default:
       return page
   }
