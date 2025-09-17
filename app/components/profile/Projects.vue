@@ -64,8 +64,11 @@
             <Tag :value="`Development: v.${fixVersion(project.dev_version)}`" severity="warn" />
             <div class="text-xs text-400 ml-1 mt-1">{{ getDate('Updated', new Date(project.dev_date)) }}</div>
           </div>
+          <NuxtLink :to="`/projects/${project.project_id}`">
+            <Button v-if="project.user_id === userStore.user?.user_id" size="small" class="mt-2 font-bold w-5">Edit</Button>
+          </NuxtLink>
         </div>
-        <Divider />
+        <Divider class="mt-2" />
       </div>
     </div>
   </div>
@@ -76,6 +79,7 @@
 import { getDate } from '@functions/dates'
 import { filterBy, sortBy } from '@functions/filter'
 import { fixVersion } from '@functions/version'
+import { useUserStore } from '@stores/user'
 
 /* Props */
 const props = defineProps<{
@@ -108,6 +112,9 @@ watch([filter, sort, search], () => {
   if (!props.profile) return
   fetchProjects(props.profile.user_id)
 })
+
+/* Stores */
+const userStore = useUserStore()
 
 /* Composables */
 const { getProjects } = useProject()

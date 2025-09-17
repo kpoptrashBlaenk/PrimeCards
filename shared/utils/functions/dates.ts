@@ -9,7 +9,9 @@ export function getDate(connectorWord: 'Published' | 'Updated' | 'Created', orig
   const days = dayDiff(date, today)
   const weeks = daysToWeeks(days)
 
-  if (days < 7) {
+  if (days < 2) {
+    return `${connectorWord} ${days} day ago`
+  } else if (days < 7) {
     return `${connectorWord} ${days} days ago`
   } else if (days < 14) {
     return `${connectorWord} ${weeks} week ago`
