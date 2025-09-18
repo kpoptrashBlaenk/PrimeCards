@@ -20,6 +20,7 @@
           :type="field.type"
           :invalid="$form[field.name]?.invalid"
           :errorMessage="$form[field.name]?.error?.message"
+          @focus="clearField($form, field.name)"
         />
         <Button type="submit" size="large" rounded :disabled="loading" class="font-bold text-outline">Reset</Button>
       </Form>
@@ -29,6 +30,7 @@
 </template>
 
 <script setup lang="ts">
+/* Imports */
 import { zodResolver } from '@primevue/forms/resolvers/zod'
 import passwordSchema from '@schemas/password'
 
@@ -83,6 +85,11 @@ async function onSubmit(event: FormSubmitEvent) {
   } finally {
     loading.value = false
   }
+}
+
+/* Utils */
+function clearField(form: any, field: string) {
+  if (form[field]) form[field].invalid = false
 }
 
 /* Hooks */

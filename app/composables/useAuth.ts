@@ -14,7 +14,7 @@ export function useAuth() {
 
     if (user.error) throw user.error
 
-    if (!user.data.user) throw new Error('User not found.')
+    if (!user.data.user) throw createError({ statusCode: 404, statusMessage: 'User not found.' })
 
     // create profile
     const profile = await $supabase.client
@@ -38,7 +38,7 @@ export function useAuth() {
 
     if (user.error) throw user.error
 
-    if (!user.data.user) throw new Error('User not found.')
+    if (!user.data.user) throw createError({ statusCode: 404, statusMessage: 'User not found.' })
 
     // find profile
     const profile = await $supabase.client.from('profile').select().eq('user_id', user.data.user.id).single()
@@ -73,7 +73,7 @@ export function useAuth() {
   }
 
   const updateEmail = async (email: string) => {
-    if (!email) throw new Error('No email provided.')
+    if (!email) throw createError({ statusCode: 400, statusMessage: 'No email provided.' })
 
     const user = await $supabase.client.auth.updateUser({ email: email })
 
@@ -126,13 +126,16 @@ export function useAuth() {
   }
 
   const getProfile = async (name: string) => {
-    if (!name) throw new Error('No name provided.')
+    if (!name) throw createError({ statusCode: 400, statusMessage: 'No name provided.' })
 
-    const profile = await $supabase.client.from('profile').select('*').eq('name', name).single()
+    const profile = await $supabase.client.from('profile').select('*').eq('name', name)
 
     if (profile.error) throw profile.error
 
-    return profile.data as SupabaseProfile
+    if (profile.data.length === 0)
+      throw createError({ statusCode: 404, message: `User <span class="text-primary">${name}</span> not found.` })
+
+    return profile.data[0] as SupabaseProfile
   }
 
   return {

@@ -25,7 +25,7 @@ export function useProject() {
   }
 
   const isProjectDuplicate = async (name: string, user_id: string) => {
-    if (!name) throw new Error('No name provided.')
+    if (!name) throw createError({ statusCode: 400, statusMessage: 'No name provided.' })
 
     const projects = await $supabase.client.from('project').select().eq('name', name).eq('user_id', user_id)
 
@@ -35,7 +35,7 @@ export function useProject() {
   }
 
   const getProjects = async (user_id: string) => {
-    if (!user_id) throw new Error('No user provided.')
+    if (!user_id) throw createError({ statusCode: 400, statusMessage: 'No user provided.' })
 
     const projects = await $supabase.client.rpc('get_user_projects', { user_id: user_id })
 
@@ -45,18 +45,19 @@ export function useProject() {
   }
 
   const getDevProject = async (project_id: string) => {
-    if (!project_id) throw new Error('No project provided.')
+    if (!project_id) throw createError({ statusCode: 400, statusMessage: 'No project provided.' })
 
     const project = await $supabase.client
       .from('project')
       .select('*, project_version(version_id, version, date)')
       .eq('project_id', project_id)
       .order('date', { ascending: false, referencedTable: 'project_version' })
-      .single()
 
     if (project.error) throw project.error
 
-    return project.data as SupabaseProjectRow
+    if (project.data.length === 0) throw createError({ statusCode: 404, message: `Project not found.` })
+
+    return project.data[0] as SupabaseProjectRow
   }
 
   return { createProject, isProjectDuplicate, getProjects, getDevProject }
