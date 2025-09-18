@@ -31,4 +31,20 @@ declare global {
     prod_version?: number
     prod_date?: string
   }
+
+  interface SupabaseProjectRow {
+    project_id: number
+    user_id: string
+    created_at: string
+    name: string
+    description?: string
+    project_version: SupabaseProjectVersionRow
+  }
+
+  interface SupabaseProjectVersionRow {
+    version_id: number
+    version: number
+    date: string
+    prod: boolean
+  }
 }

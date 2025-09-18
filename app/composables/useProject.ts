@@ -44,5 +44,20 @@ export function useProject() {
     return projects.data as SupabaseProject[]
   }
 
-  return { createProject, isProjectDuplicate, getProjects }
+  const getDevProject = async (project_id: string) => {
+    if (!project_id) throw new Error('No project provided.')
+
+    const project = await $supabase.client
+      .from('project')
+      .select('*, project_version(version_id, version, date)')
+      .eq('project_id', project_id)
+      .order('date', { ascending: false, referencedTable: 'project_version' })
+      .single()
+
+    if (project.error) throw project.error
+
+    return project.data as SupabaseProjectRow
+  }
+
+  return { createProject, isProjectDuplicate, getProjects, getDevProject }
 }
