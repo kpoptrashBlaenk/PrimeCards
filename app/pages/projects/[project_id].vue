@@ -23,7 +23,7 @@ const route = useRoute()
 try {
   const devProject = await getDevProject(route.params.project_id as string)
 
-  if (devProject.user_id === userStore.user?.user_id)
+  if (devProject.user_id !== userStore.user?.user_id)
     throw createError({ statusCode: 403, message: 'You are not authorized to edit this project.' })
 
   project.value = devProject

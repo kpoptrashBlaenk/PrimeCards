@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ProjectsNewForm />
+    <ProjectsNewStepper />
   </div>
 </template>
 

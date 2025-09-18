@@ -225,4 +225,9 @@ async function fetchProjects(user_id: string) {
     return
   }
 }
+
+/* Hooks */
+onMounted(() => {
+  fetchProjects(props.profile.user_id)
+})
 </script>
