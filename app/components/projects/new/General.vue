@@ -6,40 +6,29 @@
     <StepPanel v-slot="{ activateCallback }" class="surface-950">
       <UiSkeletons v-if="!mounted" v-for="field in generalSkeletonFields" :field="field" />
 
-      <ClientOnly v-else>
-        <Form
-          v-slot="$form"
-          :resolver
-          @submit="handleNext($event, 'general', () => activateCallback('2'))"
-          class="flex flex-column gap-4"
-          :validateOnValueUpdate="false"
-        >
-          <div class="flex flex-column gap-4">
-            <FormsField
-              v-for="field in fields"
-              :name="field.name"
-              :label="field.label"
-              :type="field.type"
-              :invalid="$form[field.name]?.invalid"
-              :errorMessage="$form[field.name]?.error?.message"
-              @focus="clearField($form, field.name)"
-            />
-            <span class="text-sm -mt-3" :class="$form['description']?.value?.length > 200 ? 'text-red-500' : 'text-400'">
-              {{ $form['description']?.value?.length || 0 }}/200 characters
-            </span>
-            <div class="flex justify-content-between">
-              <Button
-                type="submit"
-                label="Next"
-                icon="pi pi-arrow-right"
-                iconPos="right"
-                :loading="loading"
-                :pt="{ label: { class: 'font-bold' }, icon: { class: 'font-bold' } }"
-              ></Button>
-            </div>
+      <FormsForm
+        v-else
+        :fields
+        :resolver
+        :onSubmit="(event: FormSubmitEvent) => handleNext(event, 'general', () => activateCallback('2'))"
+        :clearField="true"
+      >
+        <template #default="{ form }">
+          <span class="text-sm -mt-3" :class="form['description']?.value?.length > 200 ? 'text-red-500' : 'text-400'">
+            {{ form['description']?.value?.length || 0 }}/200 characters
+          </span>
+          <div class="flex justify-content-between">
+            <Button
+              type="submit"
+              label="Next"
+              icon="pi pi-arrow-right"
+              iconPos="right"
+              :loading="loading"
+              :pt="{ label: { class: 'font-bold' }, icon: { class: 'font-bold' } }"
+            ></Button>
           </div>
-        </Form>
-      </ClientOnly>
+        </template>
+      </FormsForm>
     </StepPanel>
   </StepItem>
 </template>
@@ -76,11 +65,6 @@ const generalSkeletonFields: SkeletonProp[] = [
     ],
   },
 ]
-
-/* Utils */
-function clearField(form: any, field: string) {
-  if (form[field]) form[field].invalid = false
-}
 
 /* Hooks */
 onMounted(() => (mounted.value = true))

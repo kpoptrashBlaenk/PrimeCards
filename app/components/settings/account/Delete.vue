@@ -13,21 +13,15 @@
     >
       Delete Account
     </Button>
+
+    <!-- Dialog -->
     <Dialog v-model:visible="dialog" modal header="Delete Account" class="w-25rem sm:w-30rem">
       <span class="text-500">
         Type <span class="font-bold text-red-500">delete {{ userStore.user?.name }}</span> to delete your account.
       </span>
-      <Form v-slot="$form" @submit="onSubmit" :resolver :validateOnValueUpdate="false" class="flex flex-column gap-4 mt-2">
-        <FormsField
-          v-for="field in fields"
-          :name="field.name"
-          :label="field.label"
-          :type="field.type"
-          :invalid="$form[field.name]?.invalid"
-          :errorMessage="$form[field.name]?.error?.message"
-        />
+      <FormsForm :fields :resolver :onSubmit class="mt-2">
         <SettingsFormButtons :loading="loading" confirmText="Delete Account" confirmSeverity="danger" />
-      </Form>
+      </FormsForm>
     </Dialog>
   </div>
 </template>
@@ -60,7 +54,7 @@ async function onSubmit(event: FormSubmitEvent) {
   try {
     await deleteAccount()
 
-    // location.reload()
+    location.reload()
   } catch (error: any) {
     toast.add({ severity: 'error', summary: 'Delete Account Error', detail: error.message, life: 3000 })
   } finally {

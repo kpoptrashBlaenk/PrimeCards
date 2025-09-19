@@ -11,20 +11,10 @@
       <UiSkeletons v-for="skeletonField in skeletonFields" :field="skeletonField" />
     </div>
 
-    <ClientOnly>
-      <Form v-slot="$form" @submit="onSubmit" :resolver class="flex flex-column gap-4" :validateOnValueUpdate="false">
-        <FormsField
-          v-for="field in fields"
-          :name="field.name"
-          :label="field.label"
-          :type="field.type"
-          :invalid="$form[field.name]?.invalid"
-          :errorMessage="$form[field.name]?.error?.message"
-          @focus="clearField($form, field.name)"
-        />
-        <Button type="submit" size="large" rounded :disabled="loading" class="font-bold text-outline">Reset</Button>
-      </Form>
-    </ClientOnly>
+    <FormsForm v-else :fields :onSubmit :resolver :clearField="true">
+      <Button type="submit" size="large" rounded :disabled="loading" class="font-bold text-outline">Reset</Button>
+    </FormsForm>
+
     <Toast />
   </AuthLayout>
 </template>

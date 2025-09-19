@@ -4,21 +4,11 @@
       <UiSkeletons v-for="skeletonField in skeletonFields" :field="skeletonField" />
     </div>
 
-    <ClientOnly v-else>
-      <Form v-slot="$form" :resolver @submit="onSubmit" :validateOnValueUpdate="false" class="flex flex-column gap-4">
-        <FormsField
-          v-for="field in fields"
-          :name="field.name"
-          :label="field.label"
-          :type="field.type"
-          :invalid="$form[field.name]?.invalid"
-          :errorMessage="$form[field.name]?.error?.message"
-          @focus="clearField($form, field.name)"
-        />
-        <Button type="submit" size="large" rounded :disabled="loading" class="font-bold text-outline">Register</Button>
-        <p class="text-center text-400 -mt-1">Already have an account? <NuxtLink to="/auth/login">Sign in now!</NuxtLink></p>
-      </Form>
-    </ClientOnly>
+    <FormsForm v-else :fields :resolver :onSubmit :clearField="true">
+      <Button type="submit" size="large" rounded :disabled="loading" class="font-bold text-outline">Register</Button>
+      <p class="text-center text-400 -mt-1">Already have an account? <NuxtLink to="/auth/login">Sign in now!</NuxtLink></p>
+    </FormsForm>
+
     <Toast />
   </AuthLayout>
 </template>
@@ -76,11 +66,6 @@ async function onSubmit(event: FormSubmitEvent) {
   } finally {
     loading.value = false
   }
-}
-
-/* Utils */
-function clearField(form: any, field: string) {
-  if (form[field]) form[field].invalid = false
 }
 
 /* Hooks */

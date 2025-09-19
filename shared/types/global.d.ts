@@ -6,3 +6,10 @@ type SkeletonProp = {
   class?: string
   fields?: SkeletonProp[]
 }
+
+type FormFieldProp = {
+  name: string
+  label: string
+  type: InputTypeHTMLAttribute
+  class?: string
+}

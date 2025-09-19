@@ -3,27 +3,10 @@
     <div v-if="!mounted" class="flex flex-column gap-4">
       <UiSkeletons v-for="skeletonField in skeletonFields" :field="skeletonField" />
     </div>
-    <ClientOnly v-else>
-      <Form
-        v-slot="$form"
-        :initialValues="initialValues"
-        @submit="onSubmit"
-        :resolver
-        :validateOnValueUpdate="false"
-        class="flex flex-column gap-4"
-      >
-        <FormsField
-          v-for="field in fields"
-          :name="field.name"
-          :label="field.label"
-          :type="field.type"
-          :invalid="$form[field.name]?.invalid"
-          :errorMessage="$form[field.name]?.error?.message"
-          class="lg:w-8"
-        />
-        <SettingsFormButtons :loading="loading" confirmText="Update Email" />
-      </Form>
-    </ClientOnly>
+
+    <FormsForm v-else :fields :initialValues :resolver :onSubmit>
+      <SettingsFormButtons :loading="loading" confirmText="Update Email" />
+    </FormsForm>
   </div>
 </template>
 
@@ -50,7 +33,7 @@ const initialValues = computed(() => ({
 }))
 
 /* Constants */
-const fields = [{ name: 'email', label: 'Email', type: 'email' }]
+const fields = [{ name: 'email', label: 'Email', type: 'email', class: 'lg:w-8' }]
 const skeletonFields: SkeletonProp[] = [
   { type: 'skeleton', class: 'lg:w-8', height: 3.375 },
   { type: 'skeleton', width: 7.51, height: 1.833 },
