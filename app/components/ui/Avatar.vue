@@ -24,7 +24,7 @@ const props = defineProps<{
 }>()
 
 /* Refs */
-const avatarUrl = ref<string | undefined>(props.avatar)
+const avatarUrl = ref<string | undefined>()
 
 /* Stores */
 const imageStore = useImageStore()
