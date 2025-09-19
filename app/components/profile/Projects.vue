@@ -5,8 +5,8 @@
       v-model:search="search"
       v-model:sort="sort"
       v-model:filter="filter"
-      :sortOptions="sortOptions"
-      :filterOptions="filterOptions"
+      :sort-options="sortOptions"
+      :filter-options="filterOptions"
     />
     <Divider />
 
@@ -130,7 +130,7 @@ async function fetchProjects(user_id: string) {
       filter.value.forEach((f) => {
         switch (f) {
           // published only
-          case filter.options[0]:
+          case filterOptions.value[0]:
             processedProjects = filterBy(processedProjects, '', ['prod_version', 'prod_date'], 'every')
         }
       })
@@ -140,17 +140,17 @@ async function fetchProjects(user_id: string) {
     if (sort.value) {
       switch (sort.value) {
         // last published
-        case sort.options[0]:
+        case sortOptions.value[0]:
           processedProjects = sortBy(processedProjects, 'prod_date', true)
           break
 
         // last updated
-        case sort.options[1]:
+        case sortOptions.value[1]:
           processedProjects = sortBy(processedProjects, 'dev_date', true)
           break
 
         // name
-        case sort.options[2]:
+        case sortOptions.value[2]:
           processedProjects = sortBy(processedProjects, 'name')
           break
       }
