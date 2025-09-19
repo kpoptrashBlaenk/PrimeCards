@@ -11,9 +11,9 @@
         <AccordionContent :pt="{ content: { class: 'bg-transparent' } }">
           <div>
             <SettingsAccountAvatar v-if="index === 0" />
-            <SettingsAccountForm v-else-if="index === 1" />
-            <SettingsAccountEmailForm v-else-if="index === 2" />
-            <SettingsAccountPasswordForm v-else-if="index === 3" />
+            <SettingsAccountGeneral v-else-if="index === 1" />
+            <SettingsAccountEmail v-else-if="index === 2" />
+            <SettingsAccountPassword v-else-if="index === 3" />
             <SettingsAccountDelete v-else-if="index === 4" />
           </div>
         </AccordionContent>

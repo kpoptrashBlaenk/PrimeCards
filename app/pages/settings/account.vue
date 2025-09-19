@@ -1,5 +1,5 @@
 <template>
-  <SettingsAccountPage />
+  <SettingsAccountAccordion />
 </template>
 
 <script setup lang="ts">

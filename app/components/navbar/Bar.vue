@@ -11,7 +11,7 @@
     <template #end>
       <div v-if="userStore.user" class="flex align-items-center gap-3">
         <div class="font-bold text-md">{{ pageName }}</div>
-        <NavbarProfileMenu />
+        <NavbarUserMenu />
       </div>
 
       <NuxtLink v-else :to="'/auth/login'">
