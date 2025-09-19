@@ -1,4 +1,4 @@
-import AuraDarkPink from './assets/themes/auraDarkPink'
+import AuraDarkPink from './app/assets/themes/auraDarkPink'
 
 export default defineNuxtConfig({
   typescript: {
@@ -15,7 +15,7 @@ export default defineNuxtConfig({
     '@composables': '../app/composables',
     '@layouts': '../app/layouts',
     '@pages': '../app/pages',
-    '@assets': '../assets',
+    '@assets': '../app/assets',
     '@schemas': '../shared/utils/schemas',
     '@functions': '../shared/utils/functions',
     '@stores': '../stores',
