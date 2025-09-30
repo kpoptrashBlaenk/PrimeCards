@@ -30,7 +30,7 @@ const { register } = useAuth()
 const fields = [
   { name: 'name', label: 'Name', type: 'text' },
   { name: 'email', label: 'Email', type: 'email' },
-  { name: 'password', label: 'Password', type: 'password' },
+  { name: 'password', label: 'Password', type: 'password', checkPassword: true },
   { name: 'repeatPassword', label: 'Repeat Password', type: 'password' },
 ]
 const skeletonFields: SkeletonProp[] = [

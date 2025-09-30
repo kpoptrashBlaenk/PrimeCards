@@ -11,5 +11,6 @@ type FormFieldProp = {
   name: string
   label: string
   type: InputTypeHTMLAttribute
+  checkPassword?: boolean
   class?: string
 }

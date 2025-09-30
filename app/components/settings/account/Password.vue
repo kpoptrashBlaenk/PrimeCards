@@ -35,7 +35,7 @@ const initialValues = computed(() => ({
 /* Constants */
 const fields = [
   { name: 'oldPassword', label: 'Old Password', type: 'password', class: 'lg:w-8' },
-  { name: 'password', label: 'New Password', type: 'password', class: 'lg:w-8' },
+  { name: 'password', label: 'New Password', type: 'password', checkPassword: true, class: 'lg:w-8' },
   { name: 'repeatPassword', label: 'Repeat New password', type: 'password', class: 'lg:w-8' },
 ]
 const skeletonFields: SkeletonProp[] = [

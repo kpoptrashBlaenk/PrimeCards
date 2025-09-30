@@ -35,7 +35,7 @@ const { resetPassword } = useAuth()
 
 /* Constants */
 const fields = [
-  { name: 'password', label: 'New password', type: 'password' },
+  { name: 'password', label: 'New password', type: 'password', checkPassword: true },
   { name: 'repeatPassword', label: 'Repeat password', type: 'password' },
 ]
 const skeletonFields: SkeletonProp[] = [

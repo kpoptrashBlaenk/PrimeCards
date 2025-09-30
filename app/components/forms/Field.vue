@@ -1,16 +1,17 @@
 <template>
-  <IftaLabel>
+  <FloatLabel variant="in">
     <component
       :is="isPassword ? 'Password' : 'InputText'"
       :name="name"
       :type="type"
+      :feedback="checkPassword ?? false"
       variant="filled"
       size="large"
       fluid
       v-bind="passwordProps"
       @focus="$emit('focus')"
     >
-      <template #footer v-if="isPassword">
+      <template #footer v-if="isPassword && checkPassword">
         <FormsPasswordRules />
       </template>
     </component>
@@ -18,7 +19,7 @@
     <Message v-if="invalid" icon="pi pi-exclamation-circle" severity="error" size="small" variant="simple" class="mt-1">
       {{ errorMessage }}
     </Message>
-  </IftaLabel>
+  </FloatLabel>
 </template>
 
 <script setup lang="ts">
@@ -27,6 +28,7 @@ const props = defineProps<{
   name: string
   label: string
   type: InputTypeHTMLAttribute
+  checkPassword?: boolean
   invalid?: boolean
   errorMessage?: string
 }>()

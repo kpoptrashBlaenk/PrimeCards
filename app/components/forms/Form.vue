@@ -14,6 +14,7 @@
         :name="field.name"
         :label="field.label"
         :type="field.type"
+        :checkPassword="field.checkPassword"
         :invalid="($form as IndexedForm)?.[field.name]?.invalid"
         :errorMessage="($form as IndexedForm)?.[field.name]?.error?.message"
         @focus="clearField ? clear($form as any, field.name) : false"
@@ -37,9 +38,6 @@ defineProps<{
   validateOnValueUpdate?: boolean
   clearField?: boolean
 }>()
-
-/* Refs */
-const form = ref<IndexedForm>()
 
 /* Clear */
 function clear(form: any, field: string) {
