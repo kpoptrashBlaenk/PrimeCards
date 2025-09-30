@@ -3,7 +3,7 @@
     <!-- Start -->
     <template #start>
       <div class="flex align-items-baseline gap-2">
-        <NuxtLink class="text-2xl font-bold no-underline text-logo" :to="'/'"> PrimeCards </NuxtLink>
+        <NuxtLink class="text-2xl font-bold no-underline text-logo" to="/"> PrimeCards </NuxtLink>
       </div>
     </template>
 
@@ -14,7 +14,7 @@
         <NavbarUserMenu />
       </div>
 
-      <NuxtLink v-else :to="'/auth/login'">
+      <NuxtLink v-else to="/auth/login">
         <Button type="submit" class="font-bold text-outline">Sign In</Button>
       </NuxtLink>
     </template>

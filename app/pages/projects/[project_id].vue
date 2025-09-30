@@ -1,10 +1,28 @@
 <template>
-  <div></div>
+  <Splitter class="w-full h-full">
+    <SplitterPanel :size="20">
+      <ProjectsEditTree class="col-2 surface-50 border-right-1 border-200 h-full w-full"></ProjectsEditTree>
+    </SplitterPanel>
+
+    <SplitterPanel :size="80">
+      <ProjectsEditMain class="col-8 h-full w-full"></ProjectsEditMain>
+    </SplitterPanel>
+
+    <SplitterPanel :size="20">
+      <ProjectsEditProperties class="col-2 surface-50 border-left-1 border-200 h-full w-full"></ProjectsEditProperties>
+    </SplitterPanel>
+  </Splitter>
 </template>
 
 <script setup lang="ts">
 /* Imports */
 import { useUserStore } from '@stores/user'
+
+/* PageMeta */
+definePageMeta({
+  layout: 'project',
+  // middleware: authGlobal,
+})
 
 /* Refs */
 const loading = ref<boolean>(true)

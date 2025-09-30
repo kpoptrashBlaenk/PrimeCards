@@ -9,7 +9,7 @@
 /* Head */
 useHead({
   bodyAttrs: {
-    class: ' surface-950',
+    class: ' surface-950 h-screen',
   },
 })
 </script>
