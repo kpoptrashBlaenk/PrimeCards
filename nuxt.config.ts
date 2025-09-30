@@ -46,13 +46,13 @@ export default defineNuxtConfig({
     },
   },
   css: ['primeflex/primeflex.css', 'primeicons/primeicons.css', '@assets/css/main.css'],
-  modules: ['@nuxtjs/supabase', '@pinia/nuxt', '@primevue/nuxt-module'],
-  supabase: {
-    url: process.env.NUXT_PUBLIC_SUPABASE_URL,
-    key: process.env.NUXT_PUBLIC_SUPABASE_ANON_KEY,
-    serviceKey: process.env.NUXT_SECRET_SUPABASE_SERVICE_KEY,
-    redirect: false,
-  },
+  modules: ['@pinia/nuxt', '@primevue/nuxt-module'],
+  // supabase: {
+  //   url: process.env.NUXT_PUBLIC_SUPABASE_URL,
+  //   key: process.env.NUXT_PUBLIC_SUPABASE_ANON_KEY,
+  //   serviceKey: process.env.NUXT_SECRET_SUPABASE_SERVICE_KEY,
+  //   redirect: false,
+  // },
   primevue: {
     options: {
       ripple: true,
