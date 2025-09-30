@@ -46,5 +46,6 @@ declare global {
     version: number
     date: string
     prod: boolean
+    app: ProjectComponent[]
   }
 }
