@@ -1,10 +1,10 @@
 <template>
   <Splitter class="w-full h-full" :gutterSize="2">
-    <SplitterPanel :size="20" :minSize="20">
+    <SplitterPanel :size="20" :minSize="15">
       <ProjectsEditTreeView class="col-2 surface-50 border-right-1 border-200 h-full w-full"></ProjectsEditTreeView>
     </SplitterPanel>
 
-    <SplitterPanel :size="80" :minSize="60">
+    <SplitterPanel :size="80" :minSize="20">
       <ProjectsEditMain class="col-8 h-full w-full"></ProjectsEditMain>
     </SplitterPanel>
 
