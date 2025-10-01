@@ -6,6 +6,7 @@ export const useProjectStore = defineStore('projectStore', {
   }),
 
   actions: {
+    /* Select */
     selectPage(key: string) {
       const pageNumber = Number(key.substring(0, 1))
 
@@ -23,5 +24,18 @@ export const useProjectStore = defineStore('projectStore', {
 
       this.selectedComponent = this.project.project_version.app[this.selectedPage]
     },
+
+    /* Find */
+    findChildren(id: number) {
+      let children: ProjectComponent[] = []
+
+      this.project?.project_version.app.forEach((child) => {
+        if (child.parentId === id) children.push(child)
+      })
+
+      return children.length > 0 ? children : undefined
+    },
+
+    /* Create */
   },
 })

@@ -67,11 +67,13 @@ function projectToNode(components: ProjectComponent[], key: string = '') {
   let nodes: TreeNode[] = []
 
   components.forEach((component, index) => {
+    const children = projectStore.findChildren(component.id)
+
     nodes.push({
       key: `${key}${index}`,
       label: component.name,
       data: component,
-      children: component.children ? projectToNode(component.children, `${key}${index}-`) : [],
+      children: children ? projectToNode(children, `${key}${index}-`) : [],
     })
   })
 

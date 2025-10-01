@@ -5,7 +5,7 @@ interface BaseComponent {
   type: ComponentType
   name: string
   icon: string
-  children?: ProjectComponent[]
+  parentId: number
 }
 
 interface PageComponent extends BaseComponent {}
