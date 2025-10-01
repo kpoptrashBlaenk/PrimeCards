@@ -1,4 +1,4 @@
-type ComponentType = 'page'
+type ComponentType = 'page' | 'text'
 
 interface BaseComponent {
   id: number
@@ -9,5 +9,9 @@ interface BaseComponent {
 }
 
 interface PageComponent extends BaseComponent {}
+
+interface TextComponent extends BaseComponent {
+  text: string
+}
 
 type ProjectComponent = PageComponent

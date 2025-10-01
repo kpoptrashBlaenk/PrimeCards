@@ -1,14 +1,16 @@
+import { COMPONENTS } from '../app/utils/constants/components'
+
 export const useProjectStore = defineStore('projectStore', {
   state: () => ({
     project: undefined as SupabaseProjectRow | undefined,
-    selectedPage: 0,
+    selectedPage: 1,
     selectedComponent: undefined as ProjectComponent | undefined,
   }),
 
   actions: {
     /* Select */
-    selectPage(key: string) {
-      const pageNumber = Number(key.substring(0, 1))
+    selectPage(page: number) {
+      const pageNumber = page > 0 ? page : this.selectedComponent!.id
 
       if (this.selectedPage !== pageNumber) this.selectedPage = pageNumber
     },
@@ -16,13 +18,13 @@ export const useProjectStore = defineStore('projectStore', {
     selectComponent(event: TreeNode) {
       this.selectedComponent = event.data
 
-      this.selectPage(event.key)
+      this.selectPage(event.data.parentId)
     },
 
     select(project: SupabaseProjectRow) {
       this.project = project
 
-      this.selectedComponent = this.project.project_version.app[this.selectedPage]
+      this.selectedComponent = this.project.project_version.app.find((component) => component.id === this.selectedPage)
     },
 
     /* Find */
@@ -37,16 +39,44 @@ export const useProjectStore = defineStore('projectStore', {
     },
 
     /* Create */
+    createComponent(type: ComponentType) {
+      switch (type) {
+        case 'page':
+          this.createPage()
+          break
+        case 'text':
+          this.createText()
+          break
+      }
+    },
+
     createPage() {
       const app = this.project!.project_version.app
 
-      app.push({
+      const page: PageComponent = {
         id: app[app.length - 1]!.id + 1,
-        type: 'page',
-        name: this.generateName('Page'),
-        icon: 'desktop',
-        parentId: 0,
-      })
+        type: COMPONENTS.page.type as ComponentType,
+        name: this.generateName(COMPONENTS.page!.name),
+        icon: COMPONENTS.page.icon,
+        parentId: -1,
+      }
+
+      app.push(page)
+    },
+
+    createText() {
+      const app = this.project!.project_version.app
+
+      const text: TextComponent = {
+        id: app[app.length - 1]!.id + 1,
+        type: COMPONENTS.text.type as ComponentType,
+        name: this.generateName(COMPONENTS.text.name),
+        icon: COMPONENTS.text.icon,
+        parentId: this.selectedPage,
+        text: 'Text',
+      }
+
+      app.push(text)
     },
 
     /* Utils */

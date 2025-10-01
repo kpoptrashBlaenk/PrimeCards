@@ -18,7 +18,7 @@
           <!-- Tree -->
           <Tree
             v-model:selectionKeys="selectedKey"
-            :value="projectToNode(projectStore.project!.project_version.app.filter((component) => component.parentId === 0))"
+            :value="projectToNode(projectStore.project!.project_version.app, true)"
             selectionMode="single"
             :filter="true"
             filterBy="label"
@@ -37,7 +37,19 @@
         </TabPanel>
 
         <!-- Component Panel -->
-        <TabPanel value="1"></TabPanel>
+        <TabPanel value="1">
+          <div class="mx-auto flex flex-column">
+            <Button
+              v-for="component in Object.values(COMPONENTS).filter((component) => component.type !== 'page')"
+              :label="component.name"
+              :icon="`pi pi-${component.icon}`"
+              variant="text"
+              size="small"
+              class="w-12 justify-content-start"
+              @click="projectStore.createComponent(component.type as ComponentType)"
+            ></Button>
+          </div>
+        </TabPanel>
       </TabPanels>
     </Tabs>
   </div>
@@ -45,6 +57,7 @@
 
 <script setup lang="ts">
 /* Imports */
+import { COMPONENTS } from '@constants/components'
 import { useProjectStore } from '@stores/project'
 
 /* Refs */
@@ -63,7 +76,9 @@ watch(
 const projectStore = useProjectStore()
 
 /* Functions */
-function projectToNode(components: ProjectComponent[], key: string = '') {
+function projectToNode(allComponents: ProjectComponent[], root: boolean, key: string = '') {
+  const components = root ? allComponents.filter((component) => component.parentId === -1) : allComponents
+
   let nodes: TreeNode[] = []
 
   components.forEach((component, index) => {
@@ -73,7 +88,7 @@ function projectToNode(components: ProjectComponent[], key: string = '') {
       key: `${key}${index}`,
       label: component.name,
       data: component,
-      children: children ? projectToNode(children, `${key}${index}-`) : [],
+      children: children ? projectToNode(children, false, `${key}${index}-`) : [],
     })
   })
 

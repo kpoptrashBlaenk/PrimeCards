@@ -18,6 +18,7 @@ export default defineNuxtConfig({
     '@assets': '../app/assets',
     '@schemas': '../app/utils/schemas',
     '@functions': '../app/utils/functions',
+    '@constants': '../app/utils/constants',
     '@stores': '../stores',
     '@middleware': '../middleware',
     '@plugins': '../plugins',

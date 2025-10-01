@@ -28,7 +28,7 @@ onMounted(() => {
 })
 
 /* Functions */
-function selectPage(index: number) {
-  selectedPage.value = projectStore.project!.project_version.app[index] as PageComponent
+function selectPage(id: number) {
+  selectedPage.value = projectStore.project!.project_version.app.find((component) => component.id === id) as PageComponent
 }
 </script>

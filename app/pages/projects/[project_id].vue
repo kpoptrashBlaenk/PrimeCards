@@ -63,7 +63,7 @@ try {
           type: 'page',
           name: 'Page',
           icon: 'desktop',
-          parentId: 0,
+          parentId: -1,
         },
       ],
     },
