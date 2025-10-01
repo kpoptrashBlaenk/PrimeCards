@@ -6,30 +6,37 @@
         <Tab value="0">Pages</Tab>
         <Tab value="1">Components</Tab>
       </TabList>
-    </Tabs>
-    <TabPanels class="bg-transparent">
-      <TabPanel value="0">
-        <Button label="New Page" icon="pi pi-plus" variant="text" size="small"></Button>
-        <Divider class="my-2" />
-      </TabPanel>
-    </TabPanels>
 
-    <Tree
-      v-model:selectionKeys="selectedKey"
-      :value="projectToNode(project.project_version.app)"
-      selectionMode="single"
-      :filter="true"
-      filterBy="label"
-      filterPlaceholder="Search"
-      class="bg-transparent -mt-5"
-    >
-      <template #default="slotProps">
-        <div class="text-sm flex gap-2 align-items-center">
-          <i class="text-sm" :class="`pi pi-${slotProps.node.data.icon}`"></i>
-          {{ slotProps.node.data.name }}
-        </div>
-      </template>
-    </Tree>
+      <!-- Panels -->
+      <TabPanels class="bg-transparent">
+        <!-- Pages Panel -->
+        <TabPanel value="0">
+          <Button label="New Page" icon="pi pi-plus" variant="text" size="small"></Button>
+          <Divider class="my-2" />
+
+          <!-- Tree -->
+          <Tree
+            v-model:selectionKeys="selectedKey"
+            :value="projectToNode(project.project_version.app)"
+            selectionMode="single"
+            :filter="true"
+            filterBy="label"
+            filterPlaceholder="Search"
+            class="bg-transparent -mt-5"
+          >
+            <template #default="slotProps">
+              <div class="text-sm flex gap-2 align-items-center">
+                <i class="text-sm" :class="`pi pi-${slotProps.node.data.icon}`"></i>
+                {{ slotProps.node.data.name }}
+              </div>
+            </template>
+          </Tree>
+        </TabPanel>
+
+        <!-- Component Panel -->
+        <TabPanel value="1"></TabPanel>
+      </TabPanels>
+    </Tabs>
   </div>
 </template>
 
