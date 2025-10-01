@@ -24,6 +24,7 @@
             filterBy="label"
             filterPlaceholder="Search"
             class="bg-transparent -mt-2"
+            @nodeSelect="projectStore.selectComponent($event)"
           >
             <template #default="slotProps">
               <div class="text-sm flex gap-2 align-items-center">
