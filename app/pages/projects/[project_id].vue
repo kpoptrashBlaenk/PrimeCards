@@ -1,6 +1,6 @@
 <template>
   <Splitter class="w-full h-full" :gutterSize="2">
-    <SplitterPanel :size="20" :minSize="15">
+    <SplitterPanel :size="21" :minSize="21">
       <ProjectsEditTreeTabs class="col-2 surface-50 border-right-1 border-200 h-full w-full"></ProjectsEditTreeTabs>
     </SplitterPanel>
 

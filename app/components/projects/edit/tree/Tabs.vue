@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div class="text-2xl pl-3">Tree View</div>
     <Tabs value="0">
       <!-- List -->
       <TabList class="bg-transparent" :pt="{ tabList: { class: 'bg-transparent' } }">
