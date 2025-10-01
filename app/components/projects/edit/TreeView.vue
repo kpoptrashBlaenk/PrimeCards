@@ -23,6 +23,7 @@
             :filter="true"
             filterBy="label"
             filterPlaceholder="Search"
+            :pt="{ pcFilterInput: { name: 'filter' } }"
             class="bg-transparent -mt-2"
             @nodeSelect="projectStore.selectComponent($event)"
           >
