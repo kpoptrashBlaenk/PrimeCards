@@ -32,7 +32,7 @@ const children = ref<ProjectComponent[] | undefined>(projectStore.findChildren(p
 /* Hooks */
 onMounted(() => {
   const observer = new ResizeObserver(() => {
-    pageRect.value = pageRef.value!.getBoundingClientRect()
+    pageRect.value = pageRef.value?.getBoundingClientRect()
   })
 
   observer.observe(pageRef.value!)

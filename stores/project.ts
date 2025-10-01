@@ -37,5 +37,31 @@ export const useProjectStore = defineStore('projectStore', {
     },
 
     /* Create */
+    createPage() {
+      const app = this.project!.project_version.app
+
+      app.push({
+        id: app[app.length - 1]!.id + 1,
+        type: 'page',
+        name: this.generateName('Page'),
+        icon: 'desktop',
+        parentId: 0,
+      })
+    },
+
+    /* Utils */
+    generateName(name: string, index?: number): string {
+      const app = this.project!.project_version.app
+
+      const newName = index ? `${name}${index}` : name
+
+      const exists = app.some((component) => component.name === newName)
+
+      if (exists) {
+        return this.generateName(name, index ? index + 1 : 1)
+      }
+
+      return newName
+    },
   },
 })

@@ -12,13 +12,13 @@
       <TabPanels class="bg-transparent">
         <!-- Pages Panel -->
         <TabPanel value="0">
-          <Button label="New Page" icon="pi pi-plus" variant="text" size="small"></Button>
+          <Button label="New Page" icon="pi pi-plus" variant="text" size="small" @click="projectStore.createPage()"></Button>
           <Divider class="my-2" />
 
           <!-- Tree -->
           <Tree
             v-model:selectionKeys="selectedKey"
-            :value="projectToNode(projectStore.project!.project_version.app)"
+            :value="projectToNode(projectStore.project!.project_version.app.filter((component) => component.parentId === 0))"
             selectionMode="single"
             :filter="true"
             filterBy="label"

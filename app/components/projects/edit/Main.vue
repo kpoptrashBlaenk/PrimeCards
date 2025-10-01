@@ -14,8 +14,21 @@ const projectStore = useProjectStore()
 /* Refs */
 const selectedPage = ref<PageComponent>()
 
+/* Watches */
+watch(
+  () => projectStore.selectedPage,
+  (newValue) => {
+    selectPage(newValue)
+  },
+)
+
 /* Hooks */
 onMounted(() => {
-  selectedPage.value = projectStore.project!.project_version.app[projectStore.selectedPage] as PageComponent
+  selectPage(projectStore.selectedPage)
 })
+
+/* Functions */
+function selectPage(index: number) {
+  selectedPage.value = projectStore.project!.project_version.app[index] as PageComponent
+}
 </script>
