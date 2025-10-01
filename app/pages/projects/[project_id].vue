@@ -1,10 +1,7 @@
 <template>
   <Splitter class="w-full h-full" :gutterSize="2">
     <SplitterPanel :size="20" :minSize="20">
-      <ProjectsEditTreeView
-        class="col-2 surface-50 border-right-1 border-200 h-full w-full"
-        :project="project!"
-      ></ProjectsEditTreeView>
+      <ProjectsEditTreeView class="col-2 surface-50 border-right-1 border-200 h-full w-full"></ProjectsEditTreeView>
     </SplitterPanel>
 
     <SplitterPanel :size="80" :minSize="60">
@@ -18,6 +15,7 @@
 
 <script setup lang="ts">
 /* Imports */
+import { useProjectStore } from '@stores/project'
 import { useUserStore } from '@stores/user'
 
 /* PageMeta */
@@ -28,10 +26,10 @@ definePageMeta({
 
 /* Refs */
 const loading = ref<boolean>(true)
-const project = ref<SupabaseProjectRow>()
 
 /* Stores */
 const userStore = useUserStore()
+const projectStore = useProjectStore()
 
 /* Composables */
 const { getDevProject } = useProject()
@@ -48,7 +46,7 @@ try {
 
   // project.value = devProject
 
-  project.value = {
+  projectStore.select({
     project_id: 1,
     user_id: '',
     created_at: '',
@@ -63,26 +61,12 @@ try {
         {
           id: 1,
           type: 'page',
-          name: 'Page1',
+          name: 'Page',
           icon: 'desktop',
-          children: [
-            {
-              id: 1,
-              type: 'page',
-              name: 'Page2',
-              icon: 'desktop',
-            },
-            {
-              id: 1,
-              type: 'page',
-              name: 'Page3',
-              icon: 'desktop',
-            },
-          ],
         },
       ],
     },
-  } as SupabaseProjectRow
+  } as SupabaseProjectRow)
 
   loading.value = false
 } catch (error: any) {

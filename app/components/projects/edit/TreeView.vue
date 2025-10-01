@@ -2,6 +2,7 @@
   <div>
     <div class="text-2xl pl-3">Tree View</div>
     <Tabs value="0">
+      <!-- List -->
       <TabList class="bg-transparent" :pt="{ tabList: { class: 'bg-transparent' } }">
         <Tab value="0">Pages</Tab>
         <Tab value="1">Components</Tab>
@@ -17,12 +18,12 @@
           <!-- Tree -->
           <Tree
             v-model:selectionKeys="selectedKey"
-            :value="projectToNode(project.project_version.app)"
+            :value="projectToNode(projectStore.project!.project_version.app)"
             selectionMode="single"
             :filter="true"
             filterBy="label"
             filterPlaceholder="Search"
-            class="bg-transparent -mt-5"
+            class="bg-transparent -mt-2"
           >
             <template #default="slotProps">
               <div class="text-sm flex gap-2 align-items-center">
@@ -41,10 +42,8 @@
 </template>
 
 <script setup lang="ts">
-/* Props */
-defineProps<{
-  project: SupabaseProjectRow
-}>()
+/* Imports */
+import { useProjectStore } from '@stores/project'
 
 /* Refs */
 const selectedKey = ref({ '0': true })
@@ -58,6 +57,10 @@ watch(
   { deep: true },
 )
 
+/* Stores */
+const projectStore = useProjectStore()
+
+/* Functions */
 function projectToNode(components: ProjectComponent[], key: string = '') {
   let nodes: TreeNode[] = []
 
