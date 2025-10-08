@@ -1,12 +1,12 @@
 <template>
   <div>
     <div v-if="!mounted" class="flex flex-column gap-3">
-      <UiSkeletons v-for="skeletonField in skeletonFields" :field="skeletonField" />
+      <ui-skeletons v-for="skeletonField in skeletonFields" :field="skeletonField" />
     </div>
 
-    <FormsForm v-else :fields :initialValues :resolver :onSubmit>
-      <SettingsFormButtons :loading="loading" class="pt-2" confirmText="Update Password" />
-    </FormsForm>
+    <forms-form v-else :fields :initial-values :resolver :on-submit>
+      <settings-form-buttons :loading="loading" class="pt-2" confirm-text="Update Password" />
+    </forms-form>
   </div>
 </template>
 

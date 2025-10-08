@@ -1,12 +1,12 @@
 <template>
-  <UiSkeletons v-if="loading" v-for="skeletonField in skeletonFields" :field="skeletonField" />
+  <ui-skeletons v-if="loading" v-for="skeletonField in skeletonFields" :field="skeletonField" />
 
   <div v-else class="text-center">
-    <UiAvatar size="enormous" :avatar="profile?.avatar_path" />
+    <ui-avatar size="enormous" :avatar="profile?.avatar_path" />
     <div class="text-2xl font-bold mt-2">{{ profile.name }}</div>
-    <NuxtLink v-if="profile.user_id === userStore.user?.user_id" to="/settings/account">
+    <nuxt-link v-if="profile.user_id === userStore.user?.user_id" to="/settings/account">
       <Button class="mt-3 w-12 font-bold">Edit profile</Button>
-    </NuxtLink>
+    </nuxt-link>
   </div>
 </template>
 

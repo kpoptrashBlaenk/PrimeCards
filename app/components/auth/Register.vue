@@ -1,16 +1,16 @@
 <template>
-  <AuthLayout :header="'Sign up to create your own card!'">
+  <auth-layout :header="'Sign up to create your own card!'">
     <div v-if="!mounted" class="flex flex-column gap-4">
-      <UiSkeletons v-for="skeletonField in skeletonFields" :field="skeletonField" />
+      <ui-skeletons v-for="skeletonField in skeletonFields" :field="skeletonField" />
     </div>
 
-    <FormsForm v-else :fields :resolver :onSubmit :clearField="true">
+    <forms-form v-else :fields :resolver :on-submit :clear-field="true">
       <Button type="submit" size="large" rounded :disabled="loading" class="font-bold text-outline">Register</Button>
-      <p class="text-center text-400 -mt-1">Already have an account? <NuxtLink to="/auth/login">Sign in now!</NuxtLink></p>
-    </FormsForm>
+      <p class="text-center text-400 -mt-1">Already have an account? <nuxt-link to="/auth/login">Sign in now!</nuxt-link></p>
+    </forms-form>
 
     <Toast />
-  </AuthLayout>
+  </auth-layout>
 </template>
 
 <script setup lang="ts">

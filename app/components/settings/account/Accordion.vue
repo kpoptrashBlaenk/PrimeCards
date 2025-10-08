@@ -1,20 +1,20 @@
 <template>
   <div>
-    <SettingsTitle title="Account" context="title" />
+    <settings-title title="Account" context="title" />
     <Divider />
 
     <Accordion value="0">
       <AccordionPanel v-for="(tab, index) in tabs" :value="`${index}`">
         <AccordionHeader class="bg-transparent">
-          <SettingsTitle :title="tab.title" context="subtitle" :first="index === 0" />
+          <settings-title :title="tab.title" context="subtitle" :first="index === 0" />
         </AccordionHeader>
         <AccordionContent :pt="{ content: { class: 'bg-transparent' } }">
           <div>
-            <SettingsAccountAvatar v-if="index === 0" />
-            <SettingsAccountGeneral v-else-if="index === 1" />
-            <SettingsAccountEmail v-else-if="index === 2" />
-            <SettingsAccountPassword v-else-if="index === 3" />
-            <SettingsAccountDelete v-else-if="index === 4" />
+            <settings-account-avatar v-if="index === 0" />
+            <settings-account-general v-else-if="index === 1" />
+            <settings-account-email v-else-if="index === 2" />
+            <settings-account-password v-else-if="index === 3" />
+            <settings-account-delete v-else-if="index === 4" />
           </div>
         </AccordionContent>
       </AccordionPanel>

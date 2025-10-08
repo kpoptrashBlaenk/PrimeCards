@@ -1,5 +1,5 @@
 <template>
-  <AuthRegister />
+  <auth-register />
 </template>
 
 <script setup lang="ts">

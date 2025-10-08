@@ -1,5 +1,5 @@
 <template>
-  <AuthResetPassword />
+  <auth-reset-password />
 </template>
 
 <script setup lang="ts">

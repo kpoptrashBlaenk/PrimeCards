@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ProjectsEditComponentsPage v-if="selectedPage" :page="selectedPage" :key="selectedPage.id" />
+    <projects-edit-components-page v-if="selectedPage" :page="selectedPage" :key="selectedPage.id" />
   </div>
 </template>
 

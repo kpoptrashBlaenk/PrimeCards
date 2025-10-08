@@ -2,16 +2,16 @@
   <div class="flex">
     <div class="w-12 flex flex-column lg:flex-row">
       <!-- Search Bar -->
-      <UiSearchBar v-model:search="search" class="w-12 mb-2 lg:mb-0" style="min-width: 16.9rem" />
+      <ui-search-bar v-model:search="search" class="w-12 mb-2 lg:mb-0" style="min-width: 16.9rem" />
       <div class="flex">
         <!-- Sort Button -->
-        <UiDropdown label="Sort" :options="sortOptions" v-model:selected="sort" class="lg:ml-2" />
+        <ui-dropdown label="Sort" :options="sortOptions" v-model:selected="sort" class="lg:ml-2" />
         <!-- Filter Button -->
-        <UiDropdown label="Filter" :multiple="true" :options="filterOptions" v-model:selected="filter" class="ml-2" />
+        <ui-dropdown label="Filter" :multiple="true" :options="filterOptions" v-model:selected="filter" class="ml-2" />
         <!-- New Project Button -->
       </div>
     </div>
-    <NuxtLink to="/projects/new" class="ml-2">
+    <nuxt-link to="/projects/new" class="ml-2">
       <Button
         size="small"
         label="New Project"
@@ -19,7 +19,7 @@
         severity="success"
         :pt="{ label: { class: 'font-bold white-space-nowrap' }, icon: { class: 'font-bold' } }"
       ></Button>
-    </NuxtLink>
+    </nuxt-link>
   </div>
 </template>
 

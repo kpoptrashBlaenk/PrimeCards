@@ -1,22 +1,22 @@
 <template>
-  <AuthLayout v-if="reset" :header="'Password successfuly reset!'">
+  <auth-layout v-if="reset" :header="'Password successfuly reset!'">
     <div class="text-2xl text-center px-2 pt-2 text-primary">Redirecting...</div>
     <div class="flex">
       <ProgressSpinner style="height: 250px; width: 250px" />
     </div>
-  </AuthLayout>
+  </auth-layout>
 
-  <AuthLayout v-else :header="'Enter your new password'">
+  <auth-layout v-else :header="'Enter your new password'">
     <div v-if="!mounted" class="flex flex-column gap-4">
-      <UiSkeletons v-for="skeletonField in skeletonFields" :field="skeletonField" />
+      <ui-skeletons v-for="skeletonField in skeletonFields" :field="skeletonField" />
     </div>
 
-    <FormsForm v-else :fields :onSubmit :resolver :clearField="true">
+    <forms-form v-else :fields :on-submit :resolver :clear-field="true">
       <Button type="submit" size="large" rounded :disabled="loading" class="font-bold text-outline">Reset</Button>
-    </FormsForm>
+    </forms-form>
 
     <Toast />
-  </AuthLayout>
+  </auth-layout>
 </template>
 
 <script setup lang="ts">

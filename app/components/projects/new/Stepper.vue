@@ -3,10 +3,10 @@
     <div class="text-2xl font-bold pl-6">Create a project</div>
     <Stepper value="1" linear>
       <!-- General -->
-      <ProjectsNewGeneral :loading="loading" :handleNext="handleNext" />
+      <projects-new-general :loading="loading" :handle-next="handleNext" />
 
       <!-- Submit -->
-      <ProjectsNewSubmit :loading="loading" @onSubmit="onSubmit" />
+      <projects-new-submit :loading="loading" @on-submit="onSubmit" />
     </Stepper>
   </div>
   <Toast />

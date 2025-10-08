@@ -3,7 +3,7 @@
     <!-- Start -->
     <template #start>
       <div class="flex align-items-baseline gap-2">
-        <NuxtLink class="text-2xl font-bold no-underline text-logo" to="/"> PrimeCards </NuxtLink>
+        <nuxt-link class="text-2xl font-bold no-underline text-logo" to="/"> PrimeCards </nuxt-link>
       </div>
     </template>
 
@@ -11,15 +11,16 @@
     <template #end>
       <div v-if="userStore.user" class="flex align-items-center gap-3">
         <div class="font-bold text-md">{{ pageName }}</div>
-        <NavbarUserMenu />
+        <navbar-user-menu />
       </div>
 
-      <NuxtLink v-else to="/auth/login">
+      <nuxt-link v-else to="/auth/login">
         <Button type="submit" class="font-bold text-outline">Sign In</Button>
-      </NuxtLink>
+      </nuxt-link>
     </template>
   </Menubar>
 </template>
+
 <script setup lang="ts">
 /* Imports */
 import { useUserStore } from '@stores/user'

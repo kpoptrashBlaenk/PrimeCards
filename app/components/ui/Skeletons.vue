@@ -8,7 +8,7 @@
   >
     <!-- Children Fields -->
     <template v-if="field.fields">
-      <UiSkeletons v-for="f in field.fields" :field="f" />
+      <ui-skeletons v-for="f in field.fields" :field="f" />
     </template>
   </component>
 </template>

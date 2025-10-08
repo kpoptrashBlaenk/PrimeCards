@@ -4,14 +4,14 @@
       <span class="font-bold text-lg">General</span>
     </Step>
     <StepPanel v-slot="{ activateCallback }" class="surface-950">
-      <UiSkeletons v-if="!mounted" v-for="field in generalSkeletonFields" :field="field" />
+      <ui-skeletons v-if="!mounted" v-for="field in generalSkeletonFields" :field="field" />
 
-      <FormsForm
+      <forms-form
         v-else
         :fields
         :resolver
-        :onSubmit="(event: FormSubmitEvent) => handleNext(event, 'general', () => activateCallback('2'))"
-        :clearField="true"
+        :on-submit="(event: FormSubmitEvent) => handleNext(event, 'general', () => activateCallback('2'))"
+        :clear-field="true"
       >
         <template #default="{ form }">
           <span class="text-sm -mt-3" :class="form['description']?.value?.length > 200 ? 'text-red-500' : 'text-400'">
@@ -22,13 +22,13 @@
               type="submit"
               label="Next"
               icon="pi pi-arrow-right"
-              iconPos="right"
+              icon-pos="right"
               :loading="loading"
               :pt="{ label: { class: 'font-bold' }, icon: { class: 'font-bold' } }"
             ></Button>
           </div>
         </template>
-      </FormsForm>
+      </forms-form>
     </StepPanel>
   </StepItem>
 </template>

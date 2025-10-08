@@ -1,7 +1,7 @@
 <template>
   <div ref="textRef">{{ component.text }}</div>
 
-  <ProjectsEditComponentsOverlay v-if="textRef" :id="component.id" :rect="textRect" />
+  <projects-edit-components-overlay v-if="textRef" :id="component.id" :rect="textRect" />
 </template>
 
 <script setup lang="ts">

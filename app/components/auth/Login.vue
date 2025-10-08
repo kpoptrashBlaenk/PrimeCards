@@ -1,19 +1,19 @@
 <template>
-  <AuthLayout :header="'Sign in to create your own card!'">
+  <auth-layout :header="'Sign in to create your own card!'">
     <div v-if="!mounted" class="flex flex-column gap-4">
-      <UiSkeletons v-for="skeletonField in skeletonFields" :field="skeletonField" />
+      <ui-skeletons v-for="skeletonField in skeletonFields" :field="skeletonField" />
     </div>
 
-    <FormsForm v-else :fields :onSubmit>
+    <forms-form v-else :fields :on-submit>
       <Button type="submit" size="large" rounded :disabled="loading" class="font-bold text-outline">Login</Button>
       <div>
-        <p class="text-center text-400 -mt-1">Don't have an account? <NuxtLink to="/auth/register">Sign up now!</NuxtLink></p>
+        <p class="text-center text-400 -mt-1">Don't have an account? <nuxt-link to="/auth/register">Sign up now!</nuxt-link></p>
         <Divider />
-        <p class="text-sm text-center text-400"><NuxtLink to="/auth/forgotpassword">I forgot my password</NuxtLink></p>
+        <p class="text-sm text-center text-400"><nuxt-link to="/auth/forgotpassword">I forgot my password</nuxt-link></p>
       </div>
-    </FormsForm>
+    </forms-form>
     <Toast />
-  </AuthLayout>
+  </auth-layout>
 </template>
 
 <script setup lang="ts">

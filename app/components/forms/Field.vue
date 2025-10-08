@@ -12,7 +12,7 @@
       @focus="$emit('focus')"
     >
       <template #footer v-if="isPassword && checkPassword">
-        <FormsPasswordRules />
+        <forms-password-rules />
       </template>
     </component>
     <label :for="name">{{ label }}</label>

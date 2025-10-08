@@ -4,15 +4,15 @@
 
   <!-- Tree -->
   <Tree
-    v-model:selectionKeys="selectedKey"
+    v-model:selection-keys="selectedKey"
     :value="projectToNode(projectStore.project!.project_version.app, true)"
-    selectionMode="single"
+    selection-mode="single"
     :filter="true"
-    filterBy="label"
-    filterPlaceholder="Search"
+    filter-by="label"
+    filter-placeholder="Search"
     :pt="{ pcFilterInput: { name: 'filter' } }"
     class="bg-transparent -mt-2 px-0"
-    @nodeSelect="projectStore.selectComponent($event)"
+    @ode-select="projectStore.selectComponent($event)"
   >
     <template #default="slotProps">
       <div class="text-sm flex gap-2 align-items-center">

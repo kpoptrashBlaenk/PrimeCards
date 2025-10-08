@@ -9,7 +9,7 @@
     />
   </div>
 
-  <ProjectsEditComponentsOverlay v-if="pageRef" :id="page.id" :rect="pageRect" />
+  <projects-edit-components-overlay v-if="pageRef" :id="page.id" :rect="pageRect" />
 </template>
 
 <script setup lang="ts">

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ProjectsNewStepper />
+    <projects-new-stepper />
   </div>
 </template>
 

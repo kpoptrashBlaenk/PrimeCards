@@ -59,7 +59,7 @@ export function useSettings() {
     user.avatar_path = undefined
   }
 
-  const getAvatar = async (path: string | null) => {
+  const getAvatar = async (path: string | null | undefined) => {
     if (!path) throw createError({ statusCode: 400, statusMessage: 'No path provided.' })
 
     const avatar = await $supabase.client.storage.from('primecards').createSignedUrl(path, 60 * 60 * 24)

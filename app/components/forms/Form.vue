@@ -1,29 +1,29 @@
 <template>
-  <ClientOnly>
+  <client-only>
     <!-- @vue-ignore -->
     <Form
       v-slot="$form"
-      :initialValues="initialValues"
+      :initial-values="initialValues"
       @submit="onSubmit"
       :resolver
       :validateOnValueUpdate="validateOnValueUpdate === true"
       class="flex flex-column gap-4"
     >
-      <FormsField
+      <forms-field
         v-for="field in fields"
         :name="field.name"
         :label="field.label"
         :type="field.type"
-        :checkPassword="field.checkPassword"
+        :check-password="field.checkPassword"
         :invalid="($form as IndexedForm)?.[field.name]?.invalid"
-        :errorMessage="($form as IndexedForm)?.[field.name]?.error?.message"
+        :error-message="($form as IndexedForm)?.[field.name]?.error?.message"
         @focus="clearField ? clear($form as any, field.name) : false"
         :class="field.class ?? ''"
       />
 
       <slot :form="$form"></slot>
     </Form>
-  </ClientOnly>
+  </client-only>
 </template>
 
 <script setup lang="ts">

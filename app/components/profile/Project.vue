@@ -3,9 +3,9 @@
     <div class="col-12 sm:col-8">
       <!-- Title -->
       <div class="flex gap-2 align-items-center">
-        <NuxtLink :to="`/projects/${project.project_id}`" class="text-2xl no-underline text-primary font-bold">
+        <nuxt-link :to="`/projects/${project.project_id}`" class="text-2xl no-underline text-primary font-bold">
           {{ project.name }}
-        </NuxtLink>
+        </nuxt-link>
         <Tag
           :value="project.prod_version ? 'Published' : 'Unpublished'"
           :severity="project.prod_version ? 'success' : 'danger'"
@@ -29,9 +29,9 @@
         <Tag :value="`Development: v.${fixVersion(project.dev_version)}`" severity="warn" />
         <div class="text-xs text-400 ml-1 mt-1">{{ getDate('Updated', new Date(project.dev_date)) }}</div>
       </div>
-      <NuxtLink :to="`/projects/${project.project_id}`">
+      <nuxt-link :to="`/projects/${project.project_id}`">
         <Button v-if="project.user_id === userStore.user?.user_id" size="small" class="mt-2 font-bold w-5">Edit</Button>
-      </NuxtLink>
+      </nuxt-link>
     </div>
     <Divider class="mt-2" />
   </div>

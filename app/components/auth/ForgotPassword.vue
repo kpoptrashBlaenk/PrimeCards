@@ -1,17 +1,17 @@
 <template>
-  <AuthLayout :header="'Enter your email to receive a password reset link'">
+  <auth-layout :header="'Enter your email to receive a password reset link'">
     <div v-if="!mounted" class="flex flex-column gap-4">
-      <UiSkeletons v-for="skeletonField in skeletonFields" :field="skeletonField" />
+      <ui-skeletons v-for="skeletonField in skeletonFields" :field="skeletonField" />
     </div>
 
-    <FormsForm v-else :fields :onSubmit>
+    <forms-form v-else :fields :on-submit>
       <Button type="submit" size="large" rounded :disabled="loading" class="font-bold text-outline">Send</Button>
       <div>
-        <p class="text-center text-400 -mt-1">Don't have an account? <NuxtLink to="/auth/register">Sign up now!</NuxtLink></p>
+        <p class="text-center text-400 -mt-1">Don't have an account? <nuxt-link to="/auth/register">Sign up now!</nuxt-link></p>
       </div>
-    </FormsForm>
+    </forms-form>
     <Toast />
-  </AuthLayout>
+  </auth-layout>
 </template>
 
 <script setup lang="ts">

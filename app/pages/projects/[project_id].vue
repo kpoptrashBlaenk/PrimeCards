@@ -1,11 +1,11 @@
 <template>
-  <Splitter class="w-full h-full" :gutterSize="2">
-    <SplitterPanel :size="21" :minSize="21">
-      <ProjectsEditTreeTabs class="col-2 surface-50 border-right-1 border-200 h-full w-full"></ProjectsEditTreeTabs>
+  <Splitter class="w-full h-full" :gutter-size="2">
+    <SplitterPanel :size="21" :min-size="21">
+      <projects-edit-tree-tabs class="col-2 surface-50 border-right-1 border-200 h-full w-full"></projects-edit-tree-tabs>
     </SplitterPanel>
 
-    <SplitterPanel :size="80" :minSize="20">
-      <ProjectsEditMain class="col-8 h-full w-full"></ProjectsEditMain>
+    <SplitterPanel :size="80" :min-size="20">
+      <projects-edit-main class="col-8 h-full w-full"></projects-edit-main>
     </SplitterPanel>
   </Splitter>
 </template>

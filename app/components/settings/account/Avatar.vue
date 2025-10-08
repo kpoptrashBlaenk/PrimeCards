@@ -4,9 +4,9 @@
     <div class="flex justify-content-evenly w-10rem -mt-3">
       <FileUpload
         mode="basic"
-        :chooseButtonProps="{ size: 'small', label: 'Upload' }"
+        :choose-button-props="{ size: 'small', label: 'Upload' }"
         auto
-        customUpload
+        custom-upload
         :disabled="loading"
         class="p-1 surface-0 hover:surface-50 text-green-400 border-green-400"
         @select="onUpload"
@@ -15,7 +15,7 @@
         mode="basic"
         size="small"
         auto
-        customUpload
+        custom-upload
         :disabled="loading || !userStore.user?.avatar_path"
         @click="onDelete"
         class="p-1 surface-0 hover:surface-50 text-red-400 border-red-400"
@@ -60,7 +60,7 @@ async function onUpload(event: FileUploadSelectEvent) {
     }
 
     await saveAvatar(file)
-    await getAvatar(userStore.user!.avatar_path)
+    await getAvatar(userStore.user?.avatar_path)
   } catch (error: any) {
     toast.add({ severity: 'error', summary: 'Save Avatar Error', detail: error.message, life: 3000 })
   } finally {

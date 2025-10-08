@@ -1,5 +1,5 @@
 <template>
-  <SettingsAccountAccordion />
+  <settings-account-accordion />
 </template>
 
 <script setup lang="ts">

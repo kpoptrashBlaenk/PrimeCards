@@ -1,6 +1,6 @@
 <template>
   <div class="flex gap-3 pt-4 pb-3 pl-2">
-    <UiAvatar size="large" />
+    <ui-avatar size="large" />
     <div class="flex flex-column justify-content-center">
       <span class="text-xl">{{ userStore.user?.name }}</span>
       <span class="text-md text-400">{{ userStore.user?.email }}</span>

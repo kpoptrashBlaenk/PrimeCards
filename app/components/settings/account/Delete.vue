@@ -19,9 +19,9 @@
       <span class="text-500">
         Type <span class="font-bold text-red-500">delete {{ userStore.user?.name }}</span> to delete your account.
       </span>
-      <FormsForm :fields :resolver :onSubmit class="mt-2">
-        <SettingsFormButtons :loading="loading" confirmText="Delete Account" confirmSeverity="danger" />
-      </FormsForm>
+      <forms-form :fields :resolver :onSubmit class="mt-2">
+        <settings-form-buttons :loading="loading" confirm-text="Delete Account" confirm-severity="danger" />
+      </forms-form>
     </Dialog>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Header -->
-    <ProfileHeader
+    <profile-header
       v-model:search="search"
       v-model:sort="sort"
       v-model:filter="filter"
@@ -11,14 +11,14 @@
     <Divider />
 
     <!-- Projects -->
-    <UiSkeletons v-if="loading" v-for="skeletonField in skeletonFields" :field="skeletonField" />
+    <ui-skeletons v-if="loading" v-for="skeletonField in skeletonFields" :field="skeletonField" />
 
     <div v-else-if="projects && projects.length === 0" class="text-5xl font-bold text-primary text-center mt-8">
       <div>We couldn't find any projects</div>
       <div>╥﹏╥</div>
     </div>
 
-    <ProfileProject v-else v-for="project in projects" :project="project"></ProfileProject>
+    <profile-project v-else v-for="project in projects" :project="project"></profile-project>
   </div>
 </template>
 

@@ -1,11 +1,11 @@
 <template>
   <div class="grid container-xl px-2 pt-6 gap-5">
     <div class="col-auto w-12 md:w-auto">
-      <ProfileAvatar :profile="profile!" :loading="loading" />
+      <profile-avatar :profile="profile!" :loading="loading" />
     </div>
 
     <div class="flex-1">
-      <ProfileProjects :profile="profile!" :loading="loading" />
+      <profile-projects :profile="profile!" :loading="loading" />
     </div>
   </div>
 </template>

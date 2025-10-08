@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-column h-full">
     <!-- <NavbarBar /> -->
-    <ProjectsEditBar />
+    <projects-edit-bar />
     <slot></slot>
   </div>
 </template>

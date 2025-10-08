@@ -1,5 +1,5 @@
 <template>
-  <AuthForgotPassword />
+  <auth-forgot-password />
 </template>
 
 <script setup lang="ts">
