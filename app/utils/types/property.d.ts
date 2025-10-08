@@ -6,4 +6,6 @@ declare global {
   type TextAlignKey = keyof typeof PROPERTIES.textAlign
   type VerticalAlignKey = keyof typeof PROPERTIES.verticalAlign
   type LineHeightKey = keyof typeof PROPERTIES.lineHeight
+  type CursorKey = keyof typeof PROPERTIES.cursor
+  type SelectKey = keyof typeof PROPERTIES.select
 }

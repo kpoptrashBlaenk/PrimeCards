@@ -25,6 +25,8 @@ interface TextComponent extends BaseComponent {
     lineHeight: LineHeightKey
     wrap: boolean
     overflow: boolean
+    cursor: CursorKey
+    select: SelectKey
   }
 }
 

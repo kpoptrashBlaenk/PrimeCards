@@ -50,6 +50,18 @@
       <projects-edit-tree-properties-label text="Wrap" tooltip="Wrap" />
       <projects-edit-tree-properties-wrap class="w-8" />
     </div>
+
+    <!-- Cursor -->
+    <div v-if="'cursor' in projectStore.selectedComponent.properties" class="flex justify-content-evenly align-items-center">
+      <projects-edit-tree-properties-label text="Cursor" tooltip="Cursor" />
+      <projects-edit-tree-properties-cursor class="w-8" />
+    </div>
+
+    <!-- Select -->
+    <div v-if="'select' in projectStore.selectedComponent.properties" class="flex justify-content-evenly align-items-center">
+      <projects-edit-tree-properties-label text="Select" tooltip="Select" />
+      <projects-edit-tree-properties-select class="w-8" />
+    </div>
   </div>
 </template>
 

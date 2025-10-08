@@ -87,6 +87,8 @@ export const useProjectStore = defineStore('projectStore', {
           lineHeight: PROPERTIES.lineHeight[2],
           wrap: true,
           overflow: false,
+          cursor: PROPERTIES.cursor.auto,
+          select: PROPERTIES.select.auto,
         },
       }
 

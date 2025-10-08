@@ -38,4 +38,14 @@ export const PROPERTIES = {
     3: 3,
     4: 4,
   },
+  cursor: {
+    auto: 'auto',
+    pointer: 'pointer',
+  },
+  select: {
+    auto: 'auto',
+    none: 'none',
+    text: 'text',
+    all: 'all',
+  },
 } as const
