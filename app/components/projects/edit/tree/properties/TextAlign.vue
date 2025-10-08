@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-content-evenly">
+  <div class="flex justify-content-between">
     <Button
       v-for="align in Object.values(PROPERTIES.textAlign)"
       :severity="

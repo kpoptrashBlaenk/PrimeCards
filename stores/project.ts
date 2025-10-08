@@ -84,6 +84,8 @@ export const useProjectStore = defineStore('projectStore', {
           lineThrough: false,
           textAlign: PROPERTIES.textAlign.left,
           lineHeight: PROPERTIES.lineHeight[2],
+          wrap: true,
+          overflow: false,
         },
       }
 
@@ -96,6 +98,8 @@ export const useProjectStore = defineStore('projectStore', {
 
       //@ts-ignore
       this.selectedComponent.properties[key] = value
+
+      console.log(value)
     },
 
     /* Utils */

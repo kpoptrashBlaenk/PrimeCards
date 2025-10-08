@@ -22,6 +22,8 @@ interface TextComponent extends BaseComponent {
     lineThrough: boolean
     textAlign: TextAlignKey
     lineHeight: LineHeightKey
+    wrap: boolean
+    overflow: boolean
   }
 }
 

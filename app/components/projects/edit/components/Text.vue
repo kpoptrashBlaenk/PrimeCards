@@ -2,11 +2,12 @@
   <div
     ref="textRef"
     :class="[
-      `text-${component.properties.fontSize} font-${component.properties.fontWeight} text-${component.properties.textAlign} line-height-${component.properties.lineHeight}`,
+      `overflow-hidden text-${component.properties.fontSize} font-${component.properties.fontWeight} text-${component.properties.textAlign} line-height-${component.properties.lineHeight} text-overflow-${component.properties.overflow ? 'clip' : 'ellipsis'}`,
       {
         'font-italic': component.properties.italic,
         underline: component.properties.underline,
         'line-through': component.properties.lineThrough,
+        'white-space-nowrap': !component.properties.wrap,
       },
     ]"
   >

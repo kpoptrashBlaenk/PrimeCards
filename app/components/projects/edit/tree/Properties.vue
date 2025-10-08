@@ -35,6 +35,12 @@
       <projects-edit-tree-properties-label text="Line Height" tooltip="Line Height" />
       <projects-edit-tree-properties-line-height class="w-8" />
     </div>
+
+    <!-- Wrap -->
+    <div v-if="'wrap' in projectStore.selectedComponent.properties" class="flex justify-content-evenly align-items-center">
+      <projects-edit-tree-properties-label text="Wrap" tooltip="Wrap" />
+      <projects-edit-tree-properties-wrap class="w-8" />
+    </div>
   </div>
 </template>
 
