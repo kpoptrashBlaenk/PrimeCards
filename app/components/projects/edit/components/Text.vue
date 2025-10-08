@@ -2,7 +2,7 @@
   <div
     ref="textRef"
     :class="[
-      `text-${component.properties.fontSize} font-${component.properties.fontWeight} text-${component.properties.textAlign}`,
+      `text-${component.properties.fontSize} font-${component.properties.fontWeight} text-${component.properties.textAlign} line-height-${component.properties.lineHeight}`,
       {
         'font-italic': component.properties.italic,
         underline: component.properties.underline,

@@ -29,6 +29,12 @@
       <projects-edit-tree-properties-label text="Text Align" tooltip="Text Align" />
       <projects-edit-tree-properties-text-align class="w-8" />
     </div>
+
+    <!-- LineHeight -->
+    <div v-if="'lineHeight' in projectStore.selectedComponent.properties" class="flex justify-content-evenly align-items-center">
+      <projects-edit-tree-properties-label text="Line Height" tooltip="Line Height" />
+      <projects-edit-tree-properties-line-height class="w-8" />
+    </div>
   </div>
 </template>
 

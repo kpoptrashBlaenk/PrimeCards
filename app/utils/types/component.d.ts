@@ -21,6 +21,7 @@ interface TextComponent extends BaseComponent {
     underline: boolean
     lineThrough: boolean
     textAlign: TextAlignKey
+    lineHeight: LineHeightKey
   }
 }
 

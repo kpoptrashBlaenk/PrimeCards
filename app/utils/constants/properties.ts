@@ -26,4 +26,10 @@ export const PROPERTIES = {
     right: 'right',
     justify: 'justify',
   },
+  lineHeight: {
+    1: 1,
+    2: 2,
+    3: 3,
+    4: 4,
+  },
 } as const

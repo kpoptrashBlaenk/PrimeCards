@@ -83,6 +83,7 @@ export const useProjectStore = defineStore('projectStore', {
           underline: false,
           lineThrough: false,
           textAlign: PROPERTIES.textAlign.left,
+          lineHeight: PROPERTIES.lineHeight[2],
         },
       }
 
