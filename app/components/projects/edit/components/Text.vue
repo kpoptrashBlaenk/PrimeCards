@@ -1,5 +1,7 @@
 <template>
-  <div ref="textRef" :class="`text-${component.properties.fontSize}`">{{ component.properties.text }}</div>
+  <div ref="textRef" :class="`text-${component.properties.fontSize} font-${component.properties.fontWeight}`">
+    {{ component.properties.text }}
+  </div>
 
   <projects-edit-components-overlay v-if="textRef" :id="component.id" :rect="textRect" />
 </template>

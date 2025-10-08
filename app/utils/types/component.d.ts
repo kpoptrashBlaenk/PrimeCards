@@ -16,6 +16,7 @@ interface TextComponent extends BaseComponent {
   properties: {
     text: string
     fontSize: FontSizeKey
+    fontWeight: FontWeightKey
   }
 }
 

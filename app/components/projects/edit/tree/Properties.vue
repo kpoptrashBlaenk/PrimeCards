@@ -11,6 +11,12 @@
       <projects-edit-tree-properties-label text="Font Size" tooltip="Font Size" />
       <projects-edit-tree-properties-font-size class="w-9" />
     </div>
+
+    <!-- FontWeight -->
+    <div v-if="'fontWeight' in projectStore.selectedComponent.properties" class="flex justify-content-evenly align-items-center">
+      <projects-edit-tree-properties-label text="Font Weight" tooltip="Font Weight" />
+      <projects-edit-tree-properties-font-weight class="w-9" />
+    </div>
   </div>
 </template>
 

@@ -1,4 +1,5 @@
-import { COMPONENTS } from '../app/utils/constants/components'
+import { COMPONENTS } from '@constants/components'
+import { PROPERTIES } from '@constants/properties'
 
 export const useProjectStore = defineStore('projectStore', {
   state: () => ({
@@ -74,7 +75,7 @@ export const useProjectStore = defineStore('projectStore', {
         name: this.generateName(COMPONENTS.text.name),
         icon: COMPONENTS.text.icon,
         parentId: this.selectedPage,
-        properties: { text: 'Text', fontSize: 'base' },
+        properties: { text: 'Text', fontSize: PROPERTIES.fontSize.base, fontWeight: PROPERTIES.fontWeight.normal },
       }
 
       app.push(text)

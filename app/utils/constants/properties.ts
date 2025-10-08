@@ -13,4 +13,11 @@ export const PROPERTIES = {
     '7xl': '7xl',
     '8xl': '8xl',
   },
-}
+  fontWeight: {
+    light: 'light',
+    normal: 'normal',
+    medium: 'medium',
+    semibold: 'semibold',
+    bold: 'bold',
+  },
+} as const
