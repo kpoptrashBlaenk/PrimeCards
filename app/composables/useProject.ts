@@ -45,7 +45,6 @@ export function useProject() {
   }
 
   const getDevProject = async (project_id: string) => {
-    return {}
     if (!project_id) throw createError({ statusCode: 400, statusMessage: 'No project provided.' })
 
     const project = await $supabase.client

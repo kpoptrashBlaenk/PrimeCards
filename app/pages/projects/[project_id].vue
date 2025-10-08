@@ -61,6 +61,7 @@ try {
           name: 'Page',
           icon: 'desktop',
           parentId: -1,
+          properties: {},
         },
       ],
     },

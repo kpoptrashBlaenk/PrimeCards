@@ -59,6 +59,7 @@ export const useProjectStore = defineStore('projectStore', {
         name: this.generateName(COMPONENTS.page!.name),
         icon: COMPONENTS.page.icon,
         parentId: -1,
+        properties: {},
       }
 
       app.push(page)
@@ -73,10 +74,18 @@ export const useProjectStore = defineStore('projectStore', {
         name: this.generateName(COMPONENTS.text.name),
         icon: COMPONENTS.text.icon,
         parentId: this.selectedPage,
-        text: 'Text',
+        properties: { text: 'Text' },
       }
 
       app.push(text)
+    },
+
+    /* Update */
+    updateComponent(key: string, value: any) {
+      if (!this.selectedComponent) return
+
+      //@ts-ignore
+      this.selectedComponent.properties[key] = value
     },
 
     /* Utils */

@@ -1,7 +1,7 @@
 <template>
-  <div class="mx-auto flex flex-column gap-3">
+  <div v-if="projectStore.selectedComponent" class="mx-auto flex flex-column gap-3">
     <!-- Text -->
-    <div class="flex justify-content-evenly align-items-center">
+    <div v-if="'text' in projectStore.selectedComponent.properties" class="flex justify-content-evenly align-items-center">
       <projects-edit-tree-properties-label text="Text" tooltip="Text" />
       <projects-edit-tree-properties-text class="w-9" />
     </div>
@@ -14,4 +14,10 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+/* Imports */
+import { useProjectStore } from '@stores/project'
+
+/* Stores */
+const projectStore = useProjectStore()
+</script>

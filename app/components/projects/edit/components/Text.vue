@@ -1,5 +1,5 @@
 <template>
-  <div ref="textRef">{{ component.text }}</div>
+  <div ref="textRef">{{ component.properties.text }}</div>
 
   <projects-edit-components-overlay v-if="textRef" :id="component.id" :rect="textRect" />
 </template>

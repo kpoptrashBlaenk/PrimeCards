@@ -8,10 +8,14 @@ interface BaseComponent {
   parentId: number
 }
 
-interface PageComponent extends BaseComponent {}
-
-interface TextComponent extends BaseComponent {
-  text: string
+interface PageComponent extends BaseComponent {
+  properties: {}
 }
 
-type ProjectComponent = PageComponent
+interface TextComponent extends BaseComponent {
+  properties: {
+    text: string
+  }
+}
+
+type ProjectComponent = PageComponent | TextComponent
