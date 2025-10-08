@@ -1,9 +1,16 @@
 <template>
   <Select
-    :options="['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl', '7xl', '8xl']"
-    default-value="base"
-    scroll-height="30rem"
+    :options="Object.values(PROPERTIES.fontSize)"
+    :default-value="(projectStore.selectedComponent?.properties as { fontSize: FontSizeKey }).fontSize"
+    @change="projectStore.updateComponent('fontSize', $event.value)"
   ></Select>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+/* Imports */
+import { PROPERTIES } from '@constants/properties'
+import { useProjectStore } from '@stores/project'
+
+/* Stores */
+const projectStore = useProjectStore()
+</script>

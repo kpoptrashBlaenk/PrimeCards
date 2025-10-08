@@ -15,5 +15,5 @@ import { useProjectStore } from '@stores/project'
 const projectStore = useProjectStore()
 
 /* Refs */
-const text = ref<string>((projectStore.selectedComponent as TextComponent).properties.text)
+const text = ref<string>((projectStore.selectedComponent?.properties as { text: string }).text)
 </script>

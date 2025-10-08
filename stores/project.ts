@@ -74,7 +74,7 @@ export const useProjectStore = defineStore('projectStore', {
         name: this.generateName(COMPONENTS.text.name),
         icon: COMPONENTS.text.icon,
         parentId: this.selectedPage,
-        properties: { text: 'Text' },
+        properties: { text: 'Text', fontSize: 'base' },
       }
 
       app.push(text)

@@ -7,7 +7,7 @@
     </div>
 
     <!-- FontSize -->
-    <div class="flex justify-content-evenly align-items-center">
+    <div v-if="'fontSize' in projectStore.selectedComponent.properties" class="flex justify-content-evenly align-items-center">
       <projects-edit-tree-properties-label text="Font Size" tooltip="Font Size" />
       <projects-edit-tree-properties-font-size class="w-9" />
     </div>

@@ -15,6 +15,7 @@ interface PageComponent extends BaseComponent {
 interface TextComponent extends BaseComponent {
   properties: {
     text: string
+    fontSize: FontSizeKey
   }
 }
 
