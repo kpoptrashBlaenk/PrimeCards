@@ -20,6 +20,7 @@ interface TextComponent extends BaseComponent {
     italic: boolean
     underline: boolean
     lineThrough: boolean
+    textAlign: TextAlignKey
   }
 }
 

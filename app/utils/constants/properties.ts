@@ -20,4 +20,10 @@ export const PROPERTIES = {
     semibold: 'semibold',
     bold: 'bold',
   },
+  textAlign: {
+    left: 'left',
+    center: 'center',
+    right: 'right',
+    justify: 'justify',
+  },
 } as const

@@ -23,6 +23,12 @@
       <projects-edit-tree-properties-label text="Text Decoration" tooltip="Text Decoration" />
       <projects-edit-tree-properties-text-decoration class="w-8" />
     </div>
+
+    <!-- TextAlign -->
+    <div v-if="'textAlign' in projectStore.selectedComponent.properties" class="flex justify-content-evenly align-items-center">
+      <projects-edit-tree-properties-label text="Text Align" tooltip="Text Align" />
+      <projects-edit-tree-properties-text-align class="w-8" />
+    </div>
   </div>
 </template>
 
