@@ -1,5 +1,15 @@
 <template>
-  <div ref="textRef" :class="`text-${component.properties.fontSize} font-${component.properties.fontWeight}`">
+  <div
+    ref="textRef"
+    :class="[
+      `text-${component.properties.fontSize} font-${component.properties.fontWeight}`,
+      {
+        'font-italic': component.properties.italic,
+        underline: component.properties.underline,
+        'line-through': component.properties.lineThrough,
+      },
+    ]"
+  >
     {{ component.properties.text }}
   </div>
 

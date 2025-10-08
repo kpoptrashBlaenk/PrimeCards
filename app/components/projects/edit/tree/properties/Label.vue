@@ -12,7 +12,7 @@
         },
       },
     }"
-    class="text-600 text-xs cursor-pointer w-3 text-center"
+    class="text-600 text-xs cursor-pointer w-4 text-center"
   >
     {{ text }}
   </div>

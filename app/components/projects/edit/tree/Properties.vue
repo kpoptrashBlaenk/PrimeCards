@@ -3,19 +3,25 @@
     <!-- Text -->
     <div v-if="'text' in projectStore.selectedComponent.properties" class="flex justify-content-evenly align-items-center">
       <projects-edit-tree-properties-label text="Text" tooltip="Text" />
-      <projects-edit-tree-properties-text class="w-9" />
+      <projects-edit-tree-properties-text class="w-8" />
     </div>
 
     <!-- FontSize -->
     <div v-if="'fontSize' in projectStore.selectedComponent.properties" class="flex justify-content-evenly align-items-center">
       <projects-edit-tree-properties-label text="Font Size" tooltip="Font Size" />
-      <projects-edit-tree-properties-font-size class="w-9" />
+      <projects-edit-tree-properties-font-size class="w-8" />
     </div>
 
     <!-- FontWeight -->
     <div v-if="'fontWeight' in projectStore.selectedComponent.properties" class="flex justify-content-evenly align-items-center">
       <projects-edit-tree-properties-label text="Font Weight" tooltip="Font Weight" />
-      <projects-edit-tree-properties-font-weight class="w-9" />
+      <projects-edit-tree-properties-font-weight class="w-8" />
+    </div>
+
+    <!-- TextDecoration -->
+    <div v-if="'italic' in projectStore.selectedComponent.properties" class="flex justify-content-evenly align-items-center">
+      <projects-edit-tree-properties-label text="Text Decoration" tooltip="Text Decoration" />
+      <projects-edit-tree-properties-text-decoration class="w-8" />
     </div>
   </div>
 </template>

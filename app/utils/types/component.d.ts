@@ -17,6 +17,9 @@ interface TextComponent extends BaseComponent {
     text: string
     fontSize: FontSizeKey
     fontWeight: FontWeightKey
+    italic: boolean
+    underline: boolean
+    lineThrough: boolean
   }
 }
 
