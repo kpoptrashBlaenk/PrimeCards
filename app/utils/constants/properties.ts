@@ -26,6 +26,12 @@ export const PROPERTIES = {
     right: 'right',
     justify: 'justify',
   },
+  verticalAlign: {
+    baseline: 'baseline',
+    top: 'top',
+    middle: 'middle',
+    bottom: 'bottom',
+  },
   lineHeight: {
     1: 1,
     2: 2,

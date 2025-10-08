@@ -83,6 +83,7 @@ export const useProjectStore = defineStore('projectStore', {
           underline: false,
           lineThrough: false,
           textAlign: PROPERTIES.textAlign.left,
+          verticalAlign: PROPERTIES.verticalAlign.baseline,
           lineHeight: PROPERTIES.lineHeight[2],
           wrap: true,
           overflow: false,
@@ -98,8 +99,6 @@ export const useProjectStore = defineStore('projectStore', {
 
       //@ts-ignore
       this.selectedComponent.properties[key] = value
-
-      console.log(value)
     },
 
     /* Utils */
