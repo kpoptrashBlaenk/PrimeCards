@@ -1,5 +1,10 @@
 <template>
-  <div v-if="projectStore.selectedComponent" class="mx-auto flex flex-column gap-3">
+  <div
+    v-if="projectStore.selectedComponent"
+    ref="propertiesRef"
+    class="mx-auto flex flex-column gap-3 overflow-y-auto"
+    :style="{ maxHeight: `${maxHeight}px` }"
+  >
     <!-- Text -->
     <div v-if="'text' in projectStore.selectedComponent.properties" class="flex justify-content-evenly align-items-center">
       <projects-edit-tree-properties-label text="Text" tooltip="Text" />
@@ -69,6 +74,30 @@
 /* Imports */
 import { useProjectStore } from '@stores/project'
 
+/* Refs */
+const propertiesRef = ref<HTMLDivElement>()
+const maxHeight = ref<number>(0)
+
 /* Stores */
 const projectStore = useProjectStore()
+
+/* Functions */
+function changeMaxHeight() {
+  maxHeight.value = window.innerHeight - propertiesRef.value!.getBoundingClientRect().top - 16
+}
+
+/* Hooks */
+onMounted(() => {
+  changeMaxHeight()
+
+  window.addEventListener('resize', changeMaxHeight)
+
+  const observer = new ResizeObserver(changeMaxHeight)
+  observer.observe(propertiesRef.value!)
+
+  onBeforeMount(() => {
+    window.removeEventListener('resize', changeMaxHeight)
+    observer.disconnect()
+  })
+})
 </script>

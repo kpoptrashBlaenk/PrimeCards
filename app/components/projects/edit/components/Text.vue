@@ -27,14 +27,23 @@ defineProps<{
 const textRef = ref<HTMLDivElement>()
 const textRect = ref<DOMRect | undefined>(textRef.value?.getBoundingClientRect())
 
+/* Functions */
+function chnageOverlaySize() {
+  textRect.value = textRef.value?.getBoundingClientRect()
+}
+
 /* Hooks */
 onMounted(() => {
-  const observer = new ResizeObserver(() => {
-    textRect.value = textRef.value?.getBoundingClientRect()
-  })
+  chnageOverlaySize()
 
+  window.addEventListener('resize', chnageOverlaySize)
+
+  const observer = new ResizeObserver(chnageOverlaySize)
   observer.observe(textRef.value!)
 
-  onBeforeMount(() => observer.disconnect())
+  onBeforeMount(() => {
+    window.removeEventListener('resize', chnageOverlaySize)
+    observer.disconnect()
+  })
 })
 </script>
