@@ -1,5 +1,6 @@
 <template>
   <Select
+    size="small"
     :options="Object.values(PROPERTIES.fontWeight)"
     :default-value="(projectStore.selectedComponent?.properties as { fontWeight: FontWeightKey }).fontWeight"
     @change="projectStore.updateComponent('fontWeight', $event.value)"

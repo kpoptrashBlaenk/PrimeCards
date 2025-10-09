@@ -1,6 +1,7 @@
 <template>
   <div class="flex justify-content-evenly">
     <Button
+      size="small"
       :severity="(projectStore.selectedComponent?.properties as { italic: boolean }).italic ? 'primary' : 'secondary'"
       class="font-italic"
       @click="projectStore.updateComponent('italic', !(projectStore.selectedComponent?.properties as { italic: boolean }).italic)"
@@ -8,6 +9,7 @@
     >
 
     <Button
+      size="small"
       :severity="(projectStore.selectedComponent?.properties as { underline: boolean }).underline ? 'primary' : 'secondary'"
       class="underline"
       @click="
@@ -20,6 +22,7 @@
     >
 
     <Button
+      size="small"
       :severity="(projectStore.selectedComponent?.properties as { lineThrough: boolean }).lineThrough ? 'primary' : 'secondary'"
       class="line-through"
       @click="

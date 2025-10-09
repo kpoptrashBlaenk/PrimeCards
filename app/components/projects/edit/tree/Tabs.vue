@@ -2,22 +2,26 @@
   <div>
     <Tabs value="0">
       <!-- List -->
-      <TabList class="bg-transparent" :pt="{ tabList: { class: 'bg-transparent' } }">
+      <TabList :pt="{ tabList: { class: 'bg-transparent' } }">
         <Tab value="0">Pages</Tab>
         <Tab value="1">Components</Tab>
         <Tab value="2">Properties</Tab>
       </TabList>
 
       <!-- Panels -->
-      <TabPanels class="bg-transparent px-1">
+      <TabPanels class="bg-transparent p-0">
         <!-- Pages Panel -->
         <TabPanel value="0">
-          <ProjectsEditTreePages />
+          <div class="p-2">
+            <ProjectsEditTreePages />
+          </div>
         </TabPanel>
 
         <!-- Component Panel -->
         <TabPanel value="1">
-          <ProjectsEditTreeComponents />
+          <div class="p-2">
+            <ProjectsEditTreeComponents />
+          </div>
         </TabPanel>
 
         <!-- Properties Panel -->

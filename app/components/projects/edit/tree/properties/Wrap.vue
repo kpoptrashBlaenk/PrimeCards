@@ -1,6 +1,7 @@
 <template>
-  <div class="flex justify-content-between align-items-center pr-4">
+  <div class="flex justify-content-between align-items-center">
     <ToggleSwitch
+      size="small"
       :default-value="(projectStore.selectedComponent?.properties as { wrap: boolean }).wrap"
       @value-change="projectStore.updateComponent('wrap', $event)"
     ></ToggleSwitch>

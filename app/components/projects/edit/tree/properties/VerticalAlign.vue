@@ -1,5 +1,6 @@
 <template>
   <Select
+    size="small"
     :options="Object.values(PROPERTIES.verticalAlign)"
     :default-value="(projectStore.selectedComponent?.properties as { verticalAlign: VerticalAlignKey }).verticalAlign"
     @change="projectStore.updateComponent('verticalAlign', $event.value)"

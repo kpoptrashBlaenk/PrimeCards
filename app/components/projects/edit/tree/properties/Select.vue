@@ -1,5 +1,6 @@
 <template>
   <Select
+    size="small"
     :options="Object.values(PROPERTIES.select)"
     :default-value="(projectStore.selectedComponent?.properties as { select: SelectKey }).select"
     @change="projectStore.updateComponent('select', $event.value)"

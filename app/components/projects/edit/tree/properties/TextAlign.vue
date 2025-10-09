@@ -2,6 +2,7 @@
   <div class="flex justify-content-between">
     <Button
       v-for="align in Object.values(PROPERTIES.textAlign)"
+      size="small"
       :severity="
         (projectStore.selectedComponent?.properties as { textAlign: TextAlignKey }).textAlign === PROPERTIES.textAlign[align]
           ? 'primary'

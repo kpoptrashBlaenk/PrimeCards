@@ -2,7 +2,7 @@
   <div
     v-if="projectStore.selectedComponent"
     ref="propertiesRef"
-    class="mx-auto flex flex-column gap-3 overflow-y-auto"
+    class="mx-auto flex flex-column gap-3 py-3 pr-2 scrollbar"
     :style="{ maxHeight: `${maxHeight}px` }"
   >
     <!-- Text -->
@@ -83,7 +83,7 @@ const projectStore = useProjectStore()
 
 /* Functions */
 function changeMaxHeight() {
-  maxHeight.value = window.innerHeight - propertiesRef.value!.getBoundingClientRect().top - 16
+  maxHeight.value = window.innerHeight - propertiesRef.value!.getBoundingClientRect().top
 }
 
 /* Hooks */
