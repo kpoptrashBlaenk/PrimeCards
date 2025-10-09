@@ -9,11 +9,14 @@ interface BaseComponent {
 }
 
 interface PageComponent extends BaseComponent {
-  properties: {}
+  properties: {
+    [key: string]: any
+  }
 }
 
 interface TextComponent extends BaseComponent {
   properties: {
+    [key: string]: any
     text: string
     fontSize: FontSizeKey
     fontWeight: FontWeightKey
@@ -27,6 +30,14 @@ interface TextComponent extends BaseComponent {
     overflow: boolean
     cursor: CursorKey
     select: SelectKey
+    paddingLeft: PaddingKey
+    paddingRight: PaddingKey
+    paddingTop: PaddingKey
+    paddingBottom: PaddingKey
+    marginLeft: MarginKey
+    marginRight: MarginKey
+    marginTop: MarginKey
+    marginBottom: MarginKey
   }
 }
 

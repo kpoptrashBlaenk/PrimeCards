@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-content-evenly">
+  <div class="flex justify-content-end gap-3">
     <Button
       size="small"
       :severity="(projectStore.selectedComponent?.properties as { italic: boolean }).italic ? 'primary' : 'secondary'"

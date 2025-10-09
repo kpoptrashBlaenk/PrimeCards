@@ -2,7 +2,21 @@
   <div
     ref="textRef"
     :class="[
-      `overflow-hidden text-${component.properties.fontSize} font-${component.properties.fontWeight} text-${component.properties.textAlign} line-height-${component.properties.lineHeight} text-overflow-${component.properties.overflow ? 'clip' : 'ellipsis'} vertical-align-${component.properties.verticalAlign}`,
+      'overflow-hidden',
+      `text-${component.properties.fontSize}`,
+      `font-${component.properties.fontWeight}`,
+      `text-${component.properties.textAlign}`,
+      `line-height-${component.properties.lineHeight}`,
+      `text-overflow-${component.properties.overflow ? 'clip' : 'ellipsis'}`,
+      `vertical-align-${component.properties.verticalAlign}`,
+      `pl-${component.properties.paddingLeft}`,
+      `pr-${component.properties.paddingRight}`,
+      `pt-${component.properties.paddingTop}`,
+      `pb-${component.properties.paddingBottom}`,
+      `ml-${component.properties.marginLeft}`,
+      `mr-${component.properties.marginRight}`,
+      `mt-${component.properties.marginTop}`,
+      `mb-${component.properties.marginBottom}`,
       {
         'font-italic': component.properties.italic,
         underline: component.properties.underline,

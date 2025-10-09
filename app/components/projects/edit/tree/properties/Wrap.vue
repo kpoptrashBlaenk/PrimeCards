@@ -1,11 +1,5 @@
 <template>
-  <div class="flex justify-content-between align-items-center">
-    <ToggleSwitch
-      size="small"
-      :default-value="(projectStore.selectedComponent?.properties as { wrap: boolean }).wrap"
-      @value-change="projectStore.updateComponent('wrap', $event)"
-    ></ToggleSwitch>
-
+  <div class="flex justify-content-end gap-3 align-items-center">
     <ToggleButton
       :default-value="(projectStore.selectedComponent?.properties as { overflow: boolean }).overflow"
       on-label="Overflow On"
@@ -20,6 +14,12 @@
       :class="{ 'opacity-0': (projectStore.selectedComponent?.properties as { wrap: boolean }).wrap }"
       @value-change="projectStore.updateComponent('overflow', $event)"
     />
+
+    <ToggleSwitch
+      size="small"
+      :default-value="(projectStore.selectedComponent?.properties as { wrap: boolean }).wrap"
+      @value-change="projectStore.updateComponent('wrap', $event)"
+    ></ToggleSwitch>
   </div>
 </template>
 

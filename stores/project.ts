@@ -89,6 +89,14 @@ export const useProjectStore = defineStore('projectStore', {
           overflow: false,
           cursor: PROPERTIES.cursor.auto,
           select: PROPERTIES.select.auto,
+          paddingLeft: PROPERTIES.padding[0],
+          paddingRight: PROPERTIES.padding[0],
+          paddingTop: PROPERTIES.padding[0],
+          paddingBottom: PROPERTIES.padding[0],
+          marginLeft: PROPERTIES.margin[0],
+          marginRight: PROPERTIES.margin[0],
+          marginTop: PROPERTIES.margin[0],
+          marginBottom: PROPERTIES.margin[0],
         },
       }
 

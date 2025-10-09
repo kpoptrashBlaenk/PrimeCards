@@ -8,4 +8,6 @@ declare global {
   type LineHeightKey = keyof typeof PROPERTIES.lineHeight
   type CursorKey = keyof typeof PROPERTIES.cursor
   type SelectKey = keyof typeof PROPERTIES.select
+  type PaddingKey = keyof typeof PROPERTIES.padding
+  type MarginKey = keyof typeof PROPERTIES.margin
 }
