@@ -2,35 +2,25 @@
   <div class="flex justify-content-end gap-3">
     <Button
       size="small"
-      :severity="(projectStore.selectedComponent?.properties as { italic: boolean }).italic ? 'primary' : 'secondary'"
+      :severity="projectStore.selectedComponent?.properties.italic ? 'primary' : 'secondary'"
       class="font-italic"
-      @click="projectStore.updateComponent('italic', !(projectStore.selectedComponent?.properties as { italic: boolean }).italic)"
+      @click="projectStore.updateComponent('italic', !projectStore.selectedComponent?.properties.italic)"
       >I</Button
     >
 
     <Button
       size="small"
-      :severity="(projectStore.selectedComponent?.properties as { underline: boolean }).underline ? 'primary' : 'secondary'"
+      :severity="projectStore.selectedComponent?.properties.underline ? 'primary' : 'secondary'"
       class="underline"
-      @click="
-        projectStore.updateComponent(
-          'underline',
-          !(projectStore.selectedComponent?.properties as { underline: boolean }).underline,
-        )
-      "
+      @click="projectStore.updateComponent('underline', !projectStore.selectedComponent?.properties.underline)"
       >U</Button
     >
 
     <Button
       size="small"
-      :severity="(projectStore.selectedComponent?.properties as { lineThrough: boolean }).lineThrough ? 'primary' : 'secondary'"
+      :severity="projectStore.selectedComponent?.properties.lineThrough ? 'primary' : 'secondary'"
       class="line-through"
-      @click="
-        projectStore.updateComponent(
-          'lineThrough',
-          !(projectStore.selectedComponent?.properties as { lineThrough: boolean }).lineThrough,
-        )
-      "
+      @click="projectStore.updateComponent('lineThrough', !projectStore.selectedComponent?.properties.lineThrough)"
       >S</Button
     >
   </div>

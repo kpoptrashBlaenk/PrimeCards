@@ -2,7 +2,7 @@
   <Select
     size="small"
     :options="Object.values(PROPERTIES.select)"
-    :default-value="(projectStore.selectedComponent?.properties as { select: SelectKey }).select"
+    :default-value="projectStore.selectedComponent?.properties.select"
     @change="projectStore.updateComponent('select', $event.value)"
   ></Select>
 </template>

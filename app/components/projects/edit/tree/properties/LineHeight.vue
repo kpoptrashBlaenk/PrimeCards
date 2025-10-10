@@ -2,7 +2,7 @@
   <Select
     size="small"
     :options="Object.values(PROPERTIES.lineHeight)"
-    :default-value="(projectStore.selectedComponent?.properties as { lineHeight: LineHeightKey }).lineHeight"
+    :default-value="projectStore.selectedComponent?.properties.lineHeight"
     @change="projectStore.updateComponent('lineHeight', $event.value)"
   ></Select>
 </template>

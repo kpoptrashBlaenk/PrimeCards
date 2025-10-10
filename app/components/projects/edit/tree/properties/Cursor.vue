@@ -2,7 +2,7 @@
   <Select
     size="small"
     :options="Object.values(PROPERTIES.cursor)"
-    :default-value="(projectStore.selectedComponent?.properties as { cursor: CursorKey }).cursor"
+    :default-value="projectStore.selectedComponent?.properties.cursor"
     @change="projectStore.updateComponent('cursor', $event.value)"
   ></Select>
 </template>

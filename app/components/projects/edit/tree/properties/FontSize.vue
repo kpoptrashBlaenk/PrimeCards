@@ -2,7 +2,7 @@
   <Select
     size="small"
     :options="Object.values(PROPERTIES.fontSize)"
-    :default-value="(projectStore.selectedComponent?.properties as { fontSize: FontSizeKey }).fontSize"
+    :default-value="projectStore.selectedComponent?.properties.fontSize"
     @change="projectStore.updateComponent('fontSize', $event.value)"
   ></Select>
 </template>
