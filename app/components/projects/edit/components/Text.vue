@@ -1,30 +1,38 @@
 <template>
   <div
     ref="textRef"
-    :class="[
-      'overflow-hidden',
-      `text-${component.properties.fontSize}`,
-      `font-${component.properties.fontWeight}`,
-      `text-${component.properties.textAlign}`,
-      `line-height-${component.properties.lineHeight}`,
-      `text-overflow-${component.properties.overflow ? 'clip' : 'ellipsis'}`,
-      `vertical-align-${component.properties.verticalAlign}`,
-      `pl-${component.properties.paddingLeft}`,
-      `pr-${component.properties.paddingRight}`,
-      `pt-${component.properties.paddingTop}`,
-      `pb-${component.properties.paddingBottom}`,
-      `ml-${component.properties.marginLeft}`,
-      `mr-${component.properties.marginRight}`,
-      `mt-${component.properties.marginTop}`,
-      `mb-${component.properties.marginBottom}`,
-      {
-        'font-italic': component.properties.italic,
-        underline: component.properties.underline,
-        'line-through': component.properties.lineThrough,
-        'white-space-nowrap': !component.properties.wrap,
-        hidden: !component.properties.visible,
-      },
-    ]"
+    :style="{
+      display: `${component.properties.visible ? (component.properties.inline ? 'inline' : 'block') : 'none'}`,
+      paddingLeft: `calc(var(--spacing) * ${component.properties.paddingLeft})`,
+      paddingRight: `calc(var(--spacing) * ${component.properties.paddingRight})`,
+      paddingTop: `calc(var(--spacing) * ${component.properties.paddingTop})`,
+      paddingBottom: `calc(var(--spacing) * ${component.properties.paddingBottom})`,
+      marginLeft: `calc(var(--spacing) * ${component.properties.marginLeft})`,
+      marginRight: `calc(var(--spacing) * ${component.properties.marginRight})`,
+      marginTop: `calc(var(--spacing) * ${component.properties.marginTop})`,
+      marginBottom: `calc(var(--spacing) * ${component.properties.marginBottom})`,
+      fontFamily: component.properties.fontFamily,
+      fontSize: `${component.properties.fontSize}px`,
+      fontWeight: component.properties.bold ? 'bold' : 'normal',
+      fontStyle: component.properties.italic ? 'italic' : 'normal',
+      textDecorationLine: component.properties.underline
+        ? 'underline'
+        : component.properties.lineThrough
+          ? 'line-through'
+          : component.properties.overline
+            ? 'overline'
+            : 'none',
+      textDecorationStyle: component.properties.textDecorationStyle,
+      textDecorationThickness: `${component.properties.textDecorationThickness}px`,
+      letterSpacing: `${component.properties.letterSpacing}px`,
+      lineHeight: `${component.properties.lineHeight}px`,
+      textAlign: component.properties.textAlign,
+      verticalAlign: component.properties.verticalAlign,
+      textWrap: component.properties.wrap ? 'wrap' : 'nowrap',
+      overflow: component.properties.overflow,
+      textOverflow: component.properties.textOverflow ? 'ellipsis' : 'clip',
+      textIndent: `${component.properties.indent}px`,
+    }"
   >
     {{ component.properties.text }}
   </div>

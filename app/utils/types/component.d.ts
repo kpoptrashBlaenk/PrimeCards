@@ -18,27 +18,33 @@ interface TextComponent extends BaseComponent {
   properties: {
     [key: string]: any
     text: string
-    fontSize: FontSizeKey
-    fontWeight: FontWeightKey
+    inline: boolean
+    visible: boolean
+    paddingLeft: number
+    paddingRight: number
+    paddingTop: number
+    paddingBottom: number
+    marginLeft: number
+    marginRight: number
+    marginTop: number
+    marginBottom: number
+    fontFamily: FontFamilyKey
+    fontSize: number
+    bold: boolean
     italic: boolean
     underline: boolean
     lineThrough: boolean
+    overline: boolean
+    textDecorationStyle: TextDecorationStyleKey
+    textDecorationThickness: number
+    letterSpacing: number
+    lineHeight: number
     textAlign: TextAlignKey
     verticalAlign: VerticalAlignKey
-    lineHeight: LineHeightKey
-    wrap: boolean
-    overflow: boolean
-    cursor: CursorKey
-    select: SelectKey
-    paddingLeft: PaddingKey
-    paddingRight: PaddingKey
-    paddingTop: PaddingKey
-    paddingBottom: PaddingKey
-    marginLeft: MarginKey
-    marginRight: MarginKey
-    marginTop: MarginKey
-    marginBottom: MarginKey
-    visible: boolean
+    wrap: boolean // if no wrap then overflow, if overflow hidden then text overflow
+    overflow: OverflowKey
+    textOverflow: boolean
+    indent: number
   }
 }
 

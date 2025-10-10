@@ -1,7 +1,6 @@
 <template>
   <InputText
     v-model="text"
-    name="propertyText"
     size="small"
     @focusout="projectStore.updateComponent('text', ($event.target as HTMLInputElement).value)"
   />

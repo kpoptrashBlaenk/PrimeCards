@@ -1,5 +1,5 @@
 <template>
-  <div ref="pageRef" class="w-full h-full">
+  <div ref="pageRef" class="w-full h-full overflow-hidden">
     <component
       v-if="children"
       v-for="(child, index) in children"

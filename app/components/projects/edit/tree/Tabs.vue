@@ -9,7 +9,7 @@
       </TabList>
 
       <!-- Panels -->
-      <TabPanels class="bg-transparent p-0!">
+      <TabPanels class="bg-transparent p-0! pr-2!">
         <!-- Pages Panel -->
         <TabPanel value="0">
           <div>

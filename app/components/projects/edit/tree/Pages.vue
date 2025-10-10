@@ -13,7 +13,7 @@
       filter-placeholder="Search"
       :pt="{ pcFilterInput: { name: 'filter' } }"
       class="bg-transparent -mt-2 px-2!"
-      @node-select="projectStore.selectComponent($event)"
+      @node-select="projectStore.selectComponent($event.data)"
     >
       <template #default="slotProps">
         <div class="text-sm flex gap-2 items-center">

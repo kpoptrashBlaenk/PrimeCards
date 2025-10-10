@@ -2,6 +2,14 @@
   <div class="flex justify-end gap-3">
     <Button
       size="small"
+      :severity="projectStore.selectedComponent?.properties.bold ? 'primary' : 'secondary'"
+      class="bold"
+      @click="projectStore.updateComponent('bold', !projectStore.selectedComponent?.properties.bold)"
+      >B</Button
+    >
+
+    <Button
+      size="small"
       :severity="projectStore.selectedComponent?.properties.italic ? 'primary' : 'secondary'"
       class="italic"
       @click="projectStore.updateComponent('italic', !projectStore.selectedComponent?.properties.italic)"
@@ -22,6 +30,14 @@
       class="line-through"
       @click="projectStore.updateComponent('lineThrough', !projectStore.selectedComponent?.properties.lineThrough)"
       >S</Button
+    >
+
+    <Button
+      size="small"
+      :severity="projectStore.selectedComponent?.properties.overline ? 'primary' : 'secondary'"
+      class="overline"
+      @click="projectStore.updateComponent('overline', !projectStore.selectedComponent?.properties.overline)"
+      >O</Button
     >
   </div>
 </template>

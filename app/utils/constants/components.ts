@@ -1,3 +1,5 @@
+import { PROPERTIES } from './properties'
+
 export const COMPONENTS = {
   page: {
     type: 'page',
@@ -8,5 +10,35 @@ export const COMPONENTS = {
     type: 'text',
     name: 'Text',
     icon: 'align-left',
+    properties: {
+      text: 'Text',
+      inline: false,
+      visible: true,
+      paddingLeft: 0,
+      paddingRight: 0,
+      paddingTop: 0,
+      paddingBottom: 0,
+      marginLeft: 0,
+      marginRight: 0,
+      marginTop: 0,
+      marginBottom: 0,
+      fontFamily: PROPERTIES.fontFamily.arial,
+      fontSize: 16,
+      bold: false,
+      italic: false,
+      underline: false,
+      lineThrough: false,
+      overline: false,
+      textDecorationStyle: PROPERTIES.textDecorationStyle.solid,
+      textDecorationThickness: 1,
+      letterSpacing: 0,
+      lineHeight: 24,
+      textAlign: PROPERTIES.textAlign.left,
+      verticalAlign: PROPERTIES.verticalAlign.baseline,
+      wrap: true,
+      overflow: PROPERTIES.overflow.visible,
+      textOverflow: true,
+      indent: 0,
+    },
   },
 }

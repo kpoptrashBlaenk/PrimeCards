@@ -1,5 +1,4 @@
 import { COMPONENTS } from '@constants/components'
-import { PROPERTIES } from '@constants/properties'
 
 export const useProjectStore = defineStore('projectStore', {
   state: () => ({
@@ -16,10 +15,10 @@ export const useProjectStore = defineStore('projectStore', {
       if (this.selectedPage !== pageNumber) this.selectedPage = pageNumber
     },
 
-    selectComponent(event: TreeNode) {
-      this.selectedComponent = event.data
+    selectComponent(component: ProjectComponent) {
+      this.selectedComponent = component
 
-      this.selectPage(event.data.parentId)
+      this.selectPage(component.parentId)
     },
 
     select(project: SupabaseProjectRow) {
@@ -75,40 +74,18 @@ export const useProjectStore = defineStore('projectStore', {
         name: this.generateName(COMPONENTS.text.name),
         icon: COMPONENTS.text.icon,
         parentId: this.selectedPage,
-        properties: {
-          text: 'Text',
-          fontSize: PROPERTIES.fontSize.base,
-          fontWeight: PROPERTIES.fontWeight.normal,
-          italic: false,
-          underline: false,
-          lineThrough: false,
-          textAlign: PROPERTIES.textAlign.left,
-          verticalAlign: PROPERTIES.verticalAlign.baseline,
-          lineHeight: PROPERTIES.lineHeight[2],
-          wrap: true,
-          overflow: false,
-          cursor: PROPERTIES.cursor.auto,
-          select: PROPERTIES.select.auto,
-          paddingLeft: PROPERTIES.padding[0],
-          paddingRight: PROPERTIES.padding[0],
-          paddingTop: PROPERTIES.padding[0],
-          paddingBottom: PROPERTIES.padding[0],
-          marginLeft: PROPERTIES.margin[0],
-          marginRight: PROPERTIES.margin[0],
-          marginTop: PROPERTIES.margin[0],
-          marginBottom: PROPERTIES.margin[0],
-          visible: true,
-        },
+        properties: { ...COMPONENTS.text.properties },
       }
 
       app.push(text)
+
+      this.selectComponent(text)
     },
 
     /* Update */
     updateComponent(key: string, value: any) {
       if (!this.selectedComponent) return
 
-      //@ts-ignore
       this.selectedComponent.properties[key] = value
     },
 
