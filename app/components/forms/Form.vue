@@ -7,7 +7,7 @@
       @submit="onSubmit"
       :resolver
       :validateOnValueUpdate="validateOnValueUpdate === true"
-      class="flex flex-column gap-4"
+      class="flex flex-col gap-4"
     >
       <forms-field
         v-for="field in fields"

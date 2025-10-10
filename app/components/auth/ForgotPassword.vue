@@ -1,13 +1,15 @@
 <template>
   <auth-layout :header="'Enter your email to receive a password reset link'">
-    <div v-if="!mounted" class="flex flex-column gap-4">
+    <div v-if="!mounted" class="flex flex-col gap-4">
       <ui-skeletons v-for="skeletonField in skeletonFields" :field="skeletonField" />
     </div>
 
     <forms-form v-else :fields :on-submit>
       <Button type="submit" size="large" rounded :disabled="loading" class="font-bold text-outline">Send</Button>
       <div>
-        <p class="text-center text-400 -mt-1">Don't have an account? <nuxt-link to="/auth/register">Sign up now!</nuxt-link></p>
+        <p class="text-center text-surface-400 -mt-1">
+          Don't have an account? <nuxt-link to="/auth/register" class="auth-link">Sign up now!</nuxt-link>
+        </p>
       </div>
     </forms-form>
     <Toast />
@@ -25,9 +27,9 @@ const { forgotPassword } = useAuth()
 /* Constants */
 const fields = [{ name: 'email', label: 'Email', type: 'email' }]
 const skeletonFields: SkeletonProp[] = [
-  { type: 'skeleton', height: 3.375, class: 'w-12' },
-  { type: 'skeleton', height: 2.625, class: 'w-12' },
-  { type: 'skeleton', height: 1.167, class: '-mt-1 w-12' },
+  { type: 'skeleton', height: 3.375, class: 'w-full' },
+  { type: 'skeleton', height: 2.625, class: 'w-full' },
+  { type: 'skeleton', height: 1.167, class: '-mt-1 w-full' },
 ]
 const toast = useToast()
 

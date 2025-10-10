@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="!mounted" class="flex flex-column gap-4">
+    <div v-if="!mounted" class="flex flex-col gap-4">
       <ui-skeletons v-for="skeletonField in skeletonFields" :field="skeletonField" />
     </div>
     <forms-form v-else :fields :initial-values :resolver :on-submit>
@@ -32,12 +32,12 @@ const initialValues = computed(() => ({
 }))
 
 /* Constants */
-const fields = [{ name: 'name', label: 'Name', type: 'text', class: 'lg:w-8' }]
+const fields = [{ name: 'name', label: 'Name', type: 'text', class: 'lg:w-8/12' }]
 const skeletonFields: SkeletonProp[] = [
-  { type: 'skeleton', class: 'w-12 lg:w-8', height: 3.375 },
+  { type: 'skeleton', class: 'w-full lg:w-8/12', height: 3.375 },
   {
     type: 'wrapper',
-    class: 'flex gap-3 -mt-2 w-12',
+    class: 'flex gap-3 -mt-2 w-full',
     fields: [
       { type: 'skeleton', width: 7.51, height: 1.833 },
       { type: 'skeleton', width: 7.51, height: 1.833 },

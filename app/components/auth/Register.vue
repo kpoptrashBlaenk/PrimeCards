@@ -1,12 +1,14 @@
 <template>
   <auth-layout :header="'Sign up to create your own card!'">
-    <div v-if="!mounted" class="flex flex-column gap-4">
+    <div v-if="!mounted" class="flex flex-col gap-4">
       <ui-skeletons v-for="skeletonField in skeletonFields" :field="skeletonField" />
     </div>
 
     <forms-form v-else :fields :resolver :on-submit :clear-field="true">
       <Button type="submit" size="large" rounded :disabled="loading" class="font-bold text-outline">Register</Button>
-      <p class="text-center text-400 -mt-1">Already have an account? <nuxt-link to="/auth/login">Sign in now!</nuxt-link></p>
+      <p class="text-center text-surface-400 -mt-1">
+        Already have an account? <nuxt-link to="/auth/login" class="auth-link">Sign in now!</nuxt-link>
+      </p>
     </forms-form>
 
     <Toast />
@@ -34,12 +36,12 @@ const fields = [
   { name: 'repeatPassword', label: 'Repeat Password', type: 'password' },
 ]
 const skeletonFields: SkeletonProp[] = [
-  { type: 'skeleton', height: 3.375, class: 'w-12' },
-  { type: 'skeleton', height: 3.375, class: 'w-12' },
-  { type: 'skeleton', height: 3.375, class: 'w-12' },
-  { type: 'skeleton', height: 3.375, class: 'w-12' },
-  { type: 'skeleton', height: 2.625, class: 'w-12' },
-  { type: 'skeleton', height: 1.167, class: '-mt-1 w-12' },
+  { type: 'skeleton', height: 3.375, class: 'w-full' },
+  { type: 'skeleton', height: 3.375, class: 'w-full' },
+  { type: 'skeleton', height: 3.375, class: 'w-full' },
+  { type: 'skeleton', height: 3.375, class: 'w-full' },
+  { type: 'skeleton', height: 2.625, class: 'w-full' },
+  { type: 'skeleton', height: 1.167, class: '-mt-1 w-full' },
 ]
 const toast = useToast()
 

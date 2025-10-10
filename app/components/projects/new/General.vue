@@ -3,7 +3,7 @@
     <Step>
       <span class="font-bold text-lg">General</span>
     </Step>
-    <StepPanel v-slot="{ activateCallback }" class="surface-950">
+    <StepPanel v-slot="{ activateCallback }" class="bg-surface-950">
       <ui-skeletons v-if="!mounted" v-for="field in generalSkeletonFields" :field="field" />
 
       <forms-form
@@ -14,10 +14,10 @@
         :clear-field="true"
       >
         <template #default="{ form }">
-          <span class="text-sm -mt-3" :class="form['description']?.value?.length > 200 ? 'text-red-500' : 'text-400'">
+          <span class="text-sm -mt-3" :class="form['description']?.value?.length > 200 ? 'text-red-500' : 'text-surface-400'">
             {{ form['description']?.value?.length || 0 }}/200 characters
           </span>
-          <div class="flex justify-content-between">
+          <div class="flex justify-between">
             <Button
               type="submit"
               label="Next"
@@ -56,10 +56,10 @@ const fields = [
 const generalSkeletonFields: SkeletonProp[] = [
   {
     type: 'wrapper',
-    class: 'flex flex-column gap-4',
+    class: 'flex flex-col gap-4',
     fields: [
-      { type: 'skeleton', height: 3.375, class: 'w-12' },
-      { type: 'skeleton', height: 3.375, class: 'w-12' },
+      { type: 'skeleton', height: 3.375, class: 'w-full' },
+      { type: 'skeleton', height: 3.375, class: 'w-full' },
       { type: 'skeleton', height: 1, width: 8, class: '-mt-3' },
       { type: 'skeleton', width: 5.251, height: 2.25 },
     ],

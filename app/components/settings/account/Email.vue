@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="!mounted" class="flex flex-column gap-4">
+    <div v-if="!mounted" class="flex flex-col gap-4">
       <ui-skeletons v-for="skeletonField in skeletonFields" :field="skeletonField" />
     </div>
 
@@ -33,9 +33,9 @@ const initialValues = computed(() => ({
 }))
 
 /* Constants */
-const fields = [{ name: 'email', label: 'Email', type: 'email', class: 'lg:w-8' }]
+const fields = [{ name: 'email', label: 'Email', type: 'email', class: 'lg:w-8/12' }]
 const skeletonFields: SkeletonProp[] = [
-  { type: 'skeleton', class: 'lg:w-8', height: 3.375 },
+  { type: 'skeleton', class: 'lg:w-8/12', height: 3.375 },
   { type: 'skeleton', width: 7.51, height: 1.833 },
 ]
 const toast = useToast()

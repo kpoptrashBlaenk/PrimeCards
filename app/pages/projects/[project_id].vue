@@ -1,7 +1,7 @@
 <template>
-  <Splitter class="w-full h-full" :gutter-size="2">
+  <Splitter class="w-full h-full rounded-none!" :gutter-size="2">
     <SplitterPanel :size="25" :min-size="20">
-      <projects-edit-tree-tabs class="surface-50 border-right-1 border-200 h-full w-full"></projects-edit-tree-tabs>
+      <projects-edit-tree-tabs class="bg-surface-900 h-full w-full"></projects-edit-tree-tabs>
     </SplitterPanel>
 
     <SplitterPanel :size="80" :min-size="20">

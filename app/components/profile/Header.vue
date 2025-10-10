@@ -1,8 +1,8 @@
 <template>
   <div class="flex">
-    <div class="w-12 flex flex-column lg:flex-row">
+    <div class="w-full flex flex-col lg:flex-row">
       <!-- Search Bar -->
-      <ui-search-bar v-model:search="search" class="w-12 mb-2 lg:mb-0" style="min-width: 16.9rem" />
+      <ui-search-bar v-model:search="search" class="w-full mb-2 lg:mb-0" style="min-width: 16.9rem" />
       <div class="flex">
         <!-- Sort Button -->
         <ui-dropdown label="Sort" :options="sortOptions" v-model:selected="sort" class="lg:ml-2" />

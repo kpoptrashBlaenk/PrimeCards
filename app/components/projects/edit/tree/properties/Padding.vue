@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex flex-wrap justify-content-end gap-2">
+  <div class="flex flex-wrap justify-end gap-2">
     <div
       v-for="padding in [
         ['Left', 'Right'],
@@ -7,7 +7,7 @@
       ]"
       class="flex gap-2"
     >
-      <div v-for="pad in padding" class="flex flex-column gap-2 align-items-center">
+      <div v-for="pad in padding" class="flex flex-col gap-2 items-center">
         <Select
           size="small"
           :options="Object.values(PROPERTIES.padding)"

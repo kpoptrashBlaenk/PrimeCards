@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex flex-wrap justify-content-end gap-2">
+  <div class="flex flex-wrap justify-end gap-2">
     <div
       v-for="margin in [
         ['Left', 'Right'],
@@ -7,7 +7,7 @@
       ]"
       class="flex gap-2"
     >
-      <div v-for="mar in margin" class="flex flex-column gap-2 align-items-center">
+      <div v-for="mar in margin" class="flex flex-col gap-2 items-center">
         <Select
           size="small"
           :options="Object.values(PROPERTIES.margin)"

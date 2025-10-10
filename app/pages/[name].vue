@@ -1,6 +1,6 @@
 <template>
   <div class="grid container-xl px-2 pt-6 gap-5">
-    <div class="col-auto w-12 md:w-auto">
+    <div class="col-auto w-full md:w-auto">
       <profile-avatar :profile="profile!" :loading="loading" />
     </div>
 

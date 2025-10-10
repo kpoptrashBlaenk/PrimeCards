@@ -1,4 +1,6 @@
-@import url(./themes.css);
-@import url(./global.css);
-@import url(./transition.css);
-@import url(./util.css);
+@import url('./themes.css');
+@import url('./global.css');
+@import url('./transition.css');
+
+@import 'tailwindcss';
+@import 'tailwindcss-primeui';

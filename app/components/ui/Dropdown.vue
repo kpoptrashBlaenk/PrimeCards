@@ -14,7 +14,7 @@
       checkmark
       :multiple="multiple"
       :highlightOnSelect="false"
-      class="absolute w-10rem mt-2"
+      class="absolute w-40 mt-2"
     />
   </div>
 </template>

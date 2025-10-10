@@ -8,13 +8,13 @@
       <Divider v-if="item.separator" class="my-1" />
 
       <!-- Header -->
-      <div v-else-if="item.header" class="flex align-items-center p-2 surface-0 cursor-default" style="pointer-events: none">
+      <div v-else-if="item.header" class="flex items-center p-2 bg-surface-0 cursor-default" style="pointer-events: none">
         <ui-avatar size="normal" type="avatar" class="bg-primary mr-2" />
         <span>{{ item.label }}</span>
       </div>
 
       <!-- Clickable item -->
-      <a v-else v-bind="props.action" class="flex align-items-center gap-2">
+      <a v-else v-bind="props.action" class="flex items-center gap-2">
         <span :class="item.icon"></span>
         <span>{{ item.label }}</span>
       </a>

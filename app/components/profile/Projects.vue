@@ -69,7 +69,7 @@ const skeletonFields: SkeletonProp[] = [
         fields: [
           {
             type: 'wrapper',
-            class: 'flex gap-2 align-items-center',
+            class: 'flex gap-2 items-center',
             fields: [
               { type: 'skeleton', height: 1.75, width: 20 },
               { type: 'skeleton', height: 0.875, width: 5 },
@@ -93,7 +93,7 @@ const skeletonFields: SkeletonProp[] = [
         fields: [
           {
             type: 'wrapper',
-            class: 'flex flex-column align-items-end mb-4',
+            class: 'flex flex-col align-end mb-4',
             fields: [
               { type: 'skeleton', height: 1, width: 7.875 },
               { type: 'skeleton', height: 0.875, width: 7.875, class: 'mt-1' },
@@ -101,7 +101,7 @@ const skeletonFields: SkeletonProp[] = [
           },
           {
             type: 'wrapper',
-            class: 'flex flex-column align-items-end',
+            class: 'flex flex-col align-end',
             fields: [
               { type: 'skeleton', height: 1, width: 7.875 },
               { type: 'skeleton', height: 0.875, width: 7.875, class: 'mt-1' },

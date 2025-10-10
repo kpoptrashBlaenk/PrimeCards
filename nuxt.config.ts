@@ -1,3 +1,4 @@
+import tailwindcss from '@tailwindcss/vite'
 import AuraDarkPink from './app/assets/themes/auraDarkPink'
 
 export default defineNuxtConfig({
@@ -31,7 +32,10 @@ export default defineNuxtConfig({
     '#plugins': '',
   },
   compatibilityDate: '2025-07-15',
-  devtools: { enabled: false },
+  devtools: { enabled: true },
+  vite: {
+    plugins: [tailwindcss()],
+  },
   plugins: ['@plugins/session.server.ts'],
   app: {
     head: {
@@ -46,7 +50,7 @@ export default defineNuxtConfig({
       mode: 'out-in',
     },
   },
-  css: ['primeflex/primeflex.css', 'primeicons/primeicons.css', '@assets/css/main.css'],
+  css: ['primeicons/primeicons.css', '@assets/css/main.css'],
   modules: ['@pinia/nuxt', '@primevue/nuxt-module'],
   // supabase: {
   //   url: process.env.NUXT_PUBLIC_SUPABASE_URL,

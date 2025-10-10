@@ -1,5 +1,5 @@
 <template>
-  <Menubar class="surface-50 border-1 border-200">
+  <Menubar class="bg-surface-900 border-1 border-surface-700 rounded-none!">
     <template #end>
       <div class="flex gap-3">
         <Button

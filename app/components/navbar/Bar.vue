@@ -2,14 +2,14 @@
   <Menubar>
     <!-- Start -->
     <template #start>
-      <div class="flex align-items-baseline gap-2">
-        <nuxt-link class="text-2xl font-bold no-underline text-logo" to="/"> PrimeCards </nuxt-link>
+      <div class="flex align-baseline gap-2">
+        <nuxt-link class="text-2xl font-bold text-logo" to="/"> PrimeCards </nuxt-link>
       </div>
     </template>
 
     <!-- End -->
     <template #end>
-      <div v-if="userStore.user" class="flex align-items-center gap-3">
+      <div v-if="userStore.user" class="flex items-center gap-3">
         <div class="font-bold text-md">{{ pageName }}</div>
         <navbar-user-menu />
       </div>

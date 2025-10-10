@@ -1,14 +1,14 @@
 <template>
   <div>
     <UiAvatar size="giant" />
-    <div class="flex justify-content-evenly w-10rem -mt-3">
+    <div class="flex justify-evenly w-40 -mt-3">
       <FileUpload
         mode="basic"
         :choose-button-props="{ size: 'small', label: 'Upload' }"
         auto
         custom-upload
         :disabled="loading"
-        class="p-1 surface-0 hover:surface-50 text-green-400 border-green-400"
+        class="p-1 bg-surface-0 hover:bg-surface-50 text-green-400 border-green-400"
         @select="onUpload"
       />
       <Button
@@ -18,7 +18,7 @@
         custom-upload
         :disabled="loading || !userStore.user?.avatar_path"
         @click="onDelete"
-        class="p-1 surface-0 hover:surface-50 text-red-400 border-red-400"
+        class="p-1 bg-surface-0 hover:bg-surface-50 text-red-400 border-red-400"
       >
         Remove
       </Button>

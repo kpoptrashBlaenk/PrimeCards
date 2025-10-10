@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-column h-full">
+  <div class="flex flex-col h-full">
     <!-- <NavbarBar /> -->
     <projects-edit-bar />
     <slot></slot>

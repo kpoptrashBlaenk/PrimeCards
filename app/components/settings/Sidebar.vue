@@ -1,14 +1,14 @@
 <template>
   <div class="flex gap-3 pt-4 pb-3 pl-2">
     <ui-avatar size="large" />
-    <div class="flex flex-column justify-content-center">
+    <div class="flex flex-col justify-center">
       <span class="text-xl">{{ userStore.user?.name }}</span>
-      <span class="text-md text-400">{{ userStore.user?.email }}</span>
+      <span class="text-md text-surface-400">{{ userStore.user?.email }}</span>
     </div>
   </div>
-  <Menu :model="items" class="border-none surface-950">
+  <Menu :model="items" class="border-none bg-surface-950">
     <template #item="{ item, props }">
-      <a v-bind="props.action" class="pl-3 border-round" :class="{ 'active-item surface-50': item.page === route.path }">
+      <a v-bind="props.action" class="pl-3 border-round" :class="{ 'active-item bg-surface-50': item.page === route.path }">
         <span :class="item.icon"></span>
         <span>{{ item.label }}</span>
       </a>

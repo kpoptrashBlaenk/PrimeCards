@@ -1,9 +1,9 @@
 <template>
-  <div class="flex justify-content-end gap-3">
+  <div class="flex justify-end gap-3">
     <Button
       size="small"
       :severity="projectStore.selectedComponent?.properties.italic ? 'primary' : 'secondary'"
-      class="font-italic"
+      class="italic"
       @click="projectStore.updateComponent('italic', !projectStore.selectedComponent?.properties.italic)"
       >I</Button
     >

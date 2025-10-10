@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-content-end gap-3 align-items-center">
+  <div class="flex justify-end gap-3 items-center">
     <ToggleButton
       :default-value="projectStore.selectedComponent?.properties.overflow"
       on-label="Overflow On"
@@ -7,10 +7,10 @@
       size="small"
       :pt="{
         content: {
-          class: projectStore.selectedComponent?.properties.overflow ? 'surface-50' : 'surface-100',
+          class: projectStore.selectedComponent?.properties.overflow ? 'bg-surface-900' : 'bg-surface-800',
         },
       }"
-      class="surface-100 border-50"
+      class="bg-surface-800 border-surface-900"
       :class="{ 'opacity-0': projectStore.selectedComponent?.properties.wrap }"
       @value-change="projectStore.updateComponent('overflow', $event)"
     />

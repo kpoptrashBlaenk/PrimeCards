@@ -3,8 +3,8 @@
     <Step>
       <span class="font-bold text-lg">Submit</span>
     </Step>
-    <StepPanel v-slot="{ activateCallback }" class="surface-950">
-      <div class="flex justify-content-between">
+    <StepPanel v-slot="{ activateCallback }" class="bg-surface-950">
+      <div class="flex justify-between">
         <Button
           @click="activateCallback('1')"
           label="Back"

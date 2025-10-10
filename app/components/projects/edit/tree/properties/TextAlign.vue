@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-content-end gap-3">
+  <div class="flex justify-end gap-3">
     <Button
       v-for="align in Object.values(PROPERTIES.textAlign)"
       size="small"

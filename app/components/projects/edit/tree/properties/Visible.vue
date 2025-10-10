@@ -1,8 +1,8 @@
 <template>
-  <div class="flex justify-content-end">
+  <div class="flex justify-end">
     <ToggleSwitch
       size="small"
-      :default-value="projectStore.selectedComponent?.properties.wrap"
+      :default-value="projectStore.selectedComponent?.properties.visible"
       @value-change="projectStore.updateComponent('visible', $event)"
     ></ToggleSwitch>
   </div>

@@ -7,7 +7,7 @@
   </auth-layout>
 
   <auth-layout v-else :header="'Enter your new password'">
-    <div v-if="!mounted" class="flex flex-column gap-4">
+    <div v-if="!mounted" class="flex flex-col gap-4">
       <ui-skeletons v-for="skeletonField in skeletonFields" :field="skeletonField" />
     </div>
 
@@ -39,9 +39,9 @@ const fields = [
   { name: 'repeatPassword', label: 'Repeat password', type: 'password' },
 ]
 const skeletonFields: SkeletonProp[] = [
-  { type: 'skeleton', height: 3.375, class: 'w-12' },
-  { type: 'skeleton', height: 3.375, class: 'w-12' },
-  { type: 'skeleton', height: 2.625, class: 'w-12' },
+  { type: 'skeleton', height: 3.375, class: 'w-full' },
+  { type: 'skeleton', height: 3.375, class: 'w-full' },
+  { type: 'skeleton', height: 2.625, class: 'w-full' },
 ]
 const toast = useToast()
 

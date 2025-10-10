@@ -8,15 +8,15 @@
       severity="danger"
       variant="outlined"
       size="small"
-      class="font-bold hover:bg-red-500 hover:text-900"
+      class="font-bold hover:bg-red-500 hover:text-surface-900"
       @click="dialog = true"
     >
       Delete Account
     </Button>
 
     <!-- Dialog -->
-    <Dialog v-model:visible="dialog" modal header="Delete Account" class="w-25rem sm:w-30rem">
-      <span class="text-500">
+    <Dialog v-model:visible="dialog" modal header="Delete Account" class="w-100 sm:w-120">
+      <span class="text-surface-500">
         Type <span class="font-bold text-red-500">delete {{ userStore.user?.name }}</span> to delete your account.
       </span>
       <forms-form :fields :resolver :onSubmit class="mt-2">

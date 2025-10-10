@@ -1,26 +1,28 @@
 <template>
-  <Button label="New Page" icon="pi pi-plus" variant="text" size="small" @click="projectStore.createPage()"></Button>
-  <Divider class="my-2" />
+  <div class="-mt-3 p-5">
+    <Button label="New Page" icon="pi pi-plus" variant="text" size="small" @click="projectStore.createPage()"></Button>
+    <Divider class="my-2!" />
 
-  <!-- Tree -->
-  <Tree
-    v-model:selection-keys="selectedKey"
-    :value="projectToNode(projectStore.project!.project_version.app, true)"
-    selection-mode="single"
-    :filter="true"
-    filter-by="label"
-    filter-placeholder="Search"
-    :pt="{ pcFilterInput: { name: 'filter' } }"
-    class="bg-transparent -mt-2 px-0"
-    @node-select="projectStore.selectComponent($event)"
-  >
-    <template #default="slotProps">
-      <div class="text-sm flex gap-2 align-items-center">
-        <i class="text-sm" :class="`pi pi-${slotProps.node.data.icon}`"></i>
-        {{ slotProps.node.data.name }}
-      </div>
-    </template>
-  </Tree>
+    <!-- Tree -->
+    <Tree
+      v-model:selection-keys="selectedKey"
+      :value="projectToNode(projectStore.project!.project_version.app, true)"
+      selection-mode="single"
+      :filter="true"
+      filter-by="label"
+      filter-placeholder="Search"
+      :pt="{ pcFilterInput: { name: 'filter' } }"
+      class="bg-transparent -mt-2 px-2!"
+      @node-select="projectStore.selectComponent($event)"
+    >
+      <template #default="slotProps">
+        <div class="text-sm flex gap-2 items-center">
+          <i class="text-sm" :class="`pi pi-${slotProps.node.data.icon}`"></i>
+          {{ slotProps.node.data.name }}
+        </div>
+      </template>
+    </Tree>
+  </div>
 </template>
 
 <script setup lang="ts">
