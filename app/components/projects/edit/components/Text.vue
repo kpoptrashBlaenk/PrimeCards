@@ -22,6 +22,7 @@
         underline: component.properties.underline,
         'line-through': component.properties.lineThrough,
         'white-space-nowrap': !component.properties.wrap,
+        hidden: !component.properties.visible,
       },
     ]"
   >

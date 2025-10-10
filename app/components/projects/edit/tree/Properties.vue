@@ -82,6 +82,12 @@
       <projects-edit-tree-properties-label text="Margin" tooltip="Margin" />
       <projects-edit-tree-properties-margin class="w-8" />
     </div>
+
+    <!-- Visible -->
+    <div v-if="'visible' in projectStore.selectedComponent.properties" class="flex justify-content-between align-items-center">
+      <projects-edit-tree-properties-label text="Visible" tooltip="Visible" />
+      <projects-edit-tree-properties-visible class="w-8" />
+    </div>
   </div>
 </template>
 

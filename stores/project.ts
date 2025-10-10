@@ -97,6 +97,7 @@ export const useProjectStore = defineStore('projectStore', {
           marginRight: PROPERTIES.margin[0],
           marginTop: PROPERTIES.margin[0],
           marginBottom: PROPERTIES.margin[0],
+          visible: true,
         },
       }
 

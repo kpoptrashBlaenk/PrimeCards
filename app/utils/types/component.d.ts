@@ -38,6 +38,7 @@ interface TextComponent extends BaseComponent {
     marginRight: MarginKey
     marginTop: MarginKey
     marginBottom: MarginKey
+    visible: boolean
   }
 }
 
