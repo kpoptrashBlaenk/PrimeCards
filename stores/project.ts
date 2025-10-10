@@ -78,8 +78,6 @@ export const useProjectStore = defineStore('projectStore', {
       }
 
       app.push(text)
-
-      this.selectComponent(text)
     },
 
     /* Update */

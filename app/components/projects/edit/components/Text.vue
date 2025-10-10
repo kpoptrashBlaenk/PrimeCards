@@ -33,6 +33,7 @@
       textOverflow: component.properties.textOverflow ? 'ellipsis' : 'clip',
       textIndent: `${component.properties.indent}px`,
     }"
+    class="border-3 border-e-cyan-700"
   >
     {{ component.properties.text }}
   </div>
@@ -42,7 +43,7 @@
 
 <script setup lang="ts">
 /* Props */
-defineProps<{
+const props = defineProps<{
   component: TextComponent
 }>()
 
@@ -50,22 +51,32 @@ defineProps<{
 const textRef = ref<HTMLDivElement>()
 const textRect = ref<DOMRect | undefined>(textRef.value?.getBoundingClientRect())
 
+/* Watches */
+watch(
+  () => props.component.properties,
+  async () => {
+    await nextTick()
+    changeOverlaySize()
+  },
+  { deep: true },
+)
+
 /* Functions */
-function chnageOverlaySize() {
+function changeOverlaySize() {
   textRect.value = textRef.value?.getBoundingClientRect()
 }
 
 /* Hooks */
 onMounted(() => {
-  chnageOverlaySize()
+  changeOverlaySize()
 
-  window.addEventListener('resize', chnageOverlaySize)
+  window.addEventListener('resize', changeOverlaySize)
 
-  const observer = new ResizeObserver(chnageOverlaySize)
+  const observer = new ResizeObserver(changeOverlaySize)
   observer.observe(textRef.value!)
 
   onBeforeMount(() => {
-    window.removeEventListener('resize', chnageOverlaySize)
+    window.removeEventListener('resize', changeOverlaySize)
     observer.disconnect()
   })
 })

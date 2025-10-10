@@ -30,14 +30,33 @@ const pageRef = ref<HTMLDivElement>()
 const pageRect = ref<DOMRect | undefined>(pageRef.value?.getBoundingClientRect())
 const children = computed(() => projectStore.findChildren(props.page.id))
 
+/* Watches */
+watch(
+  () => props.page.properties,
+  async () => {
+    await nextTick()
+    changeOverlaySize()
+  },
+  { deep: true },
+)
+
+/* Functions */
+function changeOverlaySize() {
+  pageRect.value = pageRef.value?.getBoundingClientRect()
+}
+
 /* Hooks */
 onMounted(() => {
-  const observer = new ResizeObserver(() => {
-    pageRect.value = pageRef.value?.getBoundingClientRect()
-  })
+  changeOverlaySize()
 
+  window.addEventListener('resize', changeOverlaySize)
+
+  const observer = new ResizeObserver(changeOverlaySize)
   observer.observe(pageRef.value!)
 
-  onBeforeMount(() => observer.disconnect())
+  onBeforeMount(() => {
+    window.removeEventListener('resize', changeOverlaySize)
+    observer.disconnect()
+  })
 })
 </script>
