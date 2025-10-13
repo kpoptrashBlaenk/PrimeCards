@@ -13,6 +13,7 @@
       marginBottom: `calc(var(--spacing) * ${component.properties.marginBottom})`,
       fontFamily: component.properties.fontFamily,
       fontSize: `${component.properties.fontSize}px`,
+      color: `${component.properties.fontColor}`,
       fontWeight: component.properties.bold ? 'bold' : 'normal',
       fontStyle: component.properties.italic ? 'italic' : 'normal',
       textDecorationLine: component.properties.underline
@@ -33,7 +34,6 @@
       textOverflow: component.properties.textOverflow ? 'ellipsis' : 'clip',
       textIndent: `${component.properties.indent}px`,
     }"
-    class="border-3 border-e-cyan-700"
   >
     {{ component.properties.text }}
   </div>

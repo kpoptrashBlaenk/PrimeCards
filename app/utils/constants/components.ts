@@ -24,6 +24,7 @@ export const COMPONENTS = {
       marginBottom: 0,
       fontFamily: PROPERTIES.fontFamily.arial,
       fontSize: 16,
+      fontColor: '#ffffff',
       bold: false,
       italic: false,
       underline: false,

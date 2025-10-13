@@ -41,6 +41,12 @@
       <projects-edit-tree-properties-font class="w-8/12" />
     </div>
 
+    <!-- FontColor -->
+    <div v-if="'wrap' in projectStore.selectedComponent.properties" class="flex justify-between items-center">
+      <projects-edit-tree-properties-label text="Font Color" tooltip="Font Color" />
+      <projects-edit-tree-properties-font-color class="w-8/12" />
+    </div>
+
     <!-- TextDecoration -->
     <div v-if="'bold' in projectStore.selectedComponent.properties" class="flex justify-between items-center">
       <projects-edit-tree-properties-label text="Text Decoration" tooltip="Text Decoration" />

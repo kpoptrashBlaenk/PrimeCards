@@ -30,6 +30,7 @@ interface TextComponent extends BaseComponent {
     marginBottom: number
     fontFamily: FontFamilyKey
     fontSize: number
+    fontColor: string
     bold: boolean
     italic: boolean
     underline: boolean
@@ -41,7 +42,7 @@ interface TextComponent extends BaseComponent {
     lineHeight: number
     textAlign: TextAlignKey
     verticalAlign: VerticalAlignKey
-    wrap: boolean // if no wrap then overflow, if overflow hidden then text overflow
+    wrap: boolean
     overflow: OverflowKey
     textOverflow: boolean
     indent: number
